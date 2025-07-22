@@ -6,316 +6,273 @@
 <title>Licenciatura en Turismo - Malla Curricular Interactiva</title>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-  * { box-sizing: border-box; }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: #F7F7F7; margin: 0; padding: 20px; color: #222; user-select: none;
-  }
-  h1,h2 { text-align: center; margin: 0 0 18px 0; }
-  h2 { font-size: 1.8em; margin-bottom: 14px; }
-  h3 { margin: 0 0 12px 0; font-weight: 600; }
-
-  .units-container {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    align-items: center;
-    max-width: 980px;
-    margin: 0 auto 40px auto;
-  }
-  .unit {
-    display: flex; flex-direction: column;
-    width: 100%;
-  }
-  .semesters {
-    display: flex; flex-direction: row;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 8px;
-    scrollbar-width: thin;
-    scrollbar-color: #aaa transparent;
-  }
-  .semesters::-webkit-scrollbar { height: 8px; }
-  .semesters::-webkit-scrollbar-thumb { background-color: #aaa; border-radius:4px; }
-
-  .unit[data-unit="Preuniversitaria"] { background: #E1F3FB; color: #004E6E; border-radius: 14px; padding: 16px 20px; }
-  .unit[data-unit="Basica"] { background: #E6F9E8; color: #12693B; border-radius: 14px; padding: 16px 20px; }
-  .unit[data-unit="Profesional"] { background: #FFFBEB; color: #966B00; border-radius: 14px; padding: 16px 20px; }
-  .unit[data-unit="Titulacion"] { background: #FFEAEA; color: #8B1A1A; border-radius: 14px; padding: 16px 20px; }
-
-  .semester {
-    background: #fff; border-radius: 8px;
-    flex: 1 1 0;
-    padding: 12px 10px 14px 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    min-width: 140px;
-    display: flex; flex-direction: column;
-  }
-  .semester h3 {
-    text-align: center; margin-bottom: 10px;
-    border-bottom: 2px solid #ccc; font-size: 1.1em;
-  }
-
-  .sem-Pre .subject { background-color: #E0F7FA !important; }
-  .sem-1 .subject:nth-child(1) { background: #E8F5E9; }
-  .sem-1 .subject:nth-child(2) { background: #C8E6C9; }
-  .sem-1 .subject:nth-child(3) { background: #A5D6A7; }
-  .sem-1 .subject:nth-child(4) { background: #81C784; }
-  .sem-1 .subject:nth-child(5) { background: #66BB6A; }
-  .sem-1 .subject:nth-child(6) { background: #43A047; }
-  .sem-2 .subject:nth-child(1) { background: #FFF3E0; }
-  .sem-2 .subject:nth-child(2) { background: #FFE0B2; }
-  .sem-2 .subject:nth-child(3) { background: #FFCC80; }
-  .sem-2 .subject:nth-child(4) { background: #FFB74D; }
-  .sem-2 .subject:nth-child(5) { background: #FFA726; }
-  .sem-2 .subject:nth-child(6) { background: #FF9800; }
-  .sem-3 .subject:nth-child(1) { background: #F3E5F5; }
-  .sem-3 .subject:nth-child(2) { background: #E1BEE7; }
-  .sem-3 .subject:nth-child(3) { background: #CE93D8; }
-  .sem-3 .subject:nth-child(4) { background: #BA68C8; }
-  .sem-3 .subject:nth-child(5) { background: #AB47BC; }
-  .sem-3 .subject:nth-child(6) { background: #9C27B0; }
-  .sem-4 .subject:nth-child(1) { background: #FCE4EC; }
-  .sem-4 .subject:nth-child(2) { background: #F8BBD0; }
-  .sem-4 .subject:nth-child(3) { background: #F48FB1; }
-  .sem-4 .subject:nth-child(4) { background: #F06292; }
-  .sem-4 .subject:nth-child(5) { background: #EC407A; }
-  .sem-4 .subject:nth-child(6) { background: #E91E63; }
-  .sem-5 .subject:nth-child(1) { background: #FFFDE7; }
-  .sem-5 .subject:nth-child(2) { background: #FFF9C4; }
-  .sem-5 .subject:nth-child(3) { background: #FFF59D; }
-  .sem-5 .subject:nth-child(4) { background: #FFF176; }
-  .sem-5 .subject:nth-child(5) { background: #FFEE58; }
-  .sem-5 .subject:nth-child(6) { background: #FFEB3B; }
-  .sem-6 .subject:nth-child(1) { background: #FFEBEE; }
-  .sem-6 .subject:nth-child(2) { background: #FFCDD2; }
-  .sem-6 .subject:nth-child(3) { background: #EF9A9A; }
-  .sem-6 .subject:nth-child(4) { background: #E57373; }
-  .sem-6 .subject:nth-child(5) { background: #EF5350; }
-  .sem-6 .subject:nth-child(6) { background: #F44336; }
-  .sem-7 .subject:nth-child(1) { background: #E8F5E9; }
-  .sem-7 .subject:nth-child(2) { background: #C8E6C9; }
-  .sem-7 .subject:nth-child(3) { background: #A5D6A7; }
-  .sem-7 .subject:nth-child(4) { background: #81C784; }
-  .sem-7 .subject:nth-child(5) { background: #66BB6A; }
-  .sem-7 .subject:nth-child(6) { background: #388E3C; }
-  .sem-8 .subject:nth-child(1) { background: #E3F2FD; }
-  .sem-8 .subject:nth-child(2) { background: #BBDEFB; }
-  .sem-8 .subject:nth-child(3) { background: #90CAF9; }
-  .sem-8 .subject:nth-child(4) { background: #64B5F6; }
-  .sem-8 .subject:nth-child(5) { background: #42A5F5; }
-  .sem-8 .subject:nth-child(6) { background: #1976D2; }
-  .sem-9 .subject:nth-child(1) { background: #FAFAFA; }
-  .sem-9 .subject:nth-child(2) { background: #F5F5F5; }
-  .sem-9 .subject:nth-child(3) { background: #EEEEEE; }
-  .sem-9 .subject:nth-child(4) { background: #E0E0E0; }
-  .sem-9 .subject:nth-child(5) { background: #BDBDBD; }
-  .sem-9 .subject:nth-child(6) { background: #757575; }
-
-  .subject {
-    margin-bottom: 8px; padding: 6px 8px; border-radius: 6px;
-    cursor: pointer; display: flex; align-items: center; gap: 8px;
-    font-size: 0.9em; user-select:none; box-shadow: inset 0 0 0 2px transparent;
-    transition: background 0.3s ease;
-    position: relative;
-  }
-
-  .subject.approved {
-    background-color: #b3e6a9 !important; text-decoration: line-through;
-    color: #2a3b18; font-weight: 600;
-  }
-  .subject.locked {
-    background-color: #d8d8d8 !important; color: #888; cursor: not-allowed;
-  }
-  .subject.locked:hover::after {
-    content: attr(data-tooltip);
-    position: absolute; left: 105%; top: 50%;
-    white-space: nowrap; background: rgba(0,0,0,0.8);
-    color: #fff; padding: 6px 10px; border-radius: 6px;
-    font-size: 0.85em; transform: translate(10px, -50%);
-    z-index: 1000; max-width: 260px;
-  }
-
-  .icon {
-    font-size: 1.3em; width: 22px; text-align: center;
-  }
-
-  .modules-container {
-    max-width: 940px;
-    margin: 0 auto 40px auto;
-    background: #F7F7F7;
-    padding: 20px 12px;
-    border-radius: 14px;
-    box-shadow: 0 0 14px rgb(0 0 0 / 0.1);
-  }
-  .modules-container h2 {
-    margin-bottom: 14px;
-  }
-  .modules {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    flex-wrap: nowrap;
-  }
-  .module {
-    background: #EFEFEF;
-    border-radius: 12px;
-    padding: 12px 20px;
-    min-width: 280px;
-    color: #222;
-  }
-  .module-title {
-    font-size: 1.4em;
-    margin-bottom: 14px;
-    user-select: text;
-  }
-  .module.sem-ingles {
-    background: #E0F7FA;
-    color: #004D56;
-  }
-  .module.sem-computacion {
-    background: #F3E5F5;
-    color: #6A1B9A;
-  }
-  .module .subject {
-    margin-bottom: 10px;
-    padding: 7px 9px;
-    border-radius: 6px;
-    cursor: pointer;
-    user-select:none;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    position: relative;
-  }
-  .module .subject:hover:not(.locked):not(.approved) {
-    background-color: #b0d7db !important;
-  }
-
-  .stats {
-    max-width: 940px;
-    margin: 0 auto 36px auto;
-    background: #fff;
-    padding: 14px 24px;
-    font-weight: 600;
-    border-radius: 14px;
-    font-size: 1.3em;
-    color: #222;
-    box-shadow: 0 2px 15px rgb(0 0 0 / 0.1);
-    user-select: text;
-    display: flex;
-    justify-content: space-around;
-    gap: 12px;
-  }
-  .stats span {
-    color: #007BFF;
-  }
-
-  @media (max-width: 1220px) {
-    .semester {
-      min-width: 140px;
-    }
-  }
-  @media (max-width: 700px) {
-    .units-container {
-      padding: 0 10px;
-    }
-    .semesters {
-      gap: 12px;
-    }
-  }
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* { box-sizing: border-box; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #F7F7F7;
+  margin: 0; padding: 20px;
+  color: #222;
+  user-select: none;
+}
+h1,h2 { text-align: center; margin: 0 0 18px 0; }
+h2 { font-size: 1.8em; margin-bottom: 14px; }
+h3 { margin: 0 0 12px 0; font-weight: 600; }
+.units-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  max-width: 980px;
+  margin: 0 auto 40px auto;
+}
+.unit {
+  display: flex; flex-direction: column;
+  width: 100%;
+}
+.semesters {
+  display: flex; flex-direction: row;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #aaa transparent;
+}
+.semesters::-webkit-scrollbar { height: 8px; }
+.semesters::-webkit-scrollbar-thumb { background-color: #aaa; border-radius:4px; }
+.unit[data-unit="Preuniversitaria"] { background: #E1F3FB; color: #004E6E; border-radius: 14px; padding: 16px 20px; }
+.unit[data-unit="Basica"] { background: #E6F9E8; color: #12693B; border-radius: 14px; padding: 16px 20px; }
+.unit[data-unit="Profesional"] { background: #FFFBEB; color: #966B00; border-radius: 14px; padding: 16px 20px; }
+.unit[data-unit="Titulacion"] { background: #FFEAEA; color: #8B1A1A; border-radius: 14px; padding: 16px 20px; }
+.semester {
+  background: #fff;
+  border-radius: 8px;
+  flex: 1 1 0;
+  padding: 12px 10px 14px 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+}
+.semester h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+  font-size: 1.1em;
+}
+.sem-Pre .subject { background-color: #E0F7FA !important; }
+.sem-1 .subject:nth-child(1) { background: #E8F5E9; }
+.sem-1 .subject:nth-child(2) { background: #C8E6C9; }
+.sem-1 .subject:nth-child(3) { background: #A5D6A7; }
+.sem-1 .subject:nth-child(4) { background: #81C784; }
+.sem-1 .subject:nth-child(5) { background: #66BB6A; }
+.sem-1 .subject:nth-child(6) { background: #43A047; }
+.sem-2 .subject:nth-child(1) { background: #FFF3E0; }
+.sem-2 .subject:nth-child(2) { background: #FFE0B2; }
+.sem-2 .subject:nth-child(3) { background: #FFCC80; }
+.sem-2 .subject:nth-child(4) { background: #FFB74D; }
+.sem-2 .subject:nth-child(5) { background: #FFA726; }
+.sem-2 .subject:nth-child(6) { background: #FF9800; }
+.sem-3 .subject:nth-child(1) { background: #F3E5F5; }
+.sem-3 .subject:nth-child(2) { background: #E1BEE7; }
+.sem-3 .subject:nth-child(3) { background: #CE93D8; }
+.sem-3 .subject:nth-child(4) { background: #BA68C8; }
+.sem-3 .subject:nth-child(5) { background: #AB47BC; }
+.sem-3 .subject:nth-child(6) { background: #9C27B0; }
+.subject {
+  margin-bottom: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+  user-select:none;
+  box-shadow: inset 0 0 0 2px transparent;
+  transition: background 0.3s ease;
+  position: relative;
+}
+.subject.approved {
+  background-color: #b3e6a9 !important;
+  text-decoration: line-through;
+  color: #2a3b18;
+  font-weight: 600;
+}
+.subject.locked {
+  background-color: #d8d8d8 !important;
+  color: #888;
+  cursor: not-allowed;
+}
+.subject.locked:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 105%;
+  top: 50%;
+  white-space: nowrap;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  transform: translate(10px, -50%);
+  z-index: 1000;
+  max-width: 260px;
+}
+.icon {
+  font-size: 1.3em;
+  width: 22px;
+  text-align: center;
+}
+.stats {
+  max-width: 940px;
+  margin: 0 auto 36px auto;
+  background: #fff;
+  padding: 14px 24px;
+  font-weight: 600;
+  border-radius: 14px;
+  font-size: 1.3em;
+  color: #222;
+  box-shadow: 0 2px 15px rgb(0 0 0 / 0.1);
+  user-select: text;
+  display: flex;
+  justify-content: space-around;
+  gap: 12px;
+}
+.stats span {
+  color: #007BFF;
+}
 </style>
 
 </head>
 <body>
-
 <h1>Licenciatura en Turismo - Malla Curricular Interactiva</h1>
-
 <div class="stats" aria-live="polite" role="region" aria-label="Resumen de materias y créditos aprobados">
-  Materias Aprobadas: <span id="approvedCount" aria-atomic="true" aria-live="polite">0</span> / 57
-  &nbsp;&nbsp;|&nbsp;&nbsp;
-  Créditos Totales: <span id="creditsCount" aria-atomic="true" aria-live="polite">0.00</span>
-  &nbsp;&nbsp;|&nbsp;&nbsp;
-  Créditos Módulos: <span id="creditsModuleCount" aria-atomic="true" aria-live="polite">0.00</span>
+  Materias Aprobadas: <span id="approvedCount" aria-atomic="true" aria-live="polite">0</span> / 57 &nbsp;&nbsp;|&nbsp;&nbsp; Créditos Totales: <span id="creditsCount" aria-atomic="true" aria-live="polite">0.00</span> &nbsp;&nbsp;|&nbsp;&nbsp; Créditos Módulos: <span id="creditsModuleCount" aria-atomic="true" aria-live="polite">0.00</span>
 </div>
-
 <div class="units-container" role="main" aria-label="Malla curricular - unidades y semestres">
-<!-- Unidad Preuniversitaria -->
-<section class="unit" data-unit="Preuniversitaria" aria-labelledby="title-pre">
-  <h2 id="title-pre">Unidad Preuniversitaria</h2>
-  <div class="semesters sem-Pre" role="list" aria-label="Semestre Preuniversitario">
-    <div class="semester sem-Pre" data-semester="Pre" role="listitem" aria-label="Preuniversitario">
-      <h3 class="title">Pre</h3>
-      <div class="subject" role="button" tabindex="0" data-id="EpistemologiaDelTurismo" data-credits="0" data-prereq="" aria-pressed="false" title="🧠 Epistemología del Turismo"><span class="icon">🧠</span> Epistemología del Turismo</div>
-      <div class="subject" role="button" tabindex="0" data-id="IntroduccionComunicacionAcademica" data-credits="0" data-prereq="" aria-pressed="false" title="✍️ Introducción a la Comunicación Académica"><span class="icon">✍️</span> Introducción a la Comunicación Académica</div>
-      <div class="subject" role="button" tabindex="0" data-id="PensamientoComputacional" data-credits="0" data-prereq="" aria-pressed="false" title="💻 Pensamiento Computacional"><span class="icon">💻</span> Pensamiento Computacional</div>
+  <section class="unit" data-unit="Preuniversitaria" aria-labelledby="title-pre">
+    <h2 id="title-pre">Unidad Preuniversitaria</h2>
+    <div class="semesters sem-Pre" role="list" aria-label="Semestre Preuniversitario">
+      <div class="semester sem-Pre" data-semester="Pre" role="listitem" aria-label="Preuniversitario">
+        <h3 class="title">Pre</h3>
+        <div class="subject" role="button" tabindex="0" data-id="EpistemologiaDelTurismo" data-credits="0" data-prereq="" aria-pressed="false" title="🧠 Epistemología del Turismo"><span class="icon">🧠</span> Epistemología del Turismo</div>
+        <div class="subject" role="button" tabindex="0" data-id="IntroduccionComunicacionAcademica" data-credits="0" data-prereq="" aria-pressed="false" title="✍️ Introducción a la Comunicación Académica"><span class="icon">✍️</span> Introducción a la Comunicación Académica</div>
+        <div class="subject" role="button" tabindex="0" data-id="PensamientoComputacional" data-credits="0" data-prereq="" aria-pressed="false" title="💻 Pensamiento Computacional"><span class="icon">💻</span> Pensamiento Computacional</div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Unidad Básica -->
-<section class="unit" data-unit="Basica" aria-labelledby="title-basica">
-  <h2 id="title-basica">Unidad Básica</h2>
-  <div class="semesters">
-    <!-- Semestres 1,2,3 -->
-    <div class="semester sem-1" data-semester="1er" role="list" aria-label="1er semestre"> 
-      <h3 class="title">1er Semestre</h3>
-      <div class="subject" role="button" tabindex="0" data-id="MatematicaFinanciera" data-credits="1.6666" data-prereq="PensamientoComputacional" aria-pressed="false" title="💰 Matemática Financiera"><span class="icon">💰</span> Matemática Financiera</div>
-      <div class="subject" role="button" tabindex="0" data-id="TecnologiaAplicada" data-credits="3.33" data-prereq="PensamientoComputacional" aria-pressed="false" title="🛠️ Tecnología Aplicada"><span class="icon">🛠️</span> Tecnología Aplicada</div>
-      <div class="subject" role="button" tabindex="0" data-id="TeoriaDelTurismo" data-credits="3.33" data-prereq="EpistemologiaDelTurismo" aria-pressed="false" title="📚 Teoría Del Turismo"><span class="icon">📚</span> Teoría Del Turismo</div>
-      <div class="subject" role="button" tabindex="0" data-id="Administracion" data-credits="3.33" data-prereq="IntroduccionComunicacionAcademica" aria-pressed="false" title="📋 Administración"><span class="icon">📋</span> Administración</div>
-      <div class="subject" role="button" tabindex="0" data-id="MetodologiaInvestigacionCientifica" data-credits="1.67" data-prereq="IntroduccionComunicacionAcademica" aria-pressed="false" title="🔬 Metodología De La Investigación Científica"><span class="icon">🔬</span> Metodología De La Investigación Científica</div>
-      <div class="subject" role="button" tabindex="0" data-id="TecnicasOperacionTuristica" data-credits="3.33" data-prereq="EpistemologiaDelTurismo" aria-pressed="false" title="🧳 Técnicas De Operación Turística"><span class="icon">🧳</span> Técnicas De Operación Turística</div>
+  <section class="unit" data-unit="Basica" aria-labelledby="title-basica">
+    <h2 id="title-basica">Unidad Básica</h2>
+    <div class="semesters">
+      <div class="semester sem-1" data-semester="1er" role="list" aria-label="1er semestre">
+        <h3 class="title">1er Semestre</h3>
+        <div class="subject" role="button" tabindex="0" data-id="MatematicaFinanciera" data-credits="1.6666" data-prereq="PensamientoComputacional" aria-pressed="false" title="💰 Matemática Financiera"><span class="icon">💰</span> Matemática Financiera</div>
+        <div class="subject" role="button" tabindex="0" data-id="TecnologiaAplicada" data-credits="3.33" data-prereq="PensamientoComputacional" aria-pressed="false" title="🛠️ Tecnología Aplicada"><span class="icon">🛠️</span> Tecnología Aplicada</div>
+        <div class="subject" role="button" tabindex="0" data-id="TeoriaDelTurismo" data-credits="3.33" data-prereq="EpistemologiaDelTurismo" aria-pressed="false" title="📚 Teoría Del Turismo"><span class="icon">📚</span> Teoría Del Turismo</div>
+        <div class="subject" role="button" tabindex="0" data-id="Administracion" data-credits="3.33" data-prereq="IntroduccionComunicacionAcademica" aria-pressed="false" title="📋 Administración"><span class="icon">📋</span> Administración</div>
+        <div class="subject" role="button" tabindex="0" data-id="MetodologiaInvestigacionCientifica" data-credits="1.67" data-prereq="IntroduccionComunicacionAcademica" aria-pressed="false" title="🔬 Metodología De La Investigación Científica"><span class="icon">🔬</span> Metodología De La Investigación Científica</div>
+        <div class="subject" role="button" tabindex="0" data-id="TecnicasOperacionTuristica" data-credits="3.33" data-prereq="EpistemologiaDelTurismo" aria-pressed="false" title="🧳 Técnicas De Operación Turística"><span class="icon">🧳</span> Técnicas De Operación Turística</div>
+      </div>
     </div>
-
-    <div class="semester sem-2" data-semester="2do" role="list" aria-label="2do semestre">
-      <h3 class="title">2do Semestre</h3>
-      <div class="subject" role="button" tabindex="0" data-id="CosmosHistorico" data-credits="3.33" data-prereq="TeoriaDelTurismo" aria-pressed="false" title="🏺 Cosmos Histórico"><span class="icon">🏺</span> Cosmos Histórico</div>
-      <div class="subject" role="button" tabindex="0" data-id="BioentornoTuristico" data-credits="3.33" data-prereq="TeoriaDelTurismo" aria-pressed="false" title="🌱 Bioentorno Turístico"><span class="icon">🌱</span> Bioentorno Turístico</div>
-      <div class="subject" role="button" tabindex="0" data-id="TecnicasGuiar" data-credits="3.33" data-prereq="TecnicasOperacionTuristica" aria-pressed="false" title="🎤 Técnicas De Guiar"><span class="icon">🎤</span> Técnicas De Guiar</div>
-      <div class="subject" role="button" tabindex="0" data-id="Hospitalidad" data-credits="3.33" data-prereq="Administracion" aria-pressed="false" title="🤝 Hospitalidad"><span class="icon">🤝</span> Hospitalidad</div>
-      <div class="subject" role="button" tabindex="0" data-id="EstadisticaDescripcionAdministrativa" data-credits="1.6666" data-prereq="MatematicaFinanciera,TecnologiaAplicada" aria-pressed="false" title="📊 Estadística Descriptiva Administrativa"><span class="icon">📊</span> Estadística Descriptiva Administrativa</div>
-      <div class="subject" role="button" tabindex="0" data-id="ComunicacionOralEscrita" data-credits="1.67" data-prereq="MetodologiaInvestigacionCientifica" aria-pressed="false" title="🗣️ Comunicación Oral Y Escrita"><span class="icon">🗣️</span> Comunicación Oral Y Escrita</div>
+  </section>
+  <section class="unit" data-unit="Basica" aria-labelledby="title-basica">
+    <div class="semesters">
+      <div class="semester sem-2" data-semester="2do" role="list" aria-label="2do semestre">
+        <h3 class="title">2do Semestre</h3>
+        <div class="subject" role="button" tabindex="0" data-id="CosmosHistorico" data-credits="3.33" data-prereq="TeoriaDelTurismo" aria-pressed="false" title="🏺 Cosmos Histórico"><span class="icon">🏺</span> Cosmos Histórico</div>
+        <div class="subject" role="button" tabindex="0" data-id="BioentornoTuristico" data-credits="3.33" data-prereq="TeoriaDelTurismo" aria-pressed="false" title="🌱 Bioentorno Turístico"><span class="icon">🌱</span> Bioentorno Turístico</div>
+        <div class="subject" role="button" tabindex="0" data-id="TecnicasGuiar" data-credits="3.33" data-prereq="TecnicasOperacionTuristica" aria-pressed="false" title="🎤 Técnicas De Guiar"><span class="icon">🎤</span> Técnicas De Guiar</div>
+        <div class="subject" role="button" tabindex="0" data-id="Hospitalidad" data-credits="3.33" data-prereq="Administracion" aria-pressed="false" title="🤝 Hospitalidad"><span class="icon">🤝</span> Hospitalidad</div>
+        <div class="subject" role="button" tabindex="0" data-id="EstadisticaDescripcionAdministrativa" data-credits="1.6666" data-prereq="MatematicaFinanciera,TecnologiaAplicada" aria-pressed="false" title="📊 Estadística Descriptiva Administrativa"><span class="icon">📊</span> Estadística Descriptiva Administrativa</div>
+        <div class="subject" role="button" tabindex="0" data-id="ComunicacionOralEscrita" data-credits="1.67" data-prereq="MetodologiaInvestigacionCientifica" aria-pressed="false" title="🗣️ Comunicación Oral Y Escrita"><span class="icon">🗣️</span> Comunicación Oral Y Escrita</div>
+      </div>
+      <div class="semester sem-3" data-semester="3er" role="list" aria-label="3er semestre">
+        <h3 class="title">3er Semestre</h3>
+        <div class="subject" role="button" tabindex="0" data-id="ComunidadTurismo" data-credits="1.6666" data-prereq="Hospitalidad" aria-pressed="false" title="🏘️ Comunidad Y Turismo"><span class="icon">🏘️</span> Comunidad Y Turismo</div>
+        <div class="subject" role="button" tabindex="0" data-id="GastronomiaAncestralPatrimonio" data-credits="3.33" data-prereq="Hospitalidad" aria-pressed="false" title="🍲 Gastronomía Ancestral Y Patrimonio"><span class="icon">🍲</span> Gastronomía Ancestral Y Patrimonio</div>
+        <div class="subject" role="button" tabindex="0" data-id="GestionOperativaAreasProtegidas" data-credits="3.33" data-prereq="TecnicasGuiar" aria-pressed="false" title="🏞️ Gestión Operativa De Áreas Protegidas"><span class="icon">🏞️</span> Gestión Operativa De Áreas Protegidas</div>
+        <div class="subject" role="button" tabindex="0" data-id="ManifestacionesPlasticTuristicas" data-credits="3.33" data-prereq="CosmosHistorico,ComunicacionOralEscrita" aria-pressed="false" title="🎨 Manifestaciones Plásticas Turísticas"><span class="icon">🎨</span> Manifestaciones Plásticas Turísticas</div>
+        <div class="subject" role="button" tabindex="0" data-id="ProspeccionInterculturalEcuatoriana" data-credits="1.6666" data-prereq="CosmosHistorico" aria-pressed="false" title="🌎 Prospección Intercultural Ecuatoriana"><span class="icon">🌎</span> Prospección Intercultural Ecuatoriana</div>
+        <div class="subject" role="button" tabindex="0" data-id="ContabilidadGeneral" data-credits="3.33" data-prereq="EstadisticaDescripcionAdministrativa" aria-pressed="false" title="📒 Contabilidad General"><span class="icon">📒</span> Contabilidad General</div>
+      </div>
     </div>
+  </section>
 
-    <div class="semester sem-3" data-semester="3er" role="list" aria-label="3er semestre">
-      <h3 class="title">3er Semestre</h3>
-      <div class="subject" role="button" tabindex="0" data-id="ComunidadTurismo" data-credits="1.6666" data-prereq="Hospitalidad" aria-pressed="false" title="🏘️ Comunidad Y Turismo"><span class="icon">🏘️</span> Comunidad Y Turismo</div>
-      <div class="subject" role="button" tabindex="0" data-id="GastronomiaAncestralPatrimonio" data-credits="3.33" data-prereq="Hospitalidad" aria-pressed="false" title="🍲 Gastronomía Ancestral Y Patrimonio"><span class="icon">🍲</span> Gastronomía Ancestral Y Patrimonio</div>
-      <div class="subject" role="button" tabindex="0" data-id="GestionOperativaAreasProtegidas" data-credits="3.33" data-prereq="TecnicasGuiar" aria-pressed="false" title="🏞️ Gestión Operativa De Áreas Protegidas"><span class="icon">🏞️</span> Gestión Operativa De Áreas Protegidas</div>
-      <div class="subject" role="button" tabindex="0" data-id="ManifestacionesPlasticTuristicas" data-credits="3.33" data-prereq="CosmosHistorico,ComunicacionOralEscrita" aria-pressed="false" title="🎨 Manifestaciones Plásticas Turísticas"><span class="icon">🎨</span> Manifestaciones Plásticas Turísticas</div>
-      <div class="subject" role="button" tabindex="0" data-id="ProspeccionInterculturalEcuatoriana" data-credits="1.6666" data-prereq="CosmosHistorico" aria-pressed="false" title="🌎 Prospección Intercultural Ecuatoriana"><span class="icon">🌎</span> Prospección Intercultural Ecuatoriana</div>
-      <div class="subject" role="button" tabindex="0" data-id="ContabilidadGeneral" data-credits="3.33" data-prereq="EstadisticaDescripcionAdministrativa" aria-pressed="false" title="📒 Contabilidad General"><span class="icon">📒</span> Contabilidad General</div>
+  <section class="unit" data-unit="Profesional" aria-labelledby="title-profesional">
+    <h2 id="title-profesional">Unidad Profesional</h2>
+    <div class="semesters" style="margin-bottom: 14px;">
+      <div class="semester sem-4" data-semester="4to" role="list" aria-label="4to semestre">
+        <h3 class="title">4to Semestre</h3>
+        <div class="subject" role="button" tabindex="0" data-id="FinanzasCortoPlazo" data-credits="3.33" data-prereq="ContabilidadGeneral" aria-pressed="false" title="📈 Finanzas De Corto Plazo"><span class="icon">📈</span> Finanzas De Corto Plazo</div>
+        <div class="subject" role="button" tabindex="0" data-id="GestionTerritorialTurismo" data-credits="3.33" data-prereq="GestionOperativaAreasProtegidas,ManifestacionesPlasticTuristicas" aria-pressed="false" title="🏛️ Gestión Territorial En Turismo"><span class="icon">🏛️</span> Gestión Territorial En Turismo</div>
+        <div class="subject" role="button" tabindex="0" data-id="GestionTalentoHumanoCompetencias" data-credits="2.5" data-prereq="ContabilidadGeneral" aria-pressed="false" title="👥 Gestión Del Talento Humano Por Competencias"><span class="icon">👥</span> Gestión Del Talento Humano Por Competencias</div>
+        <div class="subject" role="button" tabindex="0" data-id="Folklore" data-credits="1.6666" data-prereq="ManifestacionesPlasticTuristicas,ProspeccionInterculturalEcuatoriana" aria-pressed="false" title="🎭 Folklore"><span class="icon">🎭</span> Folklore</div>
+        <div class="subject" role="button" tabindex="0" data-id="CodificacionTuristica" data-credits="3.33" data-prereq="GestionOperativaAreasProtegidas" aria-pressed="false" title="🧩 Codificación Turística"><span class="icon">🧩</span> Codificación Turística</div>
+        <div class="subject" role="button" tabindex="0" data-id="CampismoRecreacionTuristica" data-credits="1.6666" data-prereq="GastronomiaAncestralPatrimonio,ComunidadTurismo" aria-pressed="false" title="⛺ Campismo Y Recreación Turística"><span class="icon">⛺</span> Campismo Y Recreación Turística</div>
+      </div>
+      <div class="semester sem-5" data-semester="5to" role="list" aria-label="5to semestre">
+        <h3 class="title">5to Semestre</h3>
+        <div class="subject" role="button" tabindex="0" data-id="Arqueologia" data-credits="1.6666" data-prereq="Folklore" aria-pressed="false" title="🗿 Arqueología"><span class="icon">🗿</span> Arqueología</div>
+        <div class="subject" role="button" tabindex="0" data-id="Microeconomia" data-credits="3.33" data-prereq="FinanzasCortoPlazo" aria-pressed="false" title="🏦 Microeconomía"><span class="icon">🏦</span> Microeconomía</div>
+        <div class="subject" role="button" tabindex="0" data-id="IconografiaTuristica" data-credits="1.6666" data-prereq="CampismoRecreacionTuristica" aria-pressed="false" title="🖼️ Iconografía Turística"><span class="icon">🖼️</span> Iconografía Turística</div>
+        <div class="subject" role="button" tabindex="0" data-id="OperacionTours" data-credits="3.33" data-prereq="CodificacionTuristica,GestionTerritorialTurismo" aria-pressed="false" title="🚍 Operación De Tours"><span class="icon">🚍</span> Operación De Tours</div>
+        <div class="subject" role="button" tabindex="0" data-id="FomentoRegulacionesActividadTuristica" data-credits="3.33" data-prereq="GestionTalentoHumanoCompetencias" aria-pressed="false" title="⚖️ Fomento Y Regulaciones A La Actividad Turística"><span class="icon">⚖️</span> Fomento Y Regulaciones A La Actividad Turística</div>
+        <div class="subject" role="button" tabindex="0" data-id="DesarrolloTurismoSostenible" data-credits="5" data-prereq="MatematicaFinanciera,TecnologiaAplicada,TeoriaDelTurismo,Administracion,MetodologiaInvestigacionCientifica,TecnicasOperacionTuristica,CosmosHistorico,BioentornoTuristico,TecnicasGuiar,Hospitalidad,EstadisticaDescripcionAdministrativa,ComunicacionOralEscrita,ComunidadTurismo,GastronomiaAncestralPatrimonio,GestionOperativaAreasProtegidas,ManifestacionesPlasticTuristicas,ProspeccionInterculturalEcuatoriana,ContabilidadGeneral,FinanzasCortoPlazo,GestionTerritorialTurismo,GestionTalentoHumanoCompetencias,Folklore,CodificacionTuristica,CampismoRecreacionTuristica" aria-pressed="false" title="♻️ Desarrollo Del Turismo Sostenible"><span class="icon">♻️</span> Desarrollo Del Turismo Sostenible</div>
+      </div>
     </div>
-  </div>
-</div>
+    <div class="semesters">
+      <div class="semester sem-6" data-semester="6to" role="list" aria-label="6to semestre">
+        <h3 class="title">6to Semestre</h3>
+        <div class="subject" role="button" tabindex="0" data-id="PlanificacionTuristica" data-credits="5" data-prereq="MatematicaFinanciera,TecnologiaAplicada,TeoriaDelTurismo,Administracion,MetodologiaInvestigacionCientifica,TecnicasOperacionTuristica,CosmosHistorico,BioentornoTuristico,TecnicasGuiar,Hospitalidad,EstadisticaDescripcionAdministrativa,ComunicacionOralEscrita,ComunidadTurismo,GastronomiaAncestralPatrimonio,GestionOperativaAreasProtegidas,ManifestacionesPlasticTuristicas,ProspeccionInterculturalEcuatoriana,ContabilidadGeneral,FinanzasCortoPlazo,GestionTerritorialTurismo,GestionTalentoHumanoCompetencias,Folklore,CodificacionTuristica,CampismoRecreacionTuristica,Arqueologia,Microeconomia,IconografiaTuristica,OperacionTours,FomentoRegulacionesActividadTuristica,DesarrolloTurismoSostenible" aria-pressed="false" title="🗓️ Planificación Turística"><span class="icon">🗓️</span> Planificación Turística</div>
+        <div class="subject" role="button" tabindex="0" data-id="GestionInnovacionEmprendimiento" data-credits="3.33" data-prereq="FomentoRegulacionesActividadTuristica" aria-pressed="false" title="🚀 Gestión De La Innovación Y Emprendimiento"><span class="icon">🚀</span> Gestión De La Innovación Y Emprendimiento</div>
+        <div class="subject" role="button" tabindex="0" data-id="AnimacionTuristica" data-credits="3.33" data-prereq="IconografiaTuristica" aria-pressed="false" title="🎬 Animación Turística"><span class="icon">🎬</span> Animación Turística</div>
+        <div class="subject" role="button" tabindex="0" data-id="RiceOrganizacionEventos" data-credits="1.6666" data-prereq="DesarrolloTurismoSostenible" aria-pressed="false" title="📅 Rice - Organización De Eventos"><span class="icon">📅</span> Rice - Organización De Eventos</div>
+        <div class="subject" role="button" tabindex="0" data-id="SistemasRegistrosTuristicos" data-credits="1.6666" data-prereq="OperacionTours" aria-pressed="false" title="🧾 Sistemas De Registros Turísticos / Sabre Y Amadeus"><span class="icon">🧾</span> Sistemas De Registros Turísticos / Sabre Y Amadeus</div>
+        <div class="subject" role="button" tabindex="0" data-id="Macroeconomia" data-credits="3.33" data-prereq="Microeconomia" aria-pressed="false" title="🌐 Macroeconomía"><span class="icon">🌐</span> Macroeconomía</div>
+      </div>
+      <div class="semester sem-7" data-semester="7mo" role="list" aria-label="7mo semestre">
+        <h3 class="title">7mo Semestre</h3>
+        <div class="subject" role="button" tabindex="0" data-id="Patrimonio" data-credits="5" data-prereq="PlanificacionTuristica,GestionInnovacionEmprendimiento,AnimacionTuristica,RiceOrganizacionEventos,SistemasRegistrosTuristicos,Macroeconomia" aria-pressed="false" title="🏛️ Patrimonio"><span class="icon">🏛️</span> Patrimonio</div>
+        <div class="subject" role="button" tabindex="0" data-id="GestionCalidadProductividad" data-credits="3.33" data-prereq="GestionInnovacionEmprendimiento" aria-pressed="false" title="✅ Gestión de Calidad Y La Productividad"><span class="icon">✅</span> Gestión de Calidad Y La Productividad</div>
+        <div class="subject" role="button" tabindex="0" data-id="OperacionAlimentosBebidas" data-credits="1.6666" data-prereq="AnimacionTuristica" aria-pressed="false" title="🍽️ Operación De Alimentos Y Bebidas"><span class="icon">🍽️</span> Operación De Alimentos Y Bebidas</div>
+        <div class="subject" role="button" tabindex="0" data-id="OperacionHotelera" data-credits="3.33" data-prereq="SistemasRegistrosTuristicos" aria-pressed="false" title="🏨 Operación Hotelera"><span class="icon">🏨</span> Operación Hotelera</div>
+        <div class="subject" role="button" tabindex="0" data-id="SociologiaTurismo" data-credits="3.33" data-prereq="AnimacionTuristica" aria-pressed="false" title="👨‍👩‍👧‍👦 Sociología Del Turismo"><span class="icon">👨‍👩‍👧‍👦</span> Sociología Del Turismo</div>
+        <div class="subject" role="button" tabindex="0" data-id="TendenciasTuristicas" data-credits="1.6666" data-prereq="Macroeconomia" aria-pressed="false" title="📈 Tendencias Turísticas"><span class="icon">📈</span> Tendencias Turísticas</div>
+      </div>
+    </div>
+  </section>
 
-<!-- Unidad Profesional -->
-<section class="unit" data-unit="Profesional" aria-labelledby="title-profesional">
-  <h2 id="title-profesional">Unidad Profesional</h2>
+  <section class="unit" data-unit="Titulacion" aria-labelledby="title-titulacion">
+    <h2 id="title-titulacion">Unidad de Titulación</h2>
+    <div class="semesters">
+      <div class="semester sem-8" data-semester="8vo" role="list" aria-label="8vo semestre">
+        <h3 class="title">8vo Semestre</h3>
+        <div class="subject" role="button" tabindex="0" data-id="FormulacionEvaluacionProyectos" data-credits="3.33" data-prereq="GestionCalidadProductividad" aria-pressed="false" title="📐 Formulación Y Evaluación De Proyectos"><span class="icon">📐</span> Formulación Y Evaluación De Proyectos</div>
+        <div class="subject" role="button" tabindex="0" data-id="IntegracionRegionalTuristica" data-credits="5" data-prereq="Patrimonio,GestionCalidadProductividad,OperacionAlimentosBebidas,OperacionHotelera,SociologiaTurismo,TendenciasTuristicas" aria-pressed="false" title="🤝 Integración Regional Turística"><span class="icon">🤝</span> Integración Regional Turística</div>
+        <div class="subject" role="button" tabindex="0" data-id="EstrategiasComercialesTuristicas" data-credits="3.33" data-prereq="TendenciasTuristicas" aria-pressed="false" title="🎯 Estrategias Comerciales Turísticas"><span class="icon">🎯</span> Estrategias Comerciales Turísticas</div>
+        <div class="subject" role="button" tabindex="0" data-id="RedaccionTrabajoTitulacion" data-credits="1.6666" data-prereq="Patrimonio,GestionCalidadProductividad,OperacionAlimentosBebidas,OperacionHotelera,SociologiaTurismo,TendenciasTuristicas" aria-pressed="false" title="📖 Redacción Del Trabajo De Titulación"><span class="icon">📖</span> Redacción Del Trabajo De Titulación</div>
+        <div class="subject" role="button" tabindex="0" data-id="ApreciacionArteCultura" data-credits="1.6666" data-prereq="Patrimonio" aria-pressed="false" title="🖌️ Apreciación Del Arte Y La Cultura"><span class="icon">🖌️</span> Apreciación Del Arte Y La Cultura</div>
+        <div class="subject" role="button" tabindex="0" data-id="TurismoGobernanza" data-credits="3.33" data-prereq="OperacionAlimentosBebidas,SociologiaTurismo" aria-pressed="false" title="🏛️ Turismo Y Gobernanza"><span class="icon">🏛️</span> Turismo Y Gobernanza</div>
+      </div>
 
-  <div class="semesters" style="margin-bottom: 14px;">
-    <!-- 4to semestre y 5to semestre como antes (incluir materias iguales a las enviadas) -->
-    <!-- 6to y 7mo semestres abajo también igual -->
-  </div>
-</section>
-
-<!-- Unidad de Titulación -->
-<section class="unit" data-unit="Titulacion" aria-labelledby="title-titulacion">
-  <h2 id="title-titulacion">Unidad de Titulación</h2>
-
-  <div class="semesters">
-    <!-- 8vo y 9no semestre con materias igual que el ejemplo previo -->
-  </div>
-</section>
+      <div class="semester sem-9" data-semester="9no" role="list" aria-label="9no semestre">
+        <h3 class="title">9no Semestre</h3>
+        <div class="subject" role="button" tabindex="0" data-id="GestionIntegralDestinosTuristicos" data-credits="5" data-prereq="FormulacionEvaluacionProyectos,IntegracionRegionalTuristica,EstrategiasComercialesTuristicas,RedaccionTrabajoTitulacion,ApreciacionArteCultura,TurismoGobernanza" aria-pressed="false" title="🌟 Gestión Integral De Destinos Turísticos"><span class="icon">🌟</span> Gestión Integral De Destinos Turísticos</div>
+        <div class="subject" role="button" tabindex="0" data-id="TecnicasNegociacionComunicacionTurismo" data-credits="3.3333" data-prereq="EstrategiasComercialesTuristicas" aria-pressed="false" title="🤝🗣️ Técnicas De Negociación Y Comunicación Para El Turismo"><span class="icon">🤝🗣️</span> Técnicas De Negociación Y Comunicación Para El Turismo</div>
+        <div class="subject" role="button" tabindex="0" data-id="RealidadNacionalGeopolitica" data-credits="1.67" data-prereq="TurismoGobernanza" aria-pressed="false" title="🌏 Realidad Nacional Y Geopolítica"><span class="icon">🌏</span> Realidad Nacional Y Geopolítica</div>
+        <div class="subject" role="button" tabindex="0" data-id="TrabajoTitulacion" data-credits="3.33" data-prereq="RedaccionTrabajoTitulacion" aria-pressed="false" title="🎓 Trabajo De Titulación"><span class="icon">🎓</span> Trabajo De Titulación</div>
+        <div class="subject" role="button" tabindex="0" data-id="ContratacionPublica" data-credits="3.33" data-prereq="FormulacionEvaluacionProyectos" aria-pressed="false" title="📝 Contratación Pública"><span class="icon">📝</span> Contratación Pública</div>
+        <div class="subject" role="button" tabindex="0" data-id="Liderazgo" data-credits="1.6666" data-prereq="ApreciacionArteCultura" aria-pressed="false" title="👑 Liderazgo"><span class="icon">👑</span> Liderazgo</div>
+      </div>
+    </div>
+  </section>
 
 <!-- MODULOS -->
 <div class="modules-container" aria-label="Módulos de Inglés y Computación">
   <h2>Módulos</h2>
   <div class="modules">
-
-    <!-- Inglés -->
     <section class="module sem-ingles" aria-labelledby="mod-titulo-ingles" role="list">
       <h3 id="mod-titulo-ingles" class="module-title">Inglés 📘</h3>
       <div class="subject" role="button" tabindex="0" data-id="InglesA1-" data-credits="2.08" data-prereq="" aria-pressed="false" title="🔴🏆 Nivel -A1"><span class="icon">🔴🏆</span> Nivel -A1</div>
@@ -327,100 +284,88 @@
       <div class="subject" role="button" tabindex="0" data-id="InglesC2" data-credits="2.08" data-prereq="InglesC1" aria-pressed="false" title="🟤🏆 Nivel C2"><span class="icon">🟤🏆</span> Nivel C2</div>
     </section>
 
-    <!-- Computación -->
     <section class="module sem-computacion" aria-labelledby="mod-titulo-computacion" role="list">
       <h3 id="mod-titulo-computacion" class="module-title">Computación 💻</h3>
       <div class="subject" role="button" tabindex="0" data-id="WindowsWordInternet" data-credits="8" data-prereq="" aria-pressed="false" title="🪟📄🌐 Windows - Word - Internet"><span class="icon">🪟📄🌐</span> Windows - Word - Internet</div>
       <div class="subject" role="button" tabindex="0" data-id="ExcelPowerPoint" data-credits="8" data-prereq="WindowsWordInternet" aria-pressed="false" title="📊📽️ Excel – Power Point"><span class="icon">📊📽️</span> Excel – Power Point</div>
     </section>
-
   </div>
 </div>
 
 <script>
-  (() => {
-    const subjects = [...document.querySelectorAll('.subject')];
-    const STORAGE_KEY = 'turismoMallaAprobadas';
-
-    let approvedSubjects = new Set();
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        approvedSubjects = new Set(JSON.parse(stored));
-      }
-    } catch { approvedSubjects = new Set(); }
-
-    function prereqsMet(prereqString) {
-      if (!prereqString) return true;
-      const prereqs = prereqString.split(',').map(s => s.trim()).filter(s => s.length > 0);
-      return prereqs.every(id => approvedSubjects.has(id));
+(() => {
+  const subjects = [...document.querySelectorAll('.subject')];
+  const STORAGE_KEY = 'turismoMallaAprobadas';
+  let approvedSubjects = new Set();
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      approvedSubjects = new Set(JSON.parse(stored));
     }
-
-    function updateUI() {
-      let approvedCount = 0;
-      let creditSum = 0;
-      let creditModulesSum = 0;
-      subjects.forEach(subject => {
-        const id = subject.dataset.id;
-        const prereqs = subject.dataset.prereq;
-        const credits = parseFloat(subject.dataset.credits);
-
-        const unlocked = prereqsMet(prereqs);
-
-        if (unlocked) {
-          subject.classList.remove('locked');
-          subject.setAttribute('aria-disabled', 'false');
-          subject.setAttribute('tabindex', '0');
-          subject.title = subject.title.split('⛔')[0].trim();
-        } else {
-          subject.classList.add('locked');
-          subject.setAttribute('aria-disabled', 'true');
-          subject.setAttribute('tabindex', '-1');
-          const missing = prereqs.split(',').filter(r => !approvedSubjects.has(r)).join(', ');
-          subject.setAttribute('data-tooltip', `⛔ Faltan prerrequisitos: ${missing}`);
-        }
-
-        if (approvedSubjects.has(id) && unlocked) {
-          subject.classList.add('approved');
-          subject.setAttribute('aria-pressed', 'true');
-          approvedCount++;
-          creditSum += credits;
-          if (subject.closest('.modules')) creditModulesSum += credits;
-        } else {
-          subject.classList.remove('approved');
-          subject.setAttribute('aria-pressed', 'false');
-        }
-      });
-
-      document.getElementById('approvedCount').textContent = approvedCount;
-      document.getElementById('creditsCount').textContent = creditSum.toFixed(2);
-      document.getElementById('creditsModuleCount').textContent = creditModulesSum.toFixed(2);
-    }
-
-    function toggleSubject(subject) {
-      if (subject.classList.contains('locked')) return;
+  } catch { approvedSubjects = new Set(); }
+  function prereqsMet(prereqString) {
+    if (!prereqString) return true;
+    const prereqs = prereqString.split(',').map(s => s.trim()).filter(s => s.length > 0);
+    return prereqs.every(id => approvedSubjects.has(id));
+  }
+  function updateUI() {
+    let approvedCount = 0;
+    let creditSum = 0;
+    let creditModulesSum = 0;
+    subjects.forEach(subject => {
       const id = subject.dataset.id;
-      if (approvedSubjects.has(id)) {
-        approvedSubjects.delete(id);
+      const prereqs = subject.dataset.prereq;
+      const credits = parseFloat(subject.dataset.credits);
+      const unlocked = prereqsMet(prereqs);
+      if (unlocked) {
+        subject.classList.remove('locked');
+        subject.setAttribute('aria-disabled', 'false');
+        subject.setAttribute('tabindex', '0');
+        subject.title = subject.title.split('⛔')[0].trim();
       } else {
-        approvedSubjects.add(id);
+        subject.classList.add('locked');
+        subject.setAttribute('aria-disabled', 'true');
+        subject.setAttribute('tabindex', '-1');
+        const missing = prereqs.split(',').filter(r => !approvedSubjects.has(r)).join(', ');
+        subject.setAttribute('data-tooltip', `⛔ Faltan prerrequisitos: ${missing}`);
       }
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(approvedSubjects)));
-      updateUI();
-    }
-
-    subjects.forEach(subj => {
-      subj.addEventListener('click', () => toggleSubject(subj));
-      subj.addEventListener('keydown', e => {
-        if ((e.key === 'Enter' || e.key === " ") && !subj.classList.contains('locked')) {
-          e.preventDefault();
-          toggleSubject(subj);
-        }
-      });
+      if (approvedSubjects.has(id) && unlocked) {
+        subject.classList.add('approved');
+        subject.setAttribute('aria-pressed', 'true');
+        approvedCount++;
+        creditSum += credits;
+        if (subject.closest('.modules')) creditModulesSum += credits;
+      } else {
+        subject.classList.remove('approved');
+        subject.setAttribute('aria-pressed', 'false');
+      }
     });
-
+    document.getElementById('approvedCount').textContent = approvedCount;
+    document.getElementById('creditsCount').textContent = creditSum.toFixed(2);
+    document.getElementById('creditsModuleCount').textContent = creditModulesSum.toFixed(2);
+  }
+  function toggleSubject(subject) {
+    if (subject.classList.contains('locked')) return;
+    const id = subject.dataset.id;
+    if (approvedSubjects.has(id)) {
+      approvedSubjects.delete(id);
+    } else {
+      approvedSubjects.add(id);
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(approvedSubjects)));
     updateUI();
-  })();
+  }
+  subjects.forEach(subj => {
+    subj.addEventListener('click', () => toggleSubject(subj));
+    subj.addEventListener('keydown', e => {
+      if ((e.key === 'Enter' || e.key === " ") && !subj.classList.contains('locked')) {
+        e.preventDefault();
+        toggleSubject(subj);
+      }
+    });
+  });
+  updateUI();
+})();
 </script>
 
 </body>
