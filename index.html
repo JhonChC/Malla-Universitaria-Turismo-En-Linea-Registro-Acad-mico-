@@ -11,1693 +11,1223 @@
             box-sizing: border-box;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
-
         body {
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #48C9B0 0%, #E8F8F5 40%, #F4ECF7 70%, #FFFFFF 100%);
-            background-attachment: fixed;
-            padding: 20px 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            padding: 20px;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            max-width: 100%;
-            margin: 0 auto;
         }
 
-        body::before {
-            content: '';
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .sparkle {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(155, 89, 182, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(155, 89, 182, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(155, 89, 182, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 90% 20%, rgba(155, 89, 182, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 10% 90%, rgba(155, 89, 182, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 60% 50%, rgba(155, 89, 182, 0.07) 0%, transparent 50%);
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
             pointer-events: none;
-            z-index: 0;
-            animation: shimmer 8s ease-in-out infinite;
-        }
-
-        /* Partículas flotantes decorativas */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(72, 201, 176, 0.1) 0%, transparent 30%),
-                radial-gradient(circle at 85% 85%, rgba(72, 201, 176, 0.08) 0%, transparent 30%),
-                radial-gradient(circle at 50% 50%, rgba(155, 89, 182, 0.05) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: 0;
-            animation: float 15s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-20px) scale(1.05); }
-        }
-
-        body > * {
-            position: relative;
             z-index: 1;
+            animation: fall linear infinite;
+            box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(50px);
+                opacity: 0;
+            }
         }
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 40px 50px;
-            border-radius: 25px;
-            box-shadow: 0 8px 32px rgba(72, 201, 176, 0.3), 0 4px 15px rgba(0,0,0,0.1);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            position: relative;
-            overflow: hidden;
-            animation: fadeInDown 0.8s ease-out;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(72, 201, 176, 0.1), transparent);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes shine {
-            0% { transform: rotate(0deg) translate(-50%, -50%); }
-            100% { transform: rotate(360deg) translate(-50%, -50%); }
+            margin-bottom: 30px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .header h1 {
             color: #2c3e50;
-            font-size: 3.2em;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #48C9B0 0%, #9B59B6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 2px 10px rgba(72, 201, 176, 0.2);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
         }
 
         .stats {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
+            gap: 20px;
             flex-wrap: wrap;
+            margin-bottom: 30px;
         }
 
-        .stat-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px 50px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-            min-width: 200px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+        .stat-card {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 150px;
+            transition: transform 0.3s;
         }
 
-        .stat-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.6s;
+        .stat-card:hover {
+            transform: translateY(-5px);
         }
 
-        .stat-box:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
+        .stat-card:nth-child(1) {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
         }
 
-        .stat-box:hover::before {
-            right: 100%;
+        .stat-card:nth-child(2) {
+            background: linear-gradient(135deg, #E0F2FE 0%, #D1F2EB 100%);
         }
 
-        .stat-label {
-            font-size: 1em;
-            opacity: 0.9;
-            margin-bottom: 8px;
+        .stat-card:nth-child(3) {
+            background: linear-gradient(135deg, #D1F2EB 0%, #C7ECEE 100%);
         }
 
-        .stat-value {
-            font-size: 2.5em;
+        .stat-card:nth-child(4) {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E8D5F0 100%);
+        }
+
+        .stat-card:nth-child(5) {
+            background: linear-gradient(135deg, #E8D5F0 0%, #DFC7E8 100%);
+        }
+
+        .stat-card:nth-child(6) {
+            background: linear-gradient(135deg, #C7ECEE 0%, #B8E6E8 100%);
+        }
+
+        .stat-card:nth-child(7) {
+            background: linear-gradient(135deg, #B8E6E8 0%, #A8DDE0 100%);
+        }
+
+        .stat-card:nth-child(8) {
+            background: linear-gradient(135deg, #DFC7E8 0%, #D4BCE3 100%);
+        }
+
+        .stat-card:nth-child(9) {
+            background: linear-gradient(135deg, #A8DDE0 0%, #9DD7D9 100%);
+        }
+
+        .stat-card h3 {
+            color: #2c3e50;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-card .number {
+            font-size: 2em;
             font-weight: bold;
+            color: #3498db;
         }
 
-        .unit-container {
-            margin-bottom: 50px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 40px 20px;
-            border-radius: 25px;
-            box-shadow: 0 8px 32px rgba(72, 201, 176, 0.2), 0 4px 15px rgba(0,0,0,0.1);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            animation: fadeInUp 0.8s ease-out;
-            animation-fill-mode: both;
-            overflow-x: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .unit-container:nth-child(1) { animation-delay: 0.1s; }
-        .unit-container:nth-child(2) { animation-delay: 0.2s; }
-        .unit-container:nth-child(3) { animation-delay: 0.3s; }
-        .unit-container:nth-child(4) { animation-delay: 0.4s; }
-        .unit-container:nth-child(5) { animation-delay: 0.5s; }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .unit {
+            margin-bottom: 40px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .unit-title {
-            font-size: 2.4em;
-            margin-bottom: 35px;
-            padding-bottom: 20px;
-            border-bottom: 4px solid;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            color: #2c3e50;
             text-align: center;
-            font-weight: 800;
-            position: relative;
-            letter-spacing: 2px;
-            width: 100%;
-        }
-
-        .unit-title::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, currentColor, transparent);
-            border-radius: 2px;
+            text-transform: uppercase;
+            font-weight: bold;
         }
 
         .semesters-container {
             display: flex;
-            gap: 25px;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 10px;
             justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .semesters-row {
-            display: flex !important;
-            flex-direction: row !important;
-            flex-wrap: nowrap !important;
-            gap: 15px;
-            margin-bottom: 25px;
-            justify-content: center !important;
-            align-items: flex-start;
-        }
-
-        .semesters-row .semester {
-            flex: 0 0 270px !important;
-            min-width: 270px !important;
-            max-width: 270px !important;
-            flex-shrink: 0 !important;
-        }
-
-        .semesters-row.row-3,
-        .semesters-row.row-4 {
-            display: flex !important;
-            flex-wrap: nowrap !important;
-            flex-direction: row !important;
+            flex-wrap: nowrap;
         }
 
         .semester {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            flex: 0 0 auto;
+            min-width: 250px;
             padding: 20px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            transition: all 0.4s ease;
+            border-radius: 10px;
+            background: #f8f9fa;
             display: flex;
             flex-direction: column;
             align-items: center;
-            flex-shrink: 0;
-        }
-
-        .semester:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(72, 201, 176, 0.3);
         }
 
         .semester-title {
-            font-size: 1.6em;
-            font-weight: 700;
-            color: white;
-            padding: 18px;
-            border-radius: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
             text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .semester-title::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+            color: white;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .semester:hover .semester-title::before {
-            left: 100%;
         }
 
         .subject {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid #ddd;
-            border-radius: 12px;
-            padding: 0;
+            background: white;
             margin-bottom: 12px;
+            padding: 15px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s;
+            border: 3px solid transparent;
             position: relative;
-            width: 245px;
-            height: 151px;
+            width: 6.5cm;
+            height: 5.5cm;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            backdrop-filter: blur(5px);
-            overflow: hidden;
-        }
-
-        .subject::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .subject:hover::before {
-            left: 100%;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: center;
         }
 
         .subject:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(72, 201, 176, 0.4);
-            border-color: rgba(72, 201, 176, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
 
-        .subject:active {
-            transform: translateY(-2px) scale(1.01);
+        .subject.approved {
+            border-color: #27ae60;
         }
 
-        .subject.practice {
-            border: 3px dashed #9C27B0;
-            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
-            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
-        }
-
-        .subject.practice.completed {
-            border: 4px dashed #7B1FA2;
-            background: linear-gradient(135deg, #E1BEE7 0%, #CE93D8 100%);
-            box-shadow: 0 6px 20px rgba(123, 31, 162, 0.4);
-        }
-
-        .subject.project {
-            border: 3px dashed #FF6F00;
-            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
-            box-shadow: 0 4px 15px rgba(255, 111, 0, 0.3);
-        }
-
-        .subject.project.completed {
-            border: 4px dashed #E65100;
-            background: linear-gradient(135deg, #FFE0B2 0%, #FFCC80 100%);
-            box-shadow: 0 6px 20px rgba(230, 81, 0, 0.4);
-        }
-
-        .subject.module {
-            border: 3px solid #00897B;
-            min-height: 70px;
-            background: linear-gradient(135deg, rgba(0, 137, 123, 0.1) 0%, rgba(0, 105, 92, 0.05) 100%);
-            box-shadow: 0 4px 15px rgba(0, 137, 123, 0.3);
-        }
-
-        .subject.module.completed {
-            border: 4px solid #00695C;
-            box-shadow: 0 6px 20px rgba(0, 105, 92, 0.4);
-        }
-
-        .subject.completed {
-            border-color: #4DD78B;
-            border-width: 3px;
-            box-shadow: 0 4px 15px rgba(77, 215, 139, 0.3);
-        }
-
-        .subject.completed::after {
-            content: '✓';
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            font-size: 1.8em;
-            color: #4DD78B;
-            font-weight: bold;
-            animation: checkPop 0.5s ease;
-            z-index: 3;
-        }
-
-        @keyframes checkPop {
-            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
-            50% { transform: scale(1.2) rotate(10deg); }
-            100% { transform: scale(1) rotate(0deg); opacity: 1; }
-        }
-
-        .subject.locked {
-            opacity: 0.5;
-            cursor: pointer;
-            background: #f5f5f5;
-            position: relative;
-        }
-
-        .subject.locked::after {
-            content: '🔒';
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            font-size: 1.4em;
+        .subject.blocked {
             opacity: 0.6;
-            z-index: 3;
-        }
-
-        .subject.locked:hover {
-            transform: translateY(-4px) scale(1.02);
-            opacity: 0.7;
-        }
-
-        .subject-name {
-            font-weight: 700;
-            color: #2c3e50;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8em;
-            position: relative;
-            z-index: 1;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            text-align: center;
-            padding: 5px 45px 8px 45px;
-            border-bottom: 2px solid rgba(0,0,0,0.1);
-            line-height: 1.25;
-            height: 50%;
-            word-wrap: break-word;
-            hyphens: auto;
-        }
-
-        .subject.dark-text .subject-name,
-        .subject.dark-text .subject-info {
-            color: #ffffff;
-        }
-
-        .subject.dark-text .subject-name {
-            border-bottom-color: rgba(255,255,255,0.3);
-        }
-
-        .subject.dark-text .subject-info-label,
-        .subject.dark-text .subject-info-value {
-            color: #ffffff;
+            cursor: not-allowed;
         }
 
         .subject-icon {
-            font-size: 1.8em;
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            transition: transform 0.3s ease;
-            z-index: 3;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
         }
 
-        .subject:hover .subject-icon {
-            transform: scale(1.2) rotate(5deg);
+        .subject-name {
+            font-size: 0.85em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: center;
+            width: 100%;
         }
 
         .subject-info {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            font-size: 0.9em;
-            color: #555;
-            position: relative;
-            z-index: 1;
-            height: 50%;
-            justify-content: center;
-            padding: 8px 5px;
+            font-size: 0.8em;
+            color: #666;
+            margin-top: auto;
+            width: 100%;
+            text-align: center;
         }
 
         .subject-info-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+            gap: 8px;
+        }
+
+        .info-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.7em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .info-btn:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+
+        .status-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+        }
+
+        .credits-badge {
+            background: #27ae60;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 40px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 0;
+            border-radius: 10px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            font-size: 1.2em;
+            padding: 20px 30px;
+            color: white;
+            background: #37474f;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .subject-info-label {
-            font-weight: 600;
-            color: #666;
-            font-size: 1em;
-        }
-
-        .subject-info-value {
-            font-weight: 700;
-            color: #2c3e50;
-            font-size: 1em;
-        }
-
-        .prereq-button {
-            background: #5c7cfa;
+        .close {
             color: white;
-            border: none;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
+            font-size: 28px;
             font-weight: bold;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.85em;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(92, 124, 250, 0.3);
-        }
-
-        .prereq-button:hover {
-            background: #4c6ef5;
-            transform: scale(1.1);
-            box-shadow: 0 3px 8px rgba(92, 124, 250, 0.5);
-        }
-
-        .prereq-button:active {
-            transform: scale(0.95);
-        }
-
-        .subject-credits {
-            display: none;
-        }
-
-        .subject.completed .subject-credits {
-            display: block;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(15px);
-            border-radius: 15px;
+            background: none;
+            border: none;
             padding: 0;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .modal-header {
-            background: #34495e;
-            color: white;
-            padding: 20px 30px;
-            position: relative;
-        }
-
-        .modal-header h2 {
             margin: 0;
-            font-size: 1.3em;
-            padding-right: 100px;
+            line-height: 1;
         }
 
-        .modal-close {
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            background: #e67e22;
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.95em;
-        }
-
-        .modal-close:hover {
-            background: #d35400;
+        .close:hover {
+            color: #ccc;
         }
 
         .modal-body {
-            max-height: 60vh;
             overflow-y: auto;
-            padding: 0;
+            flex: 1;
         }
 
-        .modal-body::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        .modal-body::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        .modal-body::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 5px;
-        }
-
-        .modal-body::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
-
-        .prereq-table {
+        .prerequisites-table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        .prereq-table th {
-            background: #34495e;
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
+        .prerequisites-table thead {
+            background: #f5f5f5;
             position: sticky;
             top: 0;
             z-index: 10;
-            font-size: 0.95em;
         }
 
-        .prereq-table td {
+        .prerequisites-table th {
             padding: 15px;
-            border-bottom: 1px solid #ddd;
+            text-align: left;
+            font-weight: 600;
+            color: #546e7a;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e0e0e0;
         }
 
-        .prereq-row.completed {
-            background: #d4edda;
+        .prerequisites-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #37474f;
         }
 
-        .prereq-row.completed td:first-child {
-            color: #155724;
+        .prerequisites-table tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
             font-weight: 500;
+            background: #e3f2fd;
+            color: #1976d2;
         }
 
-        .prereq-row.pending {
-            background: #f8d7da;
-        }
-
-        .prereq-row.pending td:first-child {
-            color: #721c24;
-            font-weight: 500;
-        }
-
-        .prereq-row.completed td:first-child::before {
-            content: "✓ ";
-            font-weight: bold;
-            color: #28a745;
-            margin-right: 5px;
-        }
-
-        .prereq-row.pending td:first-child::before {
-            content: "✗ ";
-            font-weight: bold;
-            color: #dc3545;
-            margin-right: 5px;
-        }
-
-        .legend {
+        .modal-footer {
+            padding: 15px 30px;
+            border-top: 1px solid #e0e0e0;
             display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 25px;
-            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.05em;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 15px;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.8);
+        .btn-close-modal {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
         }
 
-        .legend-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(72, 201, 176, 0.3);
-            background: rgba(255, 255, 255, 0.9);
+        .btn-close-modal:hover {
+            background: #f57c00;
         }
 
-        .legend-box {
-            width: 35px;
-            height: 35px;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-            transition: transform 0.3s ease;
-        }
-
-        .legend-item:hover .legend-box {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .legend-box.completed {
-            background: linear-gradient(135deg, #a8e6cf 0%, #80e3aa 100%);
-        }
-
-        .legend-box.locked {
-            background: #f5f5f5;
-            opacity: 0.5;
-        }
-
-        .celebration-modal {
+        .celebration {
+            display: none;
             position: fixed;
-            top: 0;
+            z-index: 2000;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: none;
+            background-color: rgba(0,0,0,0.7);
             justify-content: center;
             align-items: center;
-            z-index: 3000;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .celebration-modal.active {
-            display: flex;
         }
 
         .celebration-content {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 10px 50px rgba(72, 201, 176, 0.4);
-            animation: bounceIn 0.5s ease;
-            position: relative;
-            border: 3px solid rgba(72, 201, 176, 0.3);
+            background: white;
+            padding: 0;
+            border-radius: 10px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        .celebration-content.career-complete {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        .celebration-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border: 5px solid #FF6347;
+            padding: 25px 30px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
         }
 
-        .celebration-content h2 {
-            font-size: 2em;
+        .celebration-body {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .celebration-icon {
+            font-size: 5em;
             margin-bottom: 20px;
+            animation: celebrate 0.6s ease-in-out;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(-10deg); }
+            75% { transform: scale(1.2) rotate(10deg); }
+        }
+
+        .celebration-title {
+            font-size: 1.4em;
+            color: #2c3e50;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .credits-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .credits-info {
+            background: #f5f5f5;
+            padding: 25px 40px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .credits-section-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .credits-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .credits-row:last-child {
+            border-bottom: none;
+            margin-top: 10px;
+            padding-top: 12px;
+            border-top: 2px solid #667eea;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .credits-label {
+            color: #546e7a;
+            font-size: 0.9em;
+        }
+
+        .credits-value {
+            font-weight: 600;
             color: #2c3e50;
         }
 
-        .celebration-content.career-complete h2 {
-            color: white;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        .celebration-footer {
+            padding: 20px 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            background: #fafafa;
         }
 
-        .celebration-emoji {
-            font-size: 4em;
-            margin-bottom: 20px;
-            animation: pulse 1s infinite;
-        }
-
-        .celebration-button {
-            background: linear-gradient(135deg, #43A047 0%, #2E7D32 100%);
-            color: white;
+        .btn-celebration {
+            padding: 12px 30px;
             border: none;
-            padding: 15px 40px;
-            border-radius: 25px;
-            font-size: 1.1em;
-            font-weight: bold;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
+            transition: all 0.3s;
         }
 
-        .celebration-button:hover {
-            transform: scale(1.05);
+        .btn-accept {
+            background: #4caf50;
+            color: white;
         }
 
-        .celebration-content.career-complete .celebration-button {
-            background: linear-gradient(135deg, #FF6347 0%, #DC143C 100%);
-            font-size: 1.3em;
-            padding: 20px 50px;
+        .btn-accept:hover {
+            background: #45a049;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .btn-close-celebration {
+            background: #9e9e9e;
+            color: white;
         }
 
-        @keyframes bounceIn {
-            0% { transform: scale(0.3); opacity: 0; }
-            50% { transform: scale(1.05); }
-            70% { transform: scale(0.9); }
-            100% { transform: scale(1); opacity: 1; }
+        .btn-close-celebration:hover {
+            background: #757575;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
+        .semester-pre .semester-title { background: #008BA3; }
+        .semester-1 .semester-title { background: #1B5E20; }
+        .semester-2 .semester-title { background: #EF6C00; }
+        .semester-3 .semester-title { background: #6A1B9A; }
+        .semester-4 .semester-title { background: #AD1457; }
+        .semester-5 .semester-title { background: #FBC02D; color: #333; }
+        .semester-6 .semester-title { background: #C62828; }
+        .semester-7 .semester-title { background: #1B5E20; }
+        .semester-8 .semester-title { background: #0D47A1; }
+        .semester-9 .semester-title { background: #424242; }
+        .semester-ingles .semester-title { background: #00897B; }
+        .semester-comp .semester-title { background: #5E35B1; }
 
-        @media (max-width: 768px) {
-            .semesters-container {
-                flex-direction: column;
-            }
+        .semester-pre .subject:nth-child(2) { background: #E0F7FA; }
+        .semester-pre .subject:nth-child(3) { background: #B2EBF2; }
+        .semester-pre .subject:nth-child(4) { background: #80DEEA; }
 
-            .semesters-row {
-                flex-direction: column !important;
-            }
+        .semester-1 .subject:nth-child(2) { background: #E8F5E9; }
+        .semester-1 .subject:nth-child(3) { background: #C8E6C9; }
+        .semester-1 .subject:nth-child(4) { background: #A5D6A7; }
+        .semester-1 .subject:nth-child(5) { background: #81C784; }
+        .semester-1 .subject:nth-child(6) { background: #66BB6A; }
+        .semester-1 .subject:nth-child(7) { background: #43A047; }
 
-            .semesters-row .semester {
-                max-width: 100%;
-                min-width: 100%;
-                flex: 1 1 auto;
-            }
+        .semester-2 .subject:nth-child(2) { background: #FFF3E0; }
+        .semester-2 .subject:nth-child(3) { background: #FFE0B2; }
+        .semester-2 .subject:nth-child(4) { background: #FFCC80; }
+        .semester-2 .subject:nth-child(5) { background: #FFB74D; }
+        .semester-2 .subject:nth-child(6) { background: #FFA726; }
+        .semester-2 .subject:nth-child(7) { background: #FF9800; }
 
-            .semester {
-                max-width: 100%;
-            }
+        .semester-3 .subject:nth-child(2) { background: #F3E5F5; }
+        .semester-3 .subject:nth-child(3) { background: #E1BEE7; }
+        .semester-3 .subject:nth-child(4) { background: #CE93D8; }
+        .semester-3 .subject:nth-child(5) { background: #BA68C8; }
+        .semester-3 .subject:nth-child(6) { background: #AB47BC; }
+        .semester-3 .subject:nth-child(7) { background: #9C27B0; }
 
-            .header h1 {
-                font-size: 1.8em;
-            }
+        .semester-4 .subject:nth-child(2) { background: #FCE4EC; }
+        .semester-4 .subject:nth-child(3) { background: #F8BBD0; }
+        .semester-4 .subject:nth-child(4) { background: #F48FB1; }
+        .semester-4 .subject:nth-child(5) { background: #F06292; }
+        .semester-4 .subject:nth-child(6) { background: #EC407A; }
+        .semester-4 .subject:nth-child(7) { background: #E91E63; }
 
-            .modal-content {
-                width: 95%;
-            }
+        .semester-5 .subject:nth-child(2) { background: #FFFDE7; }
+        .semester-5 .subject:nth-child(3) { background: #FFF9C4; }
+        .semester-5 .subject:nth-child(4) { background: #FFF59D; }
+        .semester-5 .subject:nth-child(5) { background: #FFF176; }
+        .semester-5 .subject:nth-child(6) { background: #FFEE58; }
+        .semester-5 .subject:nth-child(7) { background: #FFEB3B; }
+        .semester-5 .subject:nth-child(8) { background: #FDD835; }
 
-            .stats {
-                gap: 15px;
-            }
+        .semester-6 .subject:nth-child(2) { background: #FFEBEE; }
+        .semester-6 .subject:nth-child(3) { background: #FFCDD2; }
+        .semester-6 .subject:nth-child(4) { background: #EF9A9A; }
+        .semester-6 .subject:nth-child(5) { background: #E57373; }
+        .semester-6 .subject:nth-child(6) { background: #EF5350; }
+        .semester-6 .subject:nth-child(7) { background: #F44336; }
+        .semester-6 .subject:nth-child(8) { background: #E53935; }
 
-            .stat-box {
-                min-width: 150px;
-                padding: 20px 30px;
-            }
-        }
+        .semester-7 .subject:nth-child(2) { background: #E8F5E9; }
+        .semester-7 .subject:nth-child(3) { background: #C8E6C9; }
+        .semester-7 .subject:nth-child(4) { background: #A5D6A7; }
+        .semester-7 .subject:nth-child(5) { background: #81C784; }
+        .semester-7 .subject:nth-child(6) { background: #66BB6A; }
+        .semester-7 .subject:nth-child(7) { background: #388E3C; }
+        .semester-7 .subject:nth-child(8) { background: #2E7D32; }
 
-        @media (min-width: 769px) {
-            .semesters-row {
-                display: flex !important;
-                flex-direction: row !important;
-                flex-wrap: nowrap !important;
-            }
-            
-            .semesters-row .semester {
-                flex: 0 0 270px !important;
-                min-width: 270px !important;
-                max-width: 270px !important;
-            }
-        }
+        .semester-8 .subject:nth-child(2) { background: #E3F2FD; }
+        .semester-8 .subject:nth-child(3) { background: #BBDEFB; }
+        .semester-8 .subject:nth-child(4) { background: #90CAF9; }
+        .semester-8 .subject:nth-child(5) { background: #64B5F6; }
+        .semester-8 .subject:nth-child(6) { background: #42A5F5; }
+        .semester-8 .subject:nth-child(7) { background: #1976D2; }
+        .semester-8 .subject:nth-child(8) { background: #1565C0; }
+
+        .semester-9 .subject:nth-child(2) { background: #FAFAFA; }
+        .semester-9 .subject:nth-child(3) { background: #F5F5F5; }
+        .semester-9 .subject:nth-child(4) { background: #EEEEEE; }
+        .semester-9 .subject:nth-child(5) { background: #E0E0E0; }
+        .semester-9 .subject:nth-child(6) { background: #BDBDBD; }
+        .semester-9 .subject:nth-child(7) { background: #757575; }
+        .semester-9 .subject:nth-child(8) { background: #616161; }
+
+        .semester-ingles .subject:nth-child(2) { background: #E0F2F1; }
+        .semester-ingles .subject:nth-child(3) { background: #B2DFDB; }
+        .semester-ingles .subject:nth-child(4) { background: #80CBC4; }
+        .semester-ingles .subject:nth-child(5) { background: #4DB6AC; }
+        .semester-ingles .subject:nth-child(6) { background: #26A69A; }
+        .semester-ingles .subject:nth-child(7) { background: #009688; }
+        .semester-ingles .subject:nth-child(8) { background: #00897B; }
+
+        .semester-comp .subject:nth-child(2) { background: #EDE7F6; }
+        .semester-comp .subject:nth-child(3) { background: #D1C4E9; }
+
+        .unit-preuniversitaria { border-left: 5px solid #1AB4E8; }
+        .unit-basica { border-left: 5px solid #1ACB6C; }
+        .unit-profesional { border-left: 5px solid #FFD150; }
+        .unit-titulacion { border-left: 5px solid #FF9292; }
+        .unit-modulos { border-left: 5px solid #9C27B0; }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🎓 Licenciatura en Turismo</h1>
-        <div class="stats">
-            <div class="stat-box">
-                <div class="stat-label">Total de Asignaturas</div>
-                <div class="stat-value">57</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">Materias Aprobadas</div>
-                <div class="stat-value" id="approved-count">0</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">Créditos de la Malla</div>
-                <div class="stat-value" id="credits-count">0</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">Créditos Módulos</div>
-                <div class="stat-value" id="module-credits">0</div>
-            </div>
-            <div class="stat-box" style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);">
-                <div class="stat-label">Créditos Totales</div>
-                <div class="stat-value" id="total-credits">0</div>
-            </div>
-            <div class="stat-box" style="background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%);">
-                <div class="stat-label">Horas Prácticas</div>
-                <div class="stat-value" id="practice-hours">0/240</div>
-            </div>
-            <div class="stat-box" style="background: linear-gradient(135deg, #FF6F00 0%, #E65100 100%);">
-                <div class="stat-label">Horas Vinculación</div>
-                <div class="stat-value" id="project-hours">0/160</div>
-            </div>
+        <p>Malla Curricular Interactiva</p>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <h3>Total de Asignaturas</h3>
+            <div class="number">57</div>
         </div>
-        <div class="legend">
-            <div class="legend-item">
-                <div class="legend-box"></div>
-                <span>Disponible</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-box completed"></div>
-                <span>Aprobada</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-box locked"></div>
-                <span>Bloqueada</span>
-            </div>
+        <div class="stat-card">
+            <h3>Total de Módulos</h3>
+            <div class="number">9</div>
+        </div>
+        <div class="stat-card">
+            <h3>Materias Aprobadas</h3>
+            <div class="number" id="materiasAprobadas">0</div>
+        </div>
+        <div class="stat-card">
+            <h3>Créditos de la Malla</h3>
+            <div class="number" id="creditosMalla">0</div>
+        </div>
+        <div class="stat-card">
+            <h3>Módulos Aprobados</h3>
+            <div class="number" id="modulosAprobados">0</div>
+        </div>
+        <div class="stat-card">
+            <h3>Créditos Módulos</h3>
+            <div class="number" id="creditosModulos">0</div>
+        </div>
+        <div class="stat-card">
+            <h3>Créditos Totales</h3>
+            <div class="number" id="creditosTotales">0</div>
+        </div>
+        <div class="stat-card">
+            <h3>Horas Prácticas</h3>
+            <div class="number" id="horasPracticas">0/240</div>
+        </div>
+        <div class="stat-card">
+            <h3>Horas Vinculación</h3>
+            <div class="number" id="horasVinculacion">0/160</div>
         </div>
     </div>
 
-    <div id="curriculum-container"></div>
+    <div id="curriculum"></div>
 
-    <div class="modal-overlay" id="prereq-modal">
+    <div id="modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modal-title">Precedencias de la asignatura</h2>
-                <button class="modal-close" onclick="closeModal()">Cerrar</button>
+                <span id="modalTitle"></span>
+                <button class="close">&times;</button>
             </div>
-            <div class="modal-body">
-                <table class="prereq-table">
-                    <thead>
-                        <tr>
-                            <th>ASIGNATURAS</th>
-                            <th>NIVEL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="modal-prereq-list"></tbody>
-                </table>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn-close-modal" onclick="document.getElementById('modal').style.display='none'">Cerrar</button>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="blocked-modal">
-        <div class="modal-content">
-            <div class="modal-header" style="background: #dc3545;">
-                <h2 id="blocked-modal-title">⚠️ Materia Bloqueada</h2>
-                <button class="modal-close" onclick="closeBlockedModal()">Cerrar</button>
+    <div id="celebration" class="celebration">
+        <div class="celebration-content">
+            <div class="celebration-header" id="celebrationHeader"></div>
+            <div class="celebration-body" id="celebrationBody"></div>
+            <div class="celebration-footer">
+                <button class="btn-celebration btn-accept" onclick="closeCelebration()">Aceptar</button>
+                <button class="btn-celebration btn-close-celebration" onclick="closeCelebration()">Cerrar</button>
             </div>
-            <div class="modal-body">
-                <p id="blocked-message" style="padding: 20px; font-size: 1.1em; color: #333; text-align: center; line-height: 1.6;"></p>
-                <table class="prereq-table">
-                    <thead>
-                        <tr>
-                            <th>ASIGNATURAS FALTANTES</th>
-                            <th>NIVEL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="blocked-prereq-list"></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="celebration-modal" id="celebration-modal">
-        <div class="celebration-content" id="celebration-content">
-            <div class="celebration-emoji" id="celebration-emoji">✅</div>
-            <h2 id="celebration-message"></h2>
-            <button class="celebration-button" onclick="closeCelebration()">¡Continuar!</button>
         </div>
     </div>
 
     <script>
-        const curriculum = {
-            pre: {
-                title: "Unidad Preuniversitaria",
-                color: "#008BA3",
-                semesters: {
-                    PRE: {
-                        title: "PRE",
-                        titleBg: "#008BA3",
-                        colors: ["#E0F7FA", "#B2EBF2", "#80DEEA"],
-                        subjects: [
-                            { name: "Epistemología del Turismo", icon: "🧠", credits: 0, prereq: [] },
-                            { name: "Introducción a la Comunicación Académica", icon: "✍️", credits: 0, prereq: [] },
-                            { name: "Pensamiento Computacional", icon: "💻", credits: 0, prereq: [] }
-                        ]
-                    }
-                }
-            },
-            basica: {
-                title: "Unidad Básica",
-                color: "#1B5E20",
-                semesters: {
-                    "1": {
-                        title: "1er Semestre",
-                        titleBg: "#1B5E20",
-                        colors: ["#E8F5E9", "#C8E6C9", "#A5D6A7", "#81C784", "#66BB6A", "#43A047"],
-                        subjects: [
-                            { name: "Matemática Financiera", icon: "💰", credits: 1.67, prereq: ["Pensamiento Computacional"] },
-                            { name: "Tecnología Aplicada", icon: "🛠️", credits: 3.33, prereq: ["Pensamiento Computacional"] },
-                            { name: "Teoría del Turismo", icon: "📚", credits: 3.33, prereq: ["Epistemología del Turismo"] },
-                            { name: "Administración", icon: "📋", credits: 3.33, prereq: ["Introducción a la Comunicación Académica"] },
-                            { name: "Metodología de la Investigación Científica", icon: "🔬", credits: 1.67, prereq: ["Introducción a la Comunicación Académica"] },
-                            { name: "Técnicas de Operación Turística", icon: "🧳", credits: 3.33, prereq: ["Epistemología del Turismo"] }
-                        ]
-                    },
-                    "2": {
-                        title: "2do Semestre",
-                        titleBg: "#EF6C00",
-                        colors: ["#FFF3E0", "#FFE0B2", "#FFCC80", "#FFB74D", "#FFA726", "#FF9800"],
-                        subjects: [
-                            { name: "Cosmos Histórico", icon: "🏺", credits: 3.33, prereq: ["Teoría del Turismo"] },
-                            { name: "Bioentorno Turístico", icon: "🌱", credits: 3.33, prereq: ["Teoría del Turismo"] },
-                            { name: "Técnicas de Guiar", icon: "🎤", credits: 3.33, prereq: ["Técnicas de Operación Turística"] },
-                            { name: "Hospitalidad", icon: "🤝", credits: 3.33, prereq: ["Administración"] },
-                            { name: "Estadística Descriptiva Administrativa", icon: "📊", credits: 1.67, prereq: ["Matemática Financiera", "Tecnología Aplicada"] },
-                            { name: "Comunicación Oral y Escrita", icon: "🗣️", credits: 1.67, prereq: ["Metodología de la Investigación Científica"] }
-                        ]
-                    },
-                    "3": {
-                        title: "3er Semestre",
-                        titleBg: "#6A1B9A",
-                        colors: ["#F3E5F5", "#E1BEE7", "#CE93D8", "#BA68C8", "#AB47BC", "#9C27B0"],
-                        subjects: [
-                            { name: "Comunidad y Turismo", icon: "🏘️", credits: 1.67, prereq: ["Hospitalidad"] },
-                            { name: "Gastronomía Ancestral y Patrimonio", icon: "🍲", credits: 3.33, prereq: ["Hospitalidad"] },
-                            { name: "Gestión Operativa de Áreas Protegidas", icon: "🏞️", credits: 3.33, prereq: ["Técnicas de Guiar"] },
-                            { name: "Manifestaciones Plásticas Turísticas", icon: "🎨", credits: 3.33, prereq: ["Cosmos Histórico", "Comunicación Oral y Escrita"] },
-                            { name: "Prospección Intercultural Ecuatoriana", icon: "🌎", credits: 1.67, prereq: ["Cosmos Histórico"] },
-                            { name: "Contabilidad General", icon: "📒", credits: 3.33, prereq: ["Estadística Descriptiva Administrativa"] }
-                        ]
-                    }
-                }
-            },
-            profesional: {
-                title: "Unidad Profesional",
-                color: "#FFD150",
-                semesters: {
-                    "4": {
-                        title: "4to Semestre",
-                        titleBg: "#AD1457",
-                        colors: ["#FCE4EC", "#F8BBD0", "#F48FB1", "#F06292", "#EC407A", "#E91E63"],
-                        subjects: [
-                            { name: "Finanzas de Corto Plazo", icon: "📈", credits: 3.33, prereq: ["Contabilidad General"] },
-                            { name: "Gestión Territorial en Turismo", icon: "🏛️", credits: 3.33, prereq: ["Gestión Operativa de Áreas Protegidas", "Manifestaciones Plásticas Turísticas"] },
-                            { name: "Gestión del Talento Humano por Competencias", icon: "👥", credits: 2.5, prereq: ["Contabilidad General"] },
-                            { name: "Folklore", icon: "🎭", credits: 1.67, prereq: ["Manifestaciones Plásticas Turísticas", "Prospección Intercultural Ecuatoriana"] },
-                            { name: "Codificación Turística", icon: "🧩", credits: 3.33, prereq: ["Gestión Operativa de Áreas Protegidas"] },
-                            { name: "Campismo y Recreación Turística", icon: "⛺", credits: 1.67, prereq: ["Gastronomía Ancestral y Patrimonio", "Comunidad y Turismo"] }
-                        ]
-                    },
-                    "4": {
-                        title: "4to Semestre",
-                        titleBg: "#AD1457",
-                        colors: ["#FCE4EC", "#F8BBD0", "#F48FB1", "#F06292", "#EC407A", "#E91E63"],
-                        subjects: [
-                            { name: "Finanzas de Corto Plazo", icon: "📈", credits: 3.33, prereq: ["Contabilidad General"] },
-                            { name: "Gestión Territorial en Turismo", icon: "🏛️", credits: 3.33, prereq: ["Gestión Operativa de Áreas Protegidas", "Manifestaciones Plásticas Turísticas"] },
-                            { name: "Gestión del Talento Humano por Competencias", icon: "👥", credits: 2.5, prereq: ["Contabilidad General"] },
-                            { name: "Folklore", icon: "🎭", credits: 1.67, prereq: ["Manifestaciones Plásticas Turísticas", "Prospección Intercultural Ecuatoriana"] },
-                            { name: "Codificación Turística", icon: "🧩", credits: 3.33, prereq: ["Gestión Operativa de Áreas Protegidas"] },
-                            { name: "Campismo y Recreación Turística", icon: "⛺", credits: 1.67, prereq: ["Gastronomía Ancestral y Patrimonio", "Comunidad y Turismo"] }
-                        ]
-                    },
-                    "5": {
-                        title: "5to Semestre",
-                        titleBg: "#FBC02D",
-                        colors: ["#FFFDE7", "#FFF9C4", "#FFF59D", "#FFF176", "#FFEE58", "#FFEB3B", "#FFD700"],
-                        subjects: [
-                            { name: "Arqueología", icon: "🗿", credits: 1.67, prereq: ["Folklore"] },
-                            { name: "Microeconomía", icon: "🏦", credits: 3.33, prereq: ["Finanzas de Corto Plazo"] },
-                            { name: "Iconografía Turística", icon: "🖼️", credits: 1.67, prereq: ["Campismo y Recreación Turística"] },
-                            { name: "Operación de Tours", icon: "🚍", credits: 3.33, prereq: ["Codificación Turística", "Gestión Territorial en Turismo"] },
-                            { name: "Fomento y Regulaciones a la Actividad Turística", icon: "⚖️", credits: 3.33, prereq: ["Gestión del Talento Humano por Competencias"] },
-                            { name: "Desarrollo del Turismo Sostenible", icon: "♻️", credits: 5, prereq: ["Matemática Financiera", "Tecnología Aplicada", "Teoría del Turismo", "Administración", "Metodología de la Investigación Científica", "Técnicas de Operación Turística", "Cosmos Histórico", "Bioentorno Turístico", "Técnicas de Guiar", "Hospitalidad", "Estadística Descriptiva Administrativa", "Comunicación Oral y Escrita", "Comunidad y Turismo", "Gastronomía Ancestral y Patrimonio", "Gestión Operativa de Áreas Protegidas", "Manifestaciones Plásticas Turísticas", "Prospección Intercultural Ecuatoriana", "Contabilidad General", "Finanzas de Corto Plazo", "Gestión Territorial en Turismo", "Gestión del Talento Humano por Competencias", "Folklore", "Codificación Turística", "Campismo y Recreación Turística"] },
-                            { name: "Prácticas Pre Profesionales I", icon: "💼", credits: 0, prereq: ["Matemática Financiera", "Tecnología Aplicada", "Teoría del Turismo", "Administración", "Metodología de la Investigación Científica", "Técnicas de Operación Turística", "Cosmos Histórico", "Bioentorno Turístico", "Técnicas de Guiar", "Hospitalidad", "Estadística Descriptiva Administrativa", "Comunicación Oral y Escrita", "Comunidad y Turismo", "Gastronomía Ancestral y Patrimonio", "Gestión Operativa de Áreas Protegidas", "Manifestaciones Plásticas Turísticas", "Prospección Intercultural Ecuatoriana", "Contabilidad General", "Finanzas de Corto Plazo", "Gestión Territorial en Turismo", "Gestión del Talento Humano por Competencias", "Folklore", "Codificación Turística", "Campismo y Recreación Turística"] }
-                        ]
-                    },
-                    "6": {
-                        title: "6to Semestre",
-                        titleBg: "#C62828",
-                        colors: ["#FFEBEE", "#FFCDD2", "#EF9A9A", "#E57373", "#EF5350", "#F44336", "#E53935"],
-                        subjects: [
-                            { name: "Planificación Turística", icon: "🗓️", credits: 5, prereq: ["Matemática Financiera", "Tecnología Aplicada", "Teoría del Turismo", "Administración", "Metodología de la Investigación Científica", "Técnicas de Operación Turística", "Cosmos Histórico", "Bioentorno Turístico", "Técnicas de Guiar", "Hospitalidad", "Estadística Descriptiva Administrativa", "Comunicación Oral y Escrita", "Comunidad y Turismo", "Gastronomía Ancestral y Patrimonio", "Gestión Operativa de Áreas Protegidas", "Manifestaciones Plásticas Turísticas", "Prospección Intercultural Ecuatoriana", "Contabilidad General", "Finanzas de Corto Plazo", "Gestión Territorial en Turismo", "Gestión del Talento Humano por Competencias", "Folklore", "Codificación Turística", "Campismo y Recreación Turística", "Arqueología", "Microeconomía", "Iconografía Turística", "Operación de Tours", "Fomento y Regulaciones a la Actividad Turística", "Desarrollo del Turismo Sostenible"] },
-                            { name: "Gestión de la Innovación y Emprendimiento", icon: "🚀", credits: 3.33, prereq: ["Fomento y Regulaciones a la Actividad Turística"] },
-                            { name: "Animación Turística", icon: "🎬", credits: 3.33, prereq: ["Iconografía Turística"] },
-                            { name: "Rice - Organización de Eventos", icon: "📅", credits: 1.67, prereq: ["Desarrollo del Turismo Sostenible"] },
-                            { name: "Sistemas de Registros Turísticos / Sabre y Amadeus", icon: "🧾", credits: 1.67, prereq: ["Operación de Tours"] },
-                            { name: "Macroeconomía", icon: "🌐", credits: 3.33, prereq: ["Microeconomía"] },
-                            { name: "Prácticas Pre Profesionales II", icon: "💼", credits: 0, prereq: ["Matemática Financiera", "Tecnología Aplicada", "Teoría del Turismo", "Administración", "Metodología de la Investigación Científica", "Técnicas de Operación Turística", "Cosmos Histórico", "Bioentorno Turístico", "Técnicas de Guiar", "Hospitalidad", "Estadística Descriptiva Administrativa", "Comunicación Oral y Escrita", "Comunidad y Turismo", "Gastronomía Ancestral y Patrimonio", "Gestión Operativa de Áreas Protegidas", "Manifestaciones Plásticas Turísticas", "Prospección Intercultural Ecuatoriana", "Contabilidad General", "Finanzas de Corto Plazo", "Gestión Territorial en Turismo", "Gestión del Talento Humano por Competencias", "Folklore", "Codificación Turística", "Campismo y Recreación Turística", "Arqueología", "Microeconomía", "Iconografía Turística", "Operación de Tours", "Fomento y Regulaciones a la Actividad Turística", "Desarrollo del Turismo Sostenible", "Prácticas Pre Profesionales I"] }
-                        ]
-                    },
-                    "7": {
-                        title: "7mo Semestre",
-                        titleBg: "#1B5E20",
-                        colors: ["#E8F5E9", "#C8E6C9", "#A5D6A7", "#81C784", "#66BB6A", "#388E3C", "#2E7D32"],
-                        subjects: [
-                            { name: "Patrimonio", icon: "🏛️", credits: 5, prereq: ["Matemática Financiera", "Tecnología Aplicada", "Teoría del Turismo", "Administración", "Metodología de la Investigación Científica", "Técnicas de Operación Turística", "Cosmos Histórico", "Bioentorno Turístico", "Técnicas de Guiar", "Hospitalidad", "Estadística Descriptiva Administrativa", "Comunicación Oral y Escrita", "Comunidad y Turismo", "Gastronomía Ancestral y Patrimonio", "Gestión Operativa de Áreas Protegidas", "Manifestaciones Plásticas Turísticas", "Prospección Intercultural Ecuatoriana", "Contabilidad General", "Finanzas de Corto Plazo", "Gestión Territorial en Turismo", "Gestión del Talento Humano por Competencias", "Folklore", "Codificación Turística", "Campismo y Recreación Turística", "Arqueología", "Microeconomía", "Iconografía Turística", "Operación de Tours", "Fomento y Regulaciones a la Actividad Turística", "Desarrollo del Turismo Sostenible", "Planificación Turística", "Gestión de la Innovación y Emprendimiento", "Animación Turística", "Rice - Organización de Eventos", "Sistemas de Registros Turísticos / Sabre y Amadeus", "Macroeconomía"] },
-                            { name: "Gestión de Calidad y la Productividad", icon: "✅", credits: 3.33, prereq: ["Gestión de la Innovación y Emprendimiento"] },
-                            { name: "Operación de Alimentos y Bebidas", icon: "🍽️", credits: 1.67, prereq: ["Animación Turística"] },
-                            { name: "Operación Hotelera", icon: "🏨", credits: 3.33, prereq: ["Sistemas de Registros Turísticos / Sabre y Amadeus"] },
-                            { name: "Sociología del Turismo", icon: "👨‍👩‍👧‍👦", credits: 3.33, prereq: ["Animación Turística"] },
-                            { name: "Tendencias Turísticas", icon: "📈", credits: 1.67, prereq: ["Macroeconomía"] },
-                            { name: "Prácticas Pre Profesionales III", icon: "💼", credits: 0, prereq: ["Matemática Financiera", "Tecnología Aplicada", "Teoría del Turismo", "Administración", "Metodología de la Investigación Científica", "Técnicas de Operación Turística", "Cosmos Histórico", "Bioentorno Turístico", "Técnicas de Guiar", "Hospitalidad", "Estadística Descriptiva Administrativa", "Comunicación Oral y Escrita", "Comunidad y Turismo", "Gastronomía Ancestral y Patrimonio", "Gestión Operativa de Áreas Protegidas", "Manifestaciones Plásticas Turísticas", "Prospección Intercultural Ecuatoriana", "Contabilidad General", "Finanzas de Corto Plazo", "Gestión Territorial en Turismo", "Gestión del Talento Humano por Competencias", "Folklore", "Codificación Turística", "Campismo y Recreación Turística", "Arqueología", "Microeconomía", "Iconografía Turística", "Operación de Tours", "Fomento y Regulaciones a la Actividad Turística", "Desarrollo del Turismo Sostenible", "Planificación Turística", "Gestión de la Innovación y Emprendimiento", "Animación Turística", "Rice - Organización de Eventos", "Sistemas de Registros Turísticos / Sabre y Amadeus", "Macroeconomía", "Prácticas Pre Profesionales I", "Prácticas Pre Profesionales II"] }
-                        ]
-                    }
-                }
-            },
-            titulacion: {
-                title: "Unidad de Titulación",
-                color: "#FF9292",
-                semesters: {
-                    "8": {
-                        title: "8vo Semestre",
-                        titleBg: "#0D47A1",
-                        colors: ["#E3F2FD", "#BBDEFB", "#90CAF9", "#64B5F6", "#42A5F5", "#1976D2", "#1565C0"],
-                        subjects: [
-                            { name: "Formulación y Evaluación de Proyectos", icon: "📐", credits: 3.33, prereq: ["Gestión de Calidad y la Productividad"] },
-                            { name: "Integración Regional Turística", icon: "🤝", credits: 5, prereq: ["Patrimonio", "Gestión de Calidad y la Productividad", "Operación de Alimentos y Bebidas", "Operación Hotelera", "Sociología del Turismo", "Tendencias Turísticas"] },
-                            { name: "Estrategias Comerciales Turísticas", icon: "🎯", credits: 3.33, prereq: ["Tendencias Turísticas"] },
-                            { name: "Redacción del Trabajo de Titulación", icon: "📖", credits: 1.67, prereq: ["Matemática Financiera", "Tecnología Aplicada", "Teoría del Turismo", "Administración", "Metodología de la Investigación Científica", "Técnicas de Operación Turística", "Cosmos Histórico", "Bioentorno Turístico", "Técnicas de Guiar", "Hospitalidad", "Estadística Descriptiva Administrativa", "Comunicación Oral y Escrita", "Comunidad y Turismo", "Gastronomía Ancestral y Patrimonio", "Gestión Operativa de Áreas Protegidas", "Manifestaciones Plásticas Turísticas", "Prospección Intercultural Ecuatoriana", "Contabilidad General", "Finanzas de Corto Plazo", "Gestión Territorial en Turismo", "Gestión del Talento Humano por Competencias", "Folklore", "Codificación Turística", "Campismo y Recreación Turística", "Arqueología", "Microeconomía", "Iconografía Turística", "Operación de Tours", "Fomento y Regulaciones a la Actividad Turística", "Desarrollo del Turismo Sostenible", "Planificación Turística", "Gestión de la Innovación y Emprendimiento", "Animación Turística", "Rice - Organización de Eventos", "Sistemas de Registros Turísticos / Sabre y Amadeus", "Macroeconomía", "Patrimonio", "Gestión de Calidad y la Productividad", "Operación de Alimentos y Bebidas", "Operación Hotelera", "Sociología del Turismo", "Tendencias Turísticas"] },
-                            { name: "Apreciación del Arte y la Cultura", icon: "🖌️", credits: 1.67, prereq: ["Patrimonio"] },
-                            { name: "Turismo y Gobernanza", icon: "🏛️", credits: 3.33, prereq: ["Operación de Alimentos y Bebidas", "Sociología del Turismo"] },
-                            { name: "Proyecto de Vinculación I", icon: "🌐", credits: 0, prereq: ["Patrimonio", "Gestión de Calidad y la Productividad", "Operación de Alimentos y Bebidas", "Operación Hotelera", "Sociología del Turismo", "Tendencias Turísticas"] }
-                        ]
-                    },
-                    "9": {
-                        title: "9no Semestre",
-                        titleBg: "#424242",
-                        colors: ["#FAFAFA", "#F5F5F5", "#EEEEEE", "#E0E0E0", "#BDBDBD", "#757575", "#616161"],
-                        subjects: [
-                            { name: "Gestión Integral de Destinos Turísticos", icon: "🌟", credits: 5, prereq: ["Matemática Financiera", "Tecnología Aplicada", "Teoría del Turismo", "Administración", "Metodología de la Investigación Científica", "Técnicas de Operación Turística", "Cosmos Histórico", "Bioentorno Turístico", "Técnicas de Guiar", "Hospitalidad", "Estadística Descriptiva Administrativa", "Comunicación Oral y Escrita", "Comunidad y Turismo", "Gastronomía Ancestral y Patrimonio", "Gestión Operativa de Áreas Protegidas", "Manifestaciones Plásticas Turísticas", "Prospección Intercultural Ecuatoriana", "Contabilidad General", "Finanzas de Corto Plazo", "Gestión Territorial en Turismo", "Gestión del Talento Humano por Competencias", "Folklore", "Codificación Turística", "Campismo y Recreación Turística", "Arqueología", "Microeconomía", "Iconografía Turística", "Operación de Tours", "Fomento y Regulaciones a la Actividad Turística", "Desarrollo del Turismo Sostenible", "Planificación Turística", "Gestión de la Innovación y Emprendimiento", "Animación Turística", "Rice - Organización de Eventos", "Sistemas de Registros Turísticos / Sabre y Amadeus", "Macroeconomía", "Patrimonio", "Gestión de Calidad y la Productividad", "Operación de Alimentos y Bebidas", "Operación Hotelera", "Sociología del Turismo", "Tendencias Turísticas", "Formulación y Evaluación de Proyectos", "Integración Regional Turística", "Estrategias Comerciales Turísticas", "Redacción del Trabajo de Titulación", "Apreciación del Arte y la Cultura", "Turismo y Gobernanza"] },
-                            { name: "Técnicas de Negociación y Comunicación para el Turismo", icon: "🤝", credits: 3.33, prereq: ["Estrategias Comerciales Turísticas"] },
-                            { name: "Realidad Nacional y Geopolítica", icon: "🌏", credits: 1.67, prereq: ["Turismo y Gobernanza"] },
-                            { name: "Trabajo de Titulación", icon: "🎓", credits: 3.33, prereq: ["Redacción del Trabajo de Titulación"] },
-                            { name: "Contratación Pública", icon: "📝", credits: 3.33, prereq: ["Formulación y Evaluación de Proyectos"] },
-                            { name: "Liderazgo", icon: "👑", credits: 1.67, prereq: ["Apreciación del Arte y la Cultura"] },
-                            { name: "Proyecto de Vinculación II", icon: "🌐", credits: 0, prereq: ["Matemática Financiera", "Tecnología Aplicada", "Teoría del Turismo", "Administración", "Metodología de la Investigación Científica", "Técnicas de Operación Turística", "Cosmos Histórico", "Bioentorno Turístico", "Técnicas de Guiar", "Hospitalidad", "Estadística Descriptiva Administrativa", "Comunicación Oral y Escrita", "Comunidad y Turismo", "Gastronomía Ancestral y Patrimonio", "Gestión Operativa de Áreas Protegidas", "Manifestaciones Plásticas Turísticas", "Prospección Intercultural Ecuatoriana", "Contabilidad General", "Finanzas de Corto Plazo", "Gestión Territorial en Turismo", "Gestión del Talento Humano por Competencias", "Folklore", "Codificación Turística", "Campismo y Recreación Turística", "Arqueología", "Microeconomía", "Iconografía Turística", "Operación de Tours", "Fomento y Regulaciones a la Actividad Turística", "Desarrollo del Turismo Sostenible", "Planificación Turística", "Gestión de la Innovación y Emprendimiento", "Animación Turística", "Rice - Organización de Eventos", "Sistemas de Registros Turísticos / Sabre y Amadeus", "Macroeconomía", "Patrimonio", "Gestión de Calidad y la Productividad", "Operación de Alimentos y Bebidas", "Operación Hotelera", "Sociología del Turismo", "Tendencias Turísticas", "Formulación y Evaluación de Proyectos", "Integración Regional Turística", "Estrategias Comerciales Turísticas", "Redacción del Trabajo de Titulación", "Apreciación del Arte y la Cultura", "Turismo y Gobernanza", "Proyecto de Vinculación I"] }
-                        ]
-                    }
-                }
-            }
+        const subjectsData = {
+            pre: [
+                {id:'epi',name:'Epistemología del Turismo',icon:'🧠',credits:0,req:[]},
+                {id:'ica',name:'Introducción a la Comunicación Académica',icon:'✍️',credits:0,req:[]},
+                {id:'pc',name:'Pensamiento Computacional',icon:'💻',credits:0,req:[]}
+            ],
+            sem1: [
+                {id:'mf',name:'Matemática Financiera',icon:'💰',credits:1.67,req:['pc']},
+                {id:'ta',name:'Tecnología Aplicada',icon:'🛠️',credits:3.33,req:['pc']},
+                {id:'tt',name:'Teoría del Turismo',icon:'📚',credits:3.33,req:['epi']},
+                {id:'adm',name:'Administración',icon:'📋',credits:3.33,req:['ica']},
+                {id:'mic',name:'Metodología de la Investigación Científica',icon:'🔬',credits:1.67,req:['ica']},
+                {id:'tot',name:'Técnicas de Operación Turística',icon:'🧳',credits:3.33,req:['epi']}
+            ],
+            sem2: [
+                {id:'ch',name:'Cosmos Histórico',icon:'🏺',credits:3.33,req:['tt']},
+                {id:'bt',name:'Bioentorno Turístico',icon:'🌱',credits:3.33,req:['tt']},
+                {id:'tg',name:'Técnicas de Guiar',icon:'🗺️',credits:3.33,req:['tot']},
+                {id:'hosp',name:'Hospitalidad',icon:'🤝',credits:3.33,req:['adm']},
+                {id:'eda',name:'Estadística Descriptiva Administrativa',icon:'📊',credits:1.67,req:['mf','ta']},
+                {id:'coe',name:'Comunicación Oral y Escrita',icon:'🗣️',credits:1.67,req:['mic']}
+            ],
+            sem3: [
+                {id:'ct',name:'Comunidad y Turismo',icon:'🏘️',credits:1.67,req:['hosp']},
+                {id:'gap',name:'Gastronomía Ancestral y Patrimonio',icon:'🍲',credits:3.33,req:['hosp']},
+                {id:'goap',name:'Gestión Operativa de Áreas Protegidas',icon:'🏞️',credits:3.33,req:['tg']},
+                {id:'mpt',name:'Manifestaciones Plásticas Turísticas',icon:'🎨',credits:3.33,req:['ch','coe']},
+                {id:'pie',name:'Prospección Intercultural Ecuatoriana',icon:'🌎',credits:1.67,req:['ch']},
+                {id:'cg',name:'Contabilidad General',icon:'📒',credits:3.33,req:['eda']}
+            ],
+            sem4: [
+                {id:'fcp',name:'Finanzas de Corto Plazo',icon:'📈',credits:3.33,req:['cg']},
+                {id:'gtt',name:'Gestión Territorial en Turismo',icon:'🌍',credits:3.33,req:['goap','mpt']},
+                {id:'gthc',name:'Gestión del Talento Humano por Competencias',icon:'👥',credits:2.5,req:['cg']},
+                {id:'folk',name:'Folklore',icon:'🎭',credits:1.67,req:['mpt','pie']},
+                {id:'codt',name:'Codificación Turística',icon:'🧩',credits:3.33,req:['goap']},
+                {id:'crt',name:'Campismo y Recreación Turística',icon:'⛺',credits:1.67,req:['gap','ct']}
+            ],
+            sem5: [
+                {id:'arq',name:'Arqueología',icon:'🗿',credits:1.67,req:['folk']},
+                {id:'micro',name:'Microeconomía',icon:'🏦',credits:3.33,req:['fcp']},
+                {id:'it',name:'Iconografía Turística',icon:'🖼️',credits:1.67,req:['crt']},
+                {id:'ot',name:'Operación de Tours',icon:'🚍',credits:3.33,req:['codt','gtt']},
+                {id:'frat',name:'Fomento y Regulaciones a la Actividad Turística',icon:'⚖️',credits:3.33,req:['gthc']},
+                {id:'dts',name:'Desarrollo del Turismo Sostenible',icon:'♻️',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']},
+                {id:'pp1',name:'Prácticas Pre Profesionales I',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']}
+            ],
+            sem6: [
+                {id:'pt',name:'Planificación Turística',icon:'🗓️',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts']},
+                {id:'gie',name:'Gestión de la Innovación y Emprendimiento',icon:'🚀',credits:3.33,req:['frat']},
+                {id:'at',name:'Animación Turística',icon:'🎬',credits:3.33,req:['it']},
+                {id:'rice',name:'Rice - Organización de Eventos',icon:'📅',credits:1.67,req:['dts']},
+                {id:'srt',name:'Sistemas de Registros Turísticos / Sabre y Amadeus',icon:'🧾',credits:1.67,req:['ot']},
+                {id:'macro',name:'Macroeconomía',icon:'🌐',credits:3.33,req:['micro']},
+                {id:'pp2',name:'Prácticas Pre Profesionales II',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pp1']}
+            ],
+            sem7: [
+                {id:'pat',name:'Patrimonio',icon:'🏛️',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro']},
+                {id:'gcp',name:'Gestión de Calidad y la Productividad',icon:'✅',credits:3.33,req:['gie']},
+                {id:'oab',name:'Operación de Alimentos y Bebidas',icon:'🍽️',credits:1.67,req:['at']},
+                {id:'oh',name:'Operación Hotelera',icon:'🏨',credits:3.33,req:['srt']},
+                {id:'st',name:'Sociología del Turismo',icon:'👨‍👩‍👧‍👦',credits:3.33,req:['at']},
+                {id:'tent',name:'Tendencias Turísticas',icon:'📈',credits:1.67,req:['macro']},
+                {id:'pp3',name:'Prácticas Pre Profesionales III',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pp2']}
+            ],
+            sem8: [
+                {id:'fep',name:'Formulación y Evaluación de Proyectos',icon:'📐',credits:3.33,req:['gcp']},
+                {id:'irt',name:'Integración Regional Turística',icon:'🤝',credits:5,req:['pat','gcp','oab','oh','st','tent']},
+                {id:'ect',name:'Estrategias Comerciales Turísticas',icon:'🎯',credits:3.33,req:['tent']},
+                {id:'rtt',name:'Redacción del Trabajo de Titulación',icon:'📖',credits:1.67,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent']},
+                {id:'aac',name:'Apreciación del Arte y la Cultura',icon:'🖌️',credits:1.67,req:['pat']},
+                {id:'tyg',name:'Turismo y Gobernanza',icon:'🏛️',credits:3.33,req:['oab','st']},
+                {id:'pv1',name:'Proyecto de Vinculación I',icon:'🔗',credits:0,hours:80,req:['pat','gcp','oab','oh','st','tent']}
+            ],
+            sem9: [
+                {id:'gidt',name:'Gestión Integral de Destinos Turísticos',icon:'🌟',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent','fep','irt','ect','rtt','aac','tyg']},
+                {id:'tnct',name:'Técnicas de Negociación y Comunicación para el Turismo',icon:'🤝🗣️',credits:3.33,req:['ect']},
+                {id:'rng',name:'Realidad Nacional y Geopolítica',icon:'🌏',credits:1.67,req:['tyg']},
+                {id:'trab',name:'Trabajo de Titulación',icon:'🎓',credits:3.33,req:['rtt']},
+                {id:'cp',name:'Contratación Pública',icon:'📝',credits:3.33,req:['fep']},
+                {id:'lid',name:'Liderazgo',icon:'👑',credits:1.67,req:['aac']},
+                {id:'pv2',name:'Proyecto de Vinculación II',icon:'🔗',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent','fep','irt','ect','rtt','aac','tyg','pv1']}
+            ],
+            modIngles: [
+                {id:'inga1m',name:'Inglés A1-',icon:'🔴',credits:2.08,req:[]},
+                {id:'inga1',name:'Inglés A1',icon:'🟠',credits:2.08,req:['inga1m']},
+                {id:'inga2',name:'Inglés A2',icon:'🟡',credits:2.08,req:['inga1']},
+                {id:'ingb1',name:'Inglés B1',icon:'🟢',credits:2.08,req:['inga2']},
+                {id:'ingb2',name:'Inglés B2',icon:'🔵',credits:2.08,req:['ingb1']},
+                {id:'ingc1',name:'Inglés C1',icon:'🟣',credits:2.08,req:['ingb2']},
+                {id:'ingc2',name:'Inglés C2',icon:'🟤',credits:2.08,req:['ingc1']}
+            ],
+            modComp: [
+                {id:'comp1',name:'Windows - Word - Internet',icon:'🪟',credits:8,req:[]},
+                {id:'comp2',name:'Excel - PowerPoint',icon:'📊',credits:8,req:['comp1']}
+            ]
         };
 
-        const complementaryModules = {
-            title: "📘 Módulos Complementarios",
-            color: "#00897B",
-            semesters: {
-                "ingles": {
-                    title: "🌐 INGLÉS",
-                    titleBg: "#00897B",
-                    colors: ["#E53935", "#FF6F00", "#FBC02D", "#43A047", "#1976D2", "#7B1FA2", "#5D4037"],
-                    subjects: [
-                        { name: "🏆 Inglés A1-", icon: "🔴", credits: 2.08, prereq: [] },
-                        { name: "🏆 Inglés A1", icon: "🟠", credits: 2.08, prereq: ["🏆 Inglés A1-"] },
-                        { name: "🏆 Inglés A2", icon: "🟡", credits: 2.08, prereq: ["🏆 Inglés A1"] },
-                        { name: "🏆 Inglés B1", icon: "🟢", credits: 2.08, prereq: ["🏆 Inglés A2"] },
-                        { name: "🏆 Inglés B2", icon: "🔵", credits: 2.08, prereq: ["🏆 Inglés B1"] },
-                        { name: "🏆 Inglés C1", icon: "🟣", credits: 2.08, prereq: ["🏆 Inglés B2"] },
-                        { name: "🏆 Inglés C2", icon: "🟤", credits: 2.08, prereq: ["🏆 Inglés C1"] }
-                    ]
-                },
-                "computacion": {
-                    title: "💻 COMPUTACIÓN",
-                    titleBg: "#00695C",
-                    colors: ["#E0F2F1", "#B2DFDB"],
-                    subjects: [
-                        { name: "Windows – Word – Internet", icon: "🪟", credits: 8, prereq: [] },
-                        { name: "Excel – PowerPoint", icon: "📊", credits: 8, prereq: ["Windows – Word – Internet"] }
-                    ]
-                }
-            }
-        };
-
-        let completedSubjects = new Set();
-        let subjectToSemester = {};
-
-        function buildSubjectMap() {
-            Object.entries(curriculum).forEach(([unitKey, unit]) => {
-                Object.entries(unit.semesters).forEach(([semKey, semester]) => {
-                    semester.subjects.forEach(subject => {
-                        subjectToSemester[subject.name] = semester.title;
-                    });
-                });
-            });
-        }
-
-        function showPrereqModal(subjectName, prereqs) {
-            const modal = document.getElementById('prereq-modal');
-            const title = document.getElementById('modal-title');
-            const list = document.getElementById('modal-prereq-list');
-            
-            title.textContent = `Precedencias de la asignatura ${subjectName}`;
-            list.innerHTML = '';
-
-            if (prereqs.length === 0) {
-                list.innerHTML = '<tr><td colspan="2" style="text-align:center; padding:20px; color:#666;">No tiene requisitos previos</td></tr>';
-            } else {
-                prereqs.forEach(prereq => {
-                    const row = document.createElement('tr');
-                    const isCompleted = completedSubjects.has(prereq);
-                    row.className = `prereq-row ${isCompleted ? 'completed' : 'pending'}`;
-                    
-                    const nameCell = document.createElement('td');
-                    nameCell.textContent = prereq;
-                    
-                    const levelCell = document.createElement('td');
-                    levelCell.textContent = subjectToSemester[prereq] || 'N/A';
-                    
-                    row.appendChild(nameCell);
-                    row.appendChild(levelCell);
-                    list.appendChild(row);
-                });
-            }
-
-            modal.classList.add('active');
-        }
-
-        function closeModal() {
-            document.getElementById('prereq-modal').classList.remove('active');
-        }
-
-        function closeCelebration() {
-            document.getElementById('celebration-modal').classList.remove('active');
-            document.getElementById('celebration-content').classList.remove('career-complete');
-        }
-
-        function showCelebration(message, isCareerComplete = false) {
-            const modal = document.getElementById('celebration-modal');
-            const content = document.getElementById('celebration-content');
-            const messageEl = document.getElementById('celebration-message');
-            const emojiEl = document.getElementById('celebration-emoji');
-            
-            messageEl.textContent = message;
-            
-            if (isCareerComplete) {
-                content.classList.add('career-complete');
-                emojiEl.textContent = '🎓';
-            } else {
-                content.classList.remove('career-complete');
-                emojiEl.textContent = '✅';
-            }
-            
-            modal.classList.add('active');
-        }
-
-        function checkCompletions() {
-            // Verificar semestres completos
-            Object.entries(curriculum).forEach(([unitKey, unit]) => {
-                Object.entries(unit.semesters).forEach(([semKey, semester]) => {
-                    const allCompleted = semester.subjects.every(subject => 
-                        completedSubjects.has(subject.name)
-                    );
-                    
-                    const celebrationKey = `celebrated-${unitKey}-${semKey}`;
-                    if (allCompleted && !localStorage.getItem(celebrationKey)) {
-                        localStorage.setItem(celebrationKey, 'true');
-                        setTimeout(() => {
-                            showCelebration(`✅ Felicidades, has aprobado ${semester.title} ✅`);
-                        }, 300);
-                    }
-                    
-                    // Si se desmarca y ya no está completo, remover la celebración
-                    if (!allCompleted && localStorage.getItem(celebrationKey)) {
-                        localStorage.removeItem(celebrationKey);
+        let approvedSubjects = {};
+        let completedMilestones = {};
+        
+        try {
+            const stored = localStorage.getItem('approvedSubjects');
+            if (stored) {
+                const parsed = JSON.parse(stored);
+                // Limpiar cualquier valor que no sea true
+                Object.keys(parsed).forEach(key => {
+                    if (parsed[key] === true) {
+                        approvedSubjects[key] = true;
                     }
                 });
-            });
+            }
+            const storedMilestones = localStorage.getItem('completedMilestones');
+            if (storedMilestones) {
+                completedMilestones = JSON.parse(storedMilestones);
+            }
+        } catch (e) {
+            approvedSubjects = {};
+            completedMilestones = {};
+        }
+        
+        // Asegurar que el localStorage esté limpio al inicio
+        localStorage.setItem('approvedSubjects', JSON.stringify(approvedSubjects));
 
-            // Verificar módulos de inglés
-            const inglesModules = complementaryModules.semesters.ingles.subjects;
-            const allInglesCompleted = inglesModules.every(subject => 
-                completedSubjects.has(subject.name)
-            );
-            if (allInglesCompleted && !localStorage.getItem('celebrated-ingles')) {
-                localStorage.setItem('celebrated-ingles', 'true');
-                setTimeout(() => {
-                    showCelebration('✅ Felicidades, has aprobado todos los módulos de Inglés ✅');
-                }, 300);
-            }
-            if (!allInglesCompleted && localStorage.getItem('celebrated-ingles')) {
-                localStorage.removeItem('celebrated-ingles');
-            }
+        function isBlocked(reqs) {
+            if (!reqs || reqs.length === 0) return false;
+            return reqs.some(req => !approvedSubjects[req]);
+        }
 
-            // Verificar módulos de computación
-            const compModules = complementaryModules.semesters.computacion.subjects;
-            const allCompCompleted = compModules.every(subject => 
-                completedSubjects.has(subject.name)
-            );
-            if (allCompCompleted && !localStorage.getItem('celebrated-computacion')) {
-                localStorage.setItem('celebrated-computacion', 'true');
-                setTimeout(() => {
-                    showCelebration('✅ Felicidades, has aprobado todos los módulos de Computación ✅');
-                }, 300);
-            }
-            if (!allCompCompleted && localStorage.getItem('celebrated-computacion')) {
-                localStorage.removeItem('celebrated-computacion');
-            }
-
-            // Verificar prácticas pre profesionales
-            const practices = [
-                'Prácticas Pre Profesionales I',
-                'Prácticas Pre Profesionales II',
-                'Prácticas Pre Profesionales III'
-            ];
-            const allPracticesCompleted = practices.every(practice => 
-                completedSubjects.has(practice)
-            );
-            if (allPracticesCompleted && !localStorage.getItem('celebrated-practices')) {
-                localStorage.setItem('celebrated-practices', 'true');
-                setTimeout(() => {
-                    showCelebration('✅ Felicidades, has completado todas tus horas de Prácticas Pre Profesionales ✅');
-                }, 300);
-            }
-            if (!allPracticesCompleted && localStorage.getItem('celebrated-practices')) {
-                localStorage.removeItem('celebrated-practices');
-            }
-
-            // Verificar proyectos de vinculación
-            const projects = [
-                'Proyecto de Vinculación I',
-                'Proyecto de Vinculación II'
-            ];
-            const allProjectsCompleted = projects.every(project => 
-                completedSubjects.has(project)
-            );
-            if (allProjectsCompleted && !localStorage.getItem('celebrated-projects')) {
-                localStorage.setItem('celebrated-projects', 'true');
-                setTimeout(() => {
-                    showCelebration('✅ Felicidades, has completado todas tus horas de tu Proyecto de Vinculación ✅');
-                }, 300);
-            }
-            if (!allProjectsCompleted && localStorage.getItem('celebrated-projects')) {
-                localStorage.removeItem('celebrated-projects');
-            }
-
-            // Verificar si completó toda la carrera
-            const allSubjects = [];
-            Object.values(curriculum).forEach(unit => {
-                Object.values(unit.semesters).forEach(semester => {
-                    semester.subjects.forEach(subject => allSubjects.push(subject.name));
-                });
-            });
-            Object.values(complementaryModules.semesters).forEach(semester => {
-                semester.subjects.forEach(subject => allSubjects.push(subject.name));
-            });
-
-            const allCareerCompleted = allSubjects.every(subject => 
-                completedSubjects.has(subject)
-            );
+        function toggleSubject(id) {
+            const allSubjects = [...subjectsData.pre, ...subjectsData.sem1, ...subjectsData.sem2, ...subjectsData.sem3, ...subjectsData.sem4, ...subjectsData.sem5, ...subjectsData.sem6, ...subjectsData.sem7, ...subjectsData.sem8, ...subjectsData.sem9, ...subjectsData.modIngles, ...subjectsData.modComp];
+            const subject = allSubjects.find(s => s.id === id);
             
-            if (allCareerCompleted && !localStorage.getItem('celebrated-career')) {
-                localStorage.setItem('celebrated-career', 'true');
-                setTimeout(() => {
-                    showCelebration('🧑‍🎓🎓 FELICIDADES HAS COMPLETADO TU CARRERA 🎓🧑‍🎓', true);
-                }, 500);
-            }
-            if (!allCareerCompleted && localStorage.getItem('celebrated-career')) {
-                localStorage.removeItem('celebrated-career');
-            }
-        }
-
-        document.addEventListener('click', (e) => {
-            const modal = document.getElementById('prereq-modal');
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        function loadProgress() {
-            const saved = localStorage.getItem('turismo-progress');
-            if (saved) {
-                completedSubjects = new Set(JSON.parse(saved));
-            }
-        }
-
-        function saveProgress() {
-            localStorage.setItem('turismo-progress', JSON.stringify([...completedSubjects]));
-        }
-
-        function isSubjectLocked(prereqs) {
-            return prereqs.some(prereq => !completedSubjects.has(prereq));
-        }
-
-        function toggleSubject(subjectName, prereqs) {
-            const isLocked = isSubjectLocked(prereqs);
-            const isCompleted = completedSubjects.has(subjectName);
+            if (!subject) return;
             
-            // Si está bloqueada y no está completada, mostrar modal
-            if (isLocked && !isCompleted) {
-                showPrereqModal(subjectName, prereqs);
+            if (isBlocked(subject.req)) {
+                showModal(id);
                 return;
             }
-
-            if (completedSubjects.has(subjectName)) {
-                completedSubjects.delete(subjectName);
-            } else {
-                completedSubjects.add(subjectName);
-            }
-
-            saveProgress();
-            updateSubjectStates();
-            calculateStats();
-            checkCompletions();
+            
+            approvedSubjects[id] = !approvedSubjects[id];
+            localStorage.setItem('approvedSubjects', JSON.stringify(approvedSubjects));
+            render();
+            checkMilestones();
         }
 
-        function updateSubjectStates() {
-            // Actualizar solo los estados de las materias sin recargar todo
-            document.querySelectorAll('.subject').forEach(subjectEl => {
-                const subjectName = subjectEl.dataset.subjectName;
-                if (!subjectName) return;
-
-                const isCompleted = completedSubjects.has(subjectName);
-                const prereqsStr = subjectEl.dataset.prereqs;
-                const prereqs = prereqsStr ? JSON.parse(prereqsStr) : [];
-                const isLocked = isSubjectLocked(prereqs);
-
-                // Actualizar clases
-                if (isCompleted) {
-                    subjectEl.classList.add('completed');
-                    subjectEl.classList.remove('locked');
-                } else if (isLocked) {
-                    subjectEl.classList.add('locked');
-                    subjectEl.classList.remove('completed');
-                } else {
-                    subjectEl.classList.remove('locked', 'completed');
+        function showModal(id) {
+            const allSubjects = [...subjectsData.pre, ...subjectsData.sem1, ...subjectsData.sem2, ...subjectsData.sem3, ...subjectsData.sem4, ...subjectsData.sem5, ...subjectsData.sem6, ...subjectsData.sem7, ...subjectsData.sem8, ...subjectsData.sem9, ...subjectsData.modIngles, ...subjectsData.modComp];
+            const subject = allSubjects.find(s => s.id === id);
+            
+            const semesterMap = {
+                pre: 'PRE NIVEL',
+                sem1: '1ER NIVEL',
+                sem2: '2DO NIVEL',
+                sem3: '3ER NIVEL',
+                sem4: '4TO NIVEL',
+                sem5: '5TO NIVEL',
+                sem6: '6TO NIVEL',
+                sem7: '7MO NIVEL',
+                sem8: '8VO NIVEL',
+                sem9: '9NO NIVEL',
+                modIngles: 'MÓDULO INGLÉS',
+                modComp: 'MÓDULO COMPUTACIÓN'
+            };
+            
+            function getSemesterLevel(subjectId) {
+                for (let key in subjectsData) {
+                    const found = subjectsData[key].find(s => s.id === subjectId);
+                    if (found) return semesterMap[key];
                 }
-            });
+                return '';
+            }
+            
+            document.getElementById('modalTitle').textContent = 'Precedencias de la asignatura ' + subject.name.toUpperCase();
+            
+            if (subject.req.length === 0) {
+                document.getElementById('modalBody').innerHTML = '<div style="padding: 30px; text-align: center; color: #666;"><p>Esta asignatura no tiene prerrequisitos</p></div>';
+            } else {
+                let tableHTML = '<table class="prerequisites-table">';
+                tableHTML += '<thead><tr><th>ASIGNATURAS</th><th>NIVEL</th></tr></thead>';
+                tableHTML += '<tbody>';
+                
+                subject.req.forEach(reqId => {
+                    const reqSubject = allSubjects.find(s => s.id === reqId);
+                    if (reqSubject) {
+                        const level = getSemesterLevel(reqId);
+                        tableHTML += '<tr>';
+                        tableHTML += '<td>' + reqSubject.name.toUpperCase() + '</td>';
+                        tableHTML += '<td><span class="level-badge">' + level + '</span></td>';
+                        tableHTML += '</tr>';
+                    }
+                });
+                
+                tableHTML += '</tbody></table>';
+                document.getElementById('modalBody').innerHTML = tableHTML;
+            }
+            
+            document.getElementById('modal').style.display = 'flex';
         }
 
         function calculateStats() {
-            let totalCredits = 0;
-            let approvedCount = 0;
-            let practiceHours = 0;
-            let projectHours = 0;
-            let moduleCredits = 0;
+            let creditsMalla = 0;
+            let creditsModulos = 0;
+            let horasPracticas = 0;
+            let horasVinculacion = 0;
+            let materiasAprobadas = 0;
+            let modulosAprobados = 0;
 
-            Object.values(curriculum).forEach(unit => {
-                Object.values(unit.semesters).forEach(semester => {
-                    semester.subjects.forEach(subject => {
-                        if (completedSubjects.has(subject.name)) {
-                            totalCredits += subject.credits;
-                            approvedCount++;
-                            
-                            // Contar horas de prácticas (80 horas cada una)
-                            if (subject.name.includes('Prácticas Pre Profesionales')) {
-                                practiceHours += 80;
-                            }
-                            
-                            // Contar horas de proyectos de vinculación (80 horas cada uno)
-                            if (subject.name.includes('Proyecto de Vinculación')) {
-                                projectHours += 80;
-                            }
-                        }
-                    });
-                });
-            });
-
-            // Calcular créditos de módulos complementarios
-            Object.values(complementaryModules.semesters).forEach(semester => {
-                semester.subjects.forEach(subject => {
-                    if (completedSubjects.has(subject.name)) {
-                        moduleCredits += subject.credits;
+            const mallaSubjects = [...subjectsData.pre, ...subjectsData.sem1, ...subjectsData.sem2, ...subjectsData.sem3, ...subjectsData.sem4, ...subjectsData.sem5, ...subjectsData.sem6, ...subjectsData.sem7, ...subjectsData.sem8, ...subjectsData.sem9];
+            mallaSubjects.forEach(s => {
+                if (approvedSubjects[s.id] === true) {
+                    materiasAprobadas++;
+                    if (s.hours) {
+                        if (s.id.startsWith('pp')) horasPracticas += s.hours;
+                        else if (s.id.startsWith('pv')) horasVinculacion += s.hours;
+                    } else if (s.credits > 0) {
+                        creditsMalla += s.credits;
                     }
-                });
+                }
             });
 
-            const totalAllCredits = totalCredits + moduleCredits;
+            const moduloSubjects = [...subjectsData.modIngles, ...subjectsData.modComp];
+            moduloSubjects.forEach(s => {
+                if (approvedSubjects[s.id] === true) {
+                    modulosAprobados++;
+                    if (s.credits > 0) {
+                        creditsModulos += s.credits;
+                    }
+                }
+            });
 
-            document.getElementById('approved-count').textContent = approvedCount;
-            document.getElementById('credits-count').textContent = totalCredits.toFixed(2);
-            document.getElementById('module-credits').textContent = moduleCredits.toFixed(2);
-            document.getElementById('total-credits').textContent = totalAllCredits.toFixed(2);
-            document.getElementById('practice-hours').textContent = `${practiceHours}/240`;
-            document.getElementById('project-hours').textContent = `${projectHours}/160`;
+            document.getElementById('materiasAprobadas').textContent = materiasAprobadas;
+            document.getElementById('modulosAprobados').textContent = modulosAprobados;
+            document.getElementById('creditosMalla').textContent = creditsMalla.toFixed(2);
+            document.getElementById('creditosModulos').textContent = creditsModulos.toFixed(2);
+            document.getElementById('creditosTotales').textContent = (creditsMalla + creditsModulos).toFixed(2);
+            document.getElementById('horasPracticas').textContent = horasPracticas + '/240';
+            document.getElementById('horasVinculacion').textContent = horasVinculacion + '/160';
         }
 
-        function renderCurriculum() {
-            const container = document.getElementById('curriculum-container');
-            container.innerHTML = '';
-
-            Object.entries(curriculum).forEach(([unitKey, unit]) => {
-                const unitDiv = document.createElement('div');
-                unitDiv.className = 'unit-container';
-                
-                const unitTitle = document.createElement('div');
-                unitTitle.className = 'unit-title';
-                unitTitle.style.borderColor = unit.color;
-                unitTitle.style.color = unit.color;
-                unitTitle.textContent = unit.title;
-                unitDiv.appendChild(unitTitle);
-
-                if (unitKey === 'profesional') {
-                    const row1 = document.createElement('div');
-                    row1.className = 'semesters-row';
-                    const row2 = document.createElement('div');
-                    row2.className = 'semesters-row';
-
-                    const semesterKeys = Object.keys(unit.semesters);
-                    semesterKeys.slice(0, 2).forEach(key => {
-                        row1.appendChild(createSemester(unit.semesters[key]));
-                    });
-                    semesterKeys.slice(2, 4).forEach(key => {
-                        row2.appendChild(createSemester(unit.semesters[key]));
-                    });
-
-                    unitDiv.appendChild(row1);
-                    unitDiv.appendChild(row2);
-                } else {
-                    const semestersContainer = document.createElement('div');
-                    semestersContainer.className = 'semesters-container';
-
-                    Object.values(unit.semesters).forEach(semester => {
-                        semestersContainer.appendChild(createSemester(semester));
-                    });
-
-                    unitDiv.appendChild(semestersContainer);
-                }
-
-                container.appendChild(unitDiv);
-            });
-
-            // Renderizar módulos complementarios
-            const modulesDiv = document.createElement('div');
-            modulesDiv.className = 'unit-container';
+        function renderSubject(subject) {
+            const blocked = isBlocked(subject.req);
+            const isApproved = approvedSubjects[subject.id] === true && !blocked;
             
-            const modulesTitle = document.createElement('div');
-            modulesTitle.className = 'unit-title';
-            modulesTitle.style.borderColor = complementaryModules.color;
-            modulesTitle.style.color = complementaryModules.color;
-            modulesTitle.textContent = complementaryModules.title;
-            modulesDiv.appendChild(modulesTitle);
+            let html = '<div class="subject ' + (isApproved ? 'approved' : '') + ' ' + (blocked ? 'blocked' : '') + '" ';
+            html += 'onclick="toggleSubject(\'' + subject.id + '\')">';
+            html += '<div class="subject-icon">' + subject.icon + '</div>';
+            if (isApproved && subject.credits > 0) {
+                html += '<div class="credits-badge">' + subject.credits + '</div>';
+            }
+            html += '<div class="status-icon">' + (isApproved ? '✓' : blocked ? '🔒' : '') + '</div>';
+            html += '<div class="subject-name">' + subject.name + '</div>';
+            html += '<div class="subject-info">';
+            if (subject.credits > 0) {
+                html += '<div class="subject-info-row"><span>Créditos:</span><strong>' + subject.credits + '</strong></div>';
+            }
+            if (subject.hours) {
+                html += '<div class="subject-info-row"><span>Horas:</span><strong>' + subject.hours + '</strong></div>';
+            }
+            html += '<div class="subject-info-row"><span>Precedencias:</span>';
+            html += '<button class="info-btn" onclick="event.stopPropagation(); showModal(\'' + subject.id + '\')">i</button></div>';
+            html += '</div></div>';
+            return html;
+        }
 
-            const modulesContainer = document.createElement('div');
-            modulesContainer.className = 'semesters-container';
-
-            Object.values(complementaryModules.semesters).forEach(semester => {
-                modulesContainer.appendChild(createSemester(semester, true));
+        function renderSemester(title, subjects, semesterClass) {
+            let html = '<div class="semester ' + semesterClass + '">';
+            html += '<div class="semester-title">' + title + '</div>';
+            subjects.forEach(s => {
+                html += renderSubject(s);
             });
+            html += '</div>';
+            return html;
+        }
 
-            modulesDiv.appendChild(modulesContainer);
-            container.appendChild(modulesDiv);
+        function render() {
+            let html = '';
+            
+            html += '<div class="unit unit-preuniversitaria">';
+            html += '<div class="unit-title">Unidad Preuniversitaria</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('PRE', subjectsData.pre, 'semester-pre');
+            html += '</div></div>';
 
+            html += '<div class="unit unit-basica">';
+            html += '<div class="unit-title">Unidad Básica</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('1er Semestre', subjectsData.sem1, 'semester-1');
+            html += renderSemester('2do Semestre', subjectsData.sem2, 'semester-2');
+            html += renderSemester('3er Semestre', subjectsData.sem3, 'semester-3');
+            html += '</div></div>';
+
+            html += '<div class="unit unit-profesional">';
+            html += '<div class="unit-title">Unidad Profesional</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('4to Semestre', subjectsData.sem4, 'semester-4');
+            html += renderSemester('5to Semestre', subjectsData.sem5, 'semester-5');
+            html += renderSemester('6to Semestre', subjectsData.sem6, 'semester-6');
+            html += renderSemester('7mo Semestre', subjectsData.sem7, 'semester-7');
+            html += '</div></div>';
+
+            html += '<div class="unit unit-titulacion">';
+            html += '<div class="unit-title">Unidad de Titulación</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('8vo Semestre', subjectsData.sem8, 'semester-8');
+            html += renderSemester('9no Semestre', subjectsData.sem9, 'semester-9');
+            html += '</div></div>';
+
+            html += '<div class="unit unit-modulos">';
+            html += '<div class="unit-title">📘 Módulos Complementarios</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('🌐 Inglés', subjectsData.modIngles, 'semester-ingles');
+            html += renderSemester('💻 Computación', subjectsData.modComp, 'semester-comp');
+            html += '</div></div>';
+            
+            document.getElementById('curriculum').innerHTML = html;
             calculateStats();
         }
 
-        function createSemester(semester, isModule = false) {
-            const semesterDiv = document.createElement('div');
-            semesterDiv.className = 'semester';
+        function showCelebration(message, icon) {
+            document.getElementById('celebrationHeader').textContent = '🎉 ¡FELICITACIONES! 🎉';
+            
+            let bodyHTML = '<div class="celebration-icon">' + (icon || '✅') + '</div>';
+            bodyHTML += '<div class="celebration-title">' + message + '</div>';
+            
+            document.getElementById('celebrationBody').innerHTML = bodyHTML;
+            document.getElementById('celebration').style.display = 'flex';
+        }
 
-            const title = document.createElement('div');
-            title.className = 'semester-title';
-            title.style.backgroundColor = semester.titleBg;
-            title.textContent = semester.title;
-            semesterDiv.appendChild(title);
+        function closeCelebration() {
+            document.getElementById('celebration').style.display = 'none';
+        }
 
-            semester.subjects.forEach((subject, index) => {
-                const subjectDiv = document.createElement('div');
-                subjectDiv.className = 'subject';
-                
-                const isCompleted = completedSubjects.has(subject.name);
-                const isLocked = isSubjectLocked(subject.prereq);
-                const isPractice = subject.name.includes('Prácticas Pre Profesionales');
-                const isProject = subject.name.includes('Proyecto de Vinculación');
-
-                const bgColor = semester.colors[index % semester.colors.length];
-                
-                if (isPractice) {
-                    subjectDiv.classList.add('practice');
-                } else if (isProject) {
-                    subjectDiv.classList.add('project');
-                } else if (isModule) {
-                    subjectDiv.classList.add('module');
-                    subjectDiv.style.background = bgColor;
-                } else {
-                    subjectDiv.style.background = bgColor;
+        function calculateModuleCredits(moduleSubjects) {
+            let total = 0;
+            moduleSubjects.forEach(s => {
+                if (s.credits > 0) {
+                    total += s.credits;
                 }
-
-                // Agregar clase para texto blanco en posiciones 4, 5, 6 (índices 3, 4, 5)
-                // EXCEPTO para el 5to semestre
-                const is5thSemester = semester.title === "5to Semestre";
-                if (index >= 3 && index <= 5 && !isPractice && !isProject && !isModule && !is5thSemester) {
-                    subjectDiv.classList.add('dark-text');
-                }
-
-                // Agregar texto blanco para módulos de inglés específicos
-                const isEnglishModule = semester.title === "🌐 INGLÉS";
-                const englishDarkModules = ["🏆 Inglés A1-", "🏆 Inglés B2", "🏆 Inglés C1", "🏆 Inglés C2"];
-                if (isEnglishModule && englishDarkModules.includes(subject.name)) {
-                    subjectDiv.classList.add('dark-text');
-                }
-
-                if (isCompleted) {
-                    subjectDiv.classList.add('completed');
-                } else if (isLocked) {
-                    subjectDiv.classList.add('locked');
-                }
-
-                const nameDiv = document.createElement('div');
-                nameDiv.className = 'subject-name';
-                nameDiv.textContent = subject.name;
-                
-                const iconDiv = document.createElement('div');
-                iconDiv.className = 'subject-icon';
-                iconDiv.textContent = subject.icon;
-                
-                const infoDiv = document.createElement('div');
-                infoDiv.className = 'subject-info';
-                
-                // Fila de créditos
-                const creditsRow = document.createElement('div');
-                creditsRow.className = 'subject-info-row';
-                creditsRow.innerHTML = `
-                    <span class="subject-info-label">Créditos:</span>
-                    <span class="subject-info-value">${subject.credits > 0 ? subject.credits.toFixed(2) : '0'}</span>
-                `;
-                
-                infoDiv.appendChild(creditsRow);
-                
-                // Fila de precedencias (solo si tiene prereqs)
-                if (subject.prereq && subject.prereq.length > 0) {
-                    const prereqRow = document.createElement('div');
-                    prereqRow.className = 'subject-info-row';
-                    const prereqLabel = document.createElement('span');
-                    prereqLabel.className = 'subject-info-label';
-                    prereqLabel.textContent = 'Precedencias:';
-                    
-                    const prereqButton = document.createElement('button');
-                    prereqButton.className = 'prereq-button';
-                    prereqButton.textContent = 'i';
-                    prereqButton.onclick = (e) => {
-                        e.stopPropagation();
-                        showPrereqModal(subject.name, subject.prereq);
-                    };
-                    
-                    prereqRow.appendChild(prereqLabel);
-                    prereqRow.appendChild(prereqButton);
-                    infoDiv.appendChild(prereqRow);
-                }
-                
-                subjectDiv.appendChild(iconDiv);
-                subjectDiv.appendChild(nameDiv);
-                subjectDiv.appendChild(infoDiv);
-
-                // Guardar datos en el elemento para actualización rápida
-                subjectDiv.dataset.subjectName = subject.name;
-                subjectDiv.dataset.prereqs = JSON.stringify(subject.prereq);
-
-                subjectDiv.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('prereq-button')) return;
-                    
-                    // Siempre ejecutar toggle, que internamente decidirá si mostrar el modal
-                    toggleSubject(subject.name, subject.prereq);
-                });
-
-                semesterDiv.appendChild(subjectDiv);
             });
-
-            return semesterDiv;
+            return total;
         }
 
-        // Función para calcular el brillo de un color
-        function getColorBrightness(hexColor) {
-            const hex = hexColor.replace('#', '');
-            const r = parseInt(hex.substr(0, 2), 16);
-            const g = parseInt(hex.substr(2, 2), 16);
-            const b = parseInt(hex.substr(4, 2), 16);
-            return (r * 299 + g * 587 + b * 114) / 1000;
+        function calculateAllModuleCredits() {
+            let total = 0;
+            [...subjectsData.modIngles, ...subjectsData.modComp].forEach(s => {
+                if (approvedSubjects[s.id] && s.credits > 0) {
+                    total += s.credits;
+                }
+            });
+            return total;
         }
 
-        buildSubjectMap();
-        loadProgress();
-        renderCurriculum();
+        function calculateSemesterCredits(sem) {
+            let total = 0;
+            sem.forEach(s => {
+                if (s.credits > 0 && !s.hours) {
+                    total += s.credits;
+                }
+            });
+            return total;
+        }
+
+        function calculatePreviousCredits(upToSemester) {
+            const semesterOrder = ['pre', 'sem1', 'sem2', 'sem3', 'sem4', 'sem5', 'sem6', 'sem7', 'sem8', 'sem9'];
+            const currentIndex = semesterOrder.indexOf(upToSemester);
+            let total = 0;
+            
+            for (let i = 0; i < currentIndex; i++) {
+                const semKey = semesterOrder[i];
+                subjectsData[semKey].forEach(s => {
+                    if (approvedSubjects[s.id] && s.credits > 0 && !s.hours) {
+                        total += s.credits;
+                    }
+                });
+            }
+            
+            return total;
+        }
+
+        function checkMilestones() {
+            function checkSemester(sem, name, key) {
+                const all = sem.filter(s => s.credits > 0 || s.hours);
+                const approvedInSem = all.filter(s => approvedSubjects[s.id]);
+                const isComplete = all.length === approvedInSem.length && all.length > 0;
+                
+                if (isComplete && !completedMilestones[key]) {
+                    completedMilestones[key] = true;
+                    localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                    
+                    setTimeout(function() { 
+                        showCelebration('Has aprobado ' + name, '🎊'); 
+                    }, 300);
+                } else if (!isComplete && completedMilestones[key]) {
+                    completedMilestones[key] = false;
+                    localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                }
+                return isComplete;
+            }
+
+            checkSemester(subjectsData.pre, 'el PRE', 'pre');
+            checkSemester(subjectsData.sem1, 'el 1er Semestre', 'sem1');
+            checkSemester(subjectsData.sem2, 'el 2do Semestre', 'sem2');
+            checkSemester(subjectsData.sem3, 'el 3er Semestre', 'sem3');
+            checkSemester(subjectsData.sem4, 'el 4to Semestre', 'sem4');
+            checkSemester(subjectsData.sem5, 'el 5to Semestre', 'sem5');
+            checkSemester(subjectsData.sem6, 'el 6to Semestre', 'sem6');
+            checkSemester(subjectsData.sem7, 'el 7mo Semestre', 'sem7');
+            checkSemester(subjectsData.sem8, 'el 8vo Semestre', 'sem8');
+            checkSemester(subjectsData.sem9, 'el 9no Semestre', 'sem9');
+
+            const inglesComplete = subjectsData.modIngles.every(s => approvedSubjects[s.id]);
+            if (inglesComplete && !completedMilestones['ingles']) {
+                completedMilestones['ingles'] = true;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                setTimeout(function() { showCelebration('Has aprobado todos los módulos de Inglés', '🌐'); }, 300);
+            } else if (!inglesComplete && completedMilestones['ingles']) {
+                completedMilestones['ingles'] = false;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+            }
+
+            const compComplete = subjectsData.modComp.every(s => approvedSubjects[s.id]);
+            if (compComplete && !completedMilestones['comp']) {
+                completedMilestones['comp'] = true;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                setTimeout(function() { showCelebration('Has aprobado todos los módulos de Computación', '💻'); }, 300);
+            } else if (!compComplete && completedMilestones['comp']) {
+                completedMilestones['comp'] = false;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+            }
+
+            const ppSubjects = [subjectsData.sem5, subjectsData.sem6, subjectsData.sem7].flatMap(s => s).filter(s => s.id.startsWith('pp'));
+            const ppComplete = ppSubjects.every(s => approvedSubjects[s.id]);
+            if (ppComplete && !completedMilestones['practicas']) {
+                completedMilestones['practicas'] = true;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                setTimeout(function() { showCelebration('Has completado todas tus horas de Prácticas Pre Profesionales', '💼'); }, 300);
+            } else if (!ppComplete && completedMilestones['practicas']) {
+                completedMilestones['practicas'] = false;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+            }
+
+            const pvSubjects = [subjectsData.sem8, subjectsData.sem9].flatMap(s => s).filter(s => s.id.startsWith('pv'));
+            const pvComplete = pvSubjects.every(s => approvedSubjects[s.id]);
+            if (pvComplete && !completedMilestones['vinculacion']) {
+                completedMilestones['vinculacion'] = true;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                setTimeout(function() { showCelebration('Has completado todas tus horas de tu Proyecto de Vinculación', '🔗'); }, 300);
+            } else if (!pvComplete && completedMilestones['vinculacion']) {
+                completedMilestones['vinculacion'] = false;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+            }
+
+            const allSubjects = [...subjectsData.pre, ...subjectsData.sem1, ...subjectsData.sem2, ...subjectsData.sem3, ...subjectsData.sem4, ...subjectsData.sem5, ...subjectsData.sem6, ...subjectsData.sem7, ...subjectsData.sem8, ...subjectsData.sem9, ...subjectsData.modIngles, ...subjectsData.modComp];
+            const carreraComplete = allSubjects.every(s => approvedSubjects[s.id]);
+            if (carreraComplete && !completedMilestones['carrera']) {
+                completedMilestones['carrera'] = true;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                setTimeout(function() { showCelebration('¡HAS COMPLETADO TU CARRERA!', '🎓'); }, 300);
+            } else if (!carreraComplete && completedMilestones['carrera']) {
+                completedMilestones['carrera'] = false;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+            }
+        }
+
+        document.querySelector('.close').onclick = function() {
+            document.getElementById('modal').style.display = 'none';
+        };
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('modal')) {
+                document.getElementById('modal').style.display = 'none';
+            }
+        };
+
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(function() {
+                sparkle.remove();
+            }, 5000);
+        }
+
+        setInterval(createSparkle, 200);
+
+        render();
     </script>
 </body>
 </html>
