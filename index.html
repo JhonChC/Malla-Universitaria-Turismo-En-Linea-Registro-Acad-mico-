@@ -13,9 +13,9 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe, #43e97b, #38f9d7, #fa709a, #fee140);
             background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            animation: gradientShift 20s ease infinite;
             padding: 20px;
             min-height: 100vh;
             position: relative;
@@ -24,30 +24,38 @@
 
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
             50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
             100% { background-position: 0% 50%; }
         }
 
         .sparkle {
             position: fixed;
-            width: 3px;
-            height: 3px;
             background: white;
             border-radius: 50%;
             pointer-events: none;
             z-index: 1;
-            animation: fall linear infinite;
-            box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.8);
+            animation: twinkle linear infinite;
+            box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.9);
         }
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-10px) translateX(0);
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) translateY(0) rotate(0deg);
+            }
+            10% {
                 opacity: 1;
+                transform: scale(1) translateY(-20px) rotate(45deg);
+            }
+            90% {
+                opacity: 1;
+                transform: scale(1) translateY(-80vh) rotate(315deg);
             }
             100% {
-                transform: translateY(100vh) translateX(50px);
                 opacity: 0;
+                transform: scale(0) translateY(-100vh) rotate(360deg);
             }
         }
 
@@ -220,9 +228,60 @@
             border-color: #27ae60;
         }
 
-        .subject.blocked {
-            opacity: 0.6;
-            cursor: not-allowed;
+        .subject.transversal {
+            border-left: 5px solid;
+            position: relative;
+        }
+
+        .semester-1 .subject.transversal {
+            border-left-color: #43A047;
+        }
+
+        .semester-2 .subject.transversal {
+            border-left-color: #FF9800;
+        }
+
+        .semester-6 .subject.transversal {
+            border-left-color: #F44336;
+        }
+
+        .semester-9 .subject.transversal {
+            border-left-color: #757575;
+        }
+
+        .transversal-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.6em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .semester-1 .transversal-badge {
+            background: #43A047;
+        }
+
+        .semester-2 .transversal-badge {
+            background: #FF9800;
+        }
+
+        .semester-6 .transversal-badge {
+            background: #F44336;
+        }
+
+        .semester-9 .transversal-badge {
+            background: #757575;
+        }
+
+        .subject.transversal .subject-icon {
+            filter: brightness(0.8);
         }
 
         .subject-icon {
@@ -663,6 +722,14 @@
         .unit-profesional { border-left: 5px solid #FFD150; }
         .unit-titulacion { border-left: 5px solid #FF9292; }
         .unit-modulos { border-left: 5px solid #9C27B0; }
+        .unit-practicas { border-left: 5px solid #4CAF50; }
+        .unit-vinculacion { border-left: 5px solid #2196F3; }
+
+        .semester-practicas .semester-title { background: #4CAF50; }
+        .semester-vinculacion .semester-title { background: #2196F3; }
+
+        .semester-practicas .subject { background: #E8F5E9; }
+        .semester-vinculacion .subject { background: #E3F2FD; }
     </style>
 </head>
 <body>
@@ -748,7 +815,7 @@
                 {id:'ta',name:'Tecnología Aplicada',icon:'🛠️',credits:3.33,req:['pc']},
                 {id:'tt',name:'Teoría del Turismo',icon:'📚',credits:3.33,req:['epi']},
                 {id:'adm',name:'Administración',icon:'📋',credits:3.33,req:['ica']},
-                {id:'mic',name:'Metodología de la Investigación Científica',icon:'🔬',credits:1.67,req:['ica']},
+                {id:'mic',name:'Metodología de la Investigación Científica',icon:'🔬',credits:1.67,req:['ica'],transversal:true},
                 {id:'tot',name:'Técnicas de Operación Turística',icon:'🧳',credits:3.33,req:['epi']}
             ],
             sem2: [
@@ -757,7 +824,7 @@
                 {id:'tg',name:'Técnicas de Guiar',icon:'🗺️',credits:3.33,req:['tot']},
                 {id:'hosp',name:'Hospitalidad',icon:'🤝',credits:3.33,req:['adm']},
                 {id:'eda',name:'Estadística Descriptiva Administrativa',icon:'📊',credits:1.67,req:['mf','ta']},
-                {id:'coe',name:'Comunicación Oral y Escrita',icon:'🗣️',credits:1.67,req:['mic']}
+                {id:'coe',name:'Comunicación Oral y Escrita',icon:'🗣️',credits:1.67,req:['mic'],transversal:true}
             ],
             sem3: [
                 {id:'ct',name:'Comunidad y Turismo',icon:'🏘️',credits:1.67,req:['hosp']},
@@ -781,17 +848,15 @@
                 {id:'it',name:'Iconografía Turística',icon:'🖼️',credits:1.67,req:['crt']},
                 {id:'ot',name:'Operación de Tours',icon:'🚍',credits:3.33,req:['codt','gtt']},
                 {id:'frat',name:'Fomento y Regulaciones a la Actividad Turística',icon:'⚖️',credits:3.33,req:['gthc']},
-                {id:'dts',name:'Desarrollo del Turismo Sostenible',icon:'♻️',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']},
-                {id:'pp1',name:'Prácticas Pre Profesionales I',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']}
+                {id:'dts',name:'Desarrollo del Turismo Sostenible',icon:'♻️',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']}
             ],
             sem6: [
                 {id:'pt',name:'Planificación Turística',icon:'🗓️',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts']},
-                {id:'gie',name:'Gestión de la Innovación y Emprendimiento',icon:'🚀',credits:3.33,req:['frat']},
+                {id:'gie',name:'Gestión de la Innovación y Emprendimiento',icon:'🚀',credits:3.33,req:['frat'],transversal:true},
                 {id:'at',name:'Animación Turística',icon:'🎬',credits:3.33,req:['it']},
                 {id:'rice',name:'Rice - Organización de Eventos',icon:'📅',credits:1.67,req:['dts']},
                 {id:'srt',name:'Sistemas de Registros Turísticos / Sabre y Amadeus',icon:'🧾',credits:1.67,req:['ot']},
-                {id:'macro',name:'Macroeconomía',icon:'🌐',credits:3.33,req:['micro']},
-                {id:'pp2',name:'Prácticas Pre Profesionales II',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pp1']}
+                {id:'macro',name:'Macroeconomía',icon:'🌐',credits:3.33,req:['micro']}
             ],
             sem7: [
                 {id:'pat',name:'Patrimonio',icon:'🏛️',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro']},
@@ -799,8 +864,7 @@
                 {id:'oab',name:'Operación de Alimentos y Bebidas',icon:'🍽️',credits:1.67,req:['at']},
                 {id:'oh',name:'Operación Hotelera',icon:'🏨',credits:3.33,req:['srt']},
                 {id:'st',name:'Sociología del Turismo',icon:'👨‍👩‍👧‍👦',credits:3.33,req:['at']},
-                {id:'tent',name:'Tendencias Turísticas',icon:'📈',credits:1.67,req:['macro']},
-                {id:'pp3',name:'Prácticas Pre Profesionales III',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pp2']}
+                {id:'tent',name:'Tendencias Turísticas',icon:'📈',credits:1.67,req:['macro']}
             ],
             sem8: [
                 {id:'fep',name:'Formulación y Evaluación de Proyectos',icon:'📐',credits:3.33,req:['gcp']},
@@ -808,17 +872,15 @@
                 {id:'ect',name:'Estrategias Comerciales Turísticas',icon:'🎯',credits:3.33,req:['tent']},
                 {id:'rtt',name:'Redacción del Trabajo de Titulación',icon:'📖',credits:1.67,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent']},
                 {id:'aac',name:'Apreciación del Arte y la Cultura',icon:'🖌️',credits:1.67,req:['pat']},
-                {id:'tyg',name:'Turismo y Gobernanza',icon:'🏛️',credits:3.33,req:['oab','st']},
-                {id:'pv1',name:'Proyecto de Vinculación I',icon:'🔗',credits:0,hours:80,req:['pat','gcp','oab','oh','st','tent']}
+                {id:'tyg',name:'Turismo y Gobernanza',icon:'🏛️',credits:3.33,req:['oab','st']}
             ],
             sem9: [
                 {id:'gidt',name:'Gestión Integral de Destinos Turísticos',icon:'🌟',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent','fep','irt','ect','rtt','aac','tyg']},
                 {id:'tnct',name:'Técnicas de Negociación y Comunicación para el Turismo',icon:'🤝🗣️',credits:3.33,req:['ect']},
-                {id:'rng',name:'Realidad Nacional y Geopolítica',icon:'🌏',credits:1.67,req:['tyg']},
+                {id:'rng',name:'Realidad Nacional y Geopolítica',icon:'🌏',credits:1.67,req:['tyg'],transversal:true},
                 {id:'trab',name:'Trabajo de Titulación',icon:'🎓',credits:3.33,req:['rtt']},
                 {id:'cp',name:'Contratación Pública',icon:'📝',credits:3.33,req:['fep']},
-                {id:'lid',name:'Liderazgo',icon:'👑',credits:1.67,req:['aac']},
-                {id:'pv2',name:'Proyecto de Vinculación II',icon:'🔗',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent','fep','irt','ect','rtt','aac','tyg','pv1']}
+                {id:'lid',name:'Liderazgo',icon:'👑',credits:1.67,req:['aac']}
             ],
             modIngles: [
                 {id:'inga1m',name:'Inglés A1-',icon:'🔴',credits:2.08,req:[]},
@@ -832,6 +894,15 @@
             modComp: [
                 {id:'comp1',name:'Windows - Word - Internet',icon:'🪟',credits:8,req:[]},
                 {id:'comp2',name:'Excel - PowerPoint',icon:'📊',credits:8,req:['comp1']}
+            ],
+            practicas: [
+                {id:'pp1',name:'Prácticas Pre Profesionales I',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']},
+                {id:'pp2',name:'Prácticas Pre Profesionales II',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pp1']},
+                {id:'pp3',name:'Prácticas Pre Profesionales III',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pp2']}
+            ],
+            vinculacion: [
+                {id:'pv1',name:'Proyecto de Vinculación I',icon:'🔗',credits:0,hours:80,req:['pat','gcp','oab','oh','st','tent']},
+                {id:'pv2',name:'Proyecto de Vinculación II',icon:'🔗',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent','fep','irt','ect','rtt','aac','tyg','pv1']}
             ]
         };
 
@@ -981,8 +1052,13 @@
             const blocked = isBlocked(subject.req);
             const isApproved = approvedSubjects[subject.id] === true && !blocked;
             
-            let html = '<div class="subject ' + (isApproved ? 'approved' : '') + ' ' + (blocked ? 'blocked' : '') + '" ';
+            let html = '<div class="subject ' + (isApproved ? 'approved' : '') + ' ' + (blocked ? 'blocked' : '') + ' ' + (subject.transversal ? 'transversal' : '') + '" ';
             html += 'onclick="toggleSubject(\'' + subject.id + '\')">';
+            
+            if (subject.transversal) {
+                html += '<div class="transversal-badge">Transversal</div>';
+            }
+            
             html += '<div class="subject-icon">' + subject.icon + '</div>';
             if (isApproved && subject.credits > 0) {
                 html += '<div class="credits-badge">' + subject.credits + '</div>';
@@ -991,12 +1067,12 @@
             html += '<div class="subject-name">' + subject.name + '</div>';
             html += '<div class="subject-info">';
             if (subject.credits > 0) {
-                html += '<div class="subject-info-row"><span>Créditos:</span><strong>' + subject.credits + '</strong></div>';
+                html += '<div class="subject-info-row"><span style="color: #000;">Créditos:</span><strong style="color: #000;">' + subject.credits + '</strong></div>';
             }
             if (subject.hours) {
-                html += '<div class="subject-info-row"><span>Horas:</span><strong>' + subject.hours + '</strong></div>';
+                html += '<div class="subject-info-row"><span style="color: #000;">Horas:</span><strong style="color: #000;">' + subject.hours + '</strong></div>';
             }
-            html += '<div class="subject-info-row"><span>Precedencias:</span>';
+            html += '<div class="subject-info-row"><span style="color: #000;">Precedencias:</span>';
             html += '<button class="info-btn" onclick="event.stopPropagation(); showModal(\'' + subject.id + '\')">i</button></div>';
             html += '</div></div>';
             return html;
@@ -1043,6 +1119,18 @@
             html += '<div class="semesters-container">';
             html += renderSemester('8vo Semestre', subjectsData.sem8, 'semester-8');
             html += renderSemester('9no Semestre', subjectsData.sem9, 'semester-9');
+            html += '</div></div>';
+
+            html += '<div class="unit unit-practicas">';
+            html += '<div class="unit-title">💼 Prácticas Pre Profesionales</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('Prácticas Pre Profesionales', subjectsData.practicas, 'semester-practicas');
+            html += '</div></div>';
+
+            html += '<div class="unit unit-vinculacion">';
+            html += '<div class="unit-title">🔗 Proyectos de Vinculación</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('Proyectos de Vinculación', subjectsData.vinculacion, 'semester-vinculacion');
             html += '</div></div>';
 
             html += '<div class="unit unit-modulos">';
@@ -1168,7 +1256,7 @@
                 localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
             }
 
-            const ppSubjects = [subjectsData.sem5, subjectsData.sem6, subjectsData.sem7].flatMap(s => s).filter(s => s.id.startsWith('pp'));
+            const ppSubjects = subjectsData.practicas;
             const ppComplete = ppSubjects.every(s => approvedSubjects[s.id]);
             if (ppComplete && !completedMilestones['practicas']) {
                 completedMilestones['practicas'] = true;
@@ -1179,7 +1267,7 @@
                 localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
             }
 
-            const pvSubjects = [subjectsData.sem8, subjectsData.sem9].flatMap(s => s).filter(s => s.id.startsWith('pv'));
+            const pvSubjects = subjectsData.vinculacion;
             const pvComplete = pvSubjects.every(s => approvedSubjects[s.id]);
             if (pvComplete && !completedMilestones['vinculacion']) {
                 completedMilestones['vinculacion'] = true;
@@ -1190,7 +1278,7 @@
                 localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
             }
 
-            const allSubjects = [...subjectsData.pre, ...subjectsData.sem1, ...subjectsData.sem2, ...subjectsData.sem3, ...subjectsData.sem4, ...subjectsData.sem5, ...subjectsData.sem6, ...subjectsData.sem7, ...subjectsData.sem8, ...subjectsData.sem9, ...subjectsData.modIngles, ...subjectsData.modComp];
+            const allSubjects = [...subjectsData.pre, ...subjectsData.sem1, ...subjectsData.sem2, ...subjectsData.sem3, ...subjectsData.sem4, ...subjectsData.sem5, ...subjectsData.sem6, ...subjectsData.sem7, ...subjectsData.sem8, ...subjectsData.sem9, ...subjectsData.practicas, ...subjectsData.vinculacion, ...subjectsData.modIngles, ...subjectsData.modComp];
             const carreraComplete = allSubjects.every(s => approvedSubjects[s.id]);
             if (carreraComplete && !completedMilestones['carrera']) {
                 completedMilestones['carrera'] = true;
