@@ -13,9 +13,9 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe, #43e97b, #38f9d7, #fa709a, #fee140);
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
+            animation: gradientShift 15s ease infinite;
             padding: 20px;
             min-height: 100vh;
             position: relative;
@@ -24,82 +24,136 @@
 
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
-            25% { background-position: 50% 100%; }
             50% { background-position: 100% 50%; }
-            75% { background-position: 50% 0%; }
             100% { background-position: 0% 50%; }
         }
 
         .sparkle {
             position: fixed;
+            width: 3px;
+            height: 3px;
             background: white;
             border-radius: 50%;
             pointer-events: none;
             z-index: 1;
-            animation: twinkle linear infinite;
-            box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.9);
+            animation: fall linear infinite;
+            box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.8);
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; transform: scale(0) translateY(0) rotate(0deg); }
-            10% { opacity: 1; transform: scale(1) translateY(-20px) rotate(45deg); }
-            90% { opacity: 1; transform: scale(1) translateY(-80vh) rotate(315deg); }
-            100% { opacity: 0; transform: scale(0) translateY(-100vh) rotate(360deg); }
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(50px);
+                opacity: 0;
+            }
         }
 
         .header {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 30px;
             background: white;
-            padding: 24px 30px;
+            padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .header h1 { color: #2c3e50; font-size: 2.2em; margin-bottom: 6px; }
-        .header p { color: #7f8c8d; font-size: 1.1em; }
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
 
-        /* ── STATS ── */
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
         .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 14px;
-            margin-bottom: 24px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
         }
 
         .stat-card {
             background: white;
-            padding: 16px 12px;
+            padding: 20px 30px;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             text-align: center;
+            min-width: 150px;
             transition: transform 0.3s;
         }
-        .stat-card:hover { transform: translateY(-4px); }
-        .stat-card:nth-child(1) { background: linear-gradient(135deg,#F0F9FF,#E0F2FE); }
-        .stat-card:nth-child(2) { background: linear-gradient(135deg,#E0F2FE,#D1F2EB); }
-        .stat-card:nth-child(3) { background: linear-gradient(135deg,#D1F2EB,#C7ECEE); }
-        .stat-card:nth-child(4) { background: linear-gradient(135deg,#F3E5F5,#E8D5F0); }
-        .stat-card:nth-child(5) { background: linear-gradient(135deg,#E8D5F0,#DFC7E8); }
-        .stat-card:nth-child(6) { background: linear-gradient(135deg,#C7ECEE,#B8E6E8); }
-        .stat-card:nth-child(7) { background: linear-gradient(135deg,#B8E6E8,#A8DDE0); }
-        .stat-card:nth-child(8) { background: linear-gradient(135deg,#DFC7E8,#D4BCE3); }
-        .stat-card:nth-child(9) { background: linear-gradient(135deg,#A8DDE0,#9DD7D9); }
-        .stat-card h3 { color: #2c3e50; font-size: 0.75em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.8px; }
-        .stat-card .number { font-size: 1.8em; font-weight: bold; color: #3498db; }
 
-        /* ── UNIT WRAPPER ── */
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card:nth-child(1) {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+        }
+
+        .stat-card:nth-child(2) {
+            background: linear-gradient(135deg, #E0F2FE 0%, #D1F2EB 100%);
+        }
+
+        .stat-card:nth-child(3) {
+            background: linear-gradient(135deg, #D1F2EB 0%, #C7ECEE 100%);
+        }
+
+        .stat-card:nth-child(4) {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E8D5F0 100%);
+        }
+
+        .stat-card:nth-child(5) {
+            background: linear-gradient(135deg, #E8D5F0 0%, #DFC7E8 100%);
+        }
+
+        .stat-card:nth-child(6) {
+            background: linear-gradient(135deg, #C7ECEE 0%, #B8E6E8 100%);
+        }
+
+        .stat-card:nth-child(7) {
+            background: linear-gradient(135deg, #B8E6E8 0%, #A8DDE0 100%);
+        }
+
+        .stat-card:nth-child(8) {
+            background: linear-gradient(135deg, #DFC7E8 0%, #D4BCE3 100%);
+        }
+
+        .stat-card:nth-child(9) {
+            background: linear-gradient(135deg, #A8DDE0 0%, #9DD7D9 100%);
+        }
+
+        .stat-card h3 {
+            color: #2c3e50;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stat-card .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+        }
+
         .unit {
-            margin-bottom: 28px;
+            margin-bottom: 40px;
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .unit-title {
-            font-size: 1.4em;
-            margin-bottom: 16px;
+            font-size: 1.8em;
+            margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 3px solid #3498db;
             color: #2c3e50;
@@ -108,36 +162,19 @@
             font-weight: bold;
         }
 
-        /* ── SEMESTERS CONTAINER ──
-           On desktop: equal columns filling the full width.
-           On mobile: horizontal scroll (original behaviour).
-        */
         .semesters-container {
             display: flex;
-            gap: 14px;
-            flex-wrap: nowrap;
+            gap: 20px;
             overflow-x: auto;
-            padding-bottom: 6px;
+            padding-bottom: 10px;
+            justify-content: center;
+            flex-wrap: nowrap;
         }
 
-        /* Wide-screen: stretch columns to fill the row */
-        @media (min-width: 768px) {
-            .semesters-container {
-                overflow-x: visible;
-                flex-wrap: wrap;          /* allow wrapping on very narrow desktop */
-            }
-
-            .semesters-container .semester {
-                flex: 1 1 0;              /* grow & shrink equally, distribute all space */
-                min-width: 0;             /* allow shrinking below content size */
-            }
-        }
-
-        /* ── SEMESTER COLUMN ── */
         .semester {
             flex: 0 0 auto;
-            width: 200px;               /* mobile default */
-            padding: 14px;
+            min-width: 250px;
+            padding: 20px;
             border-radius: 10px;
             background: #f8f9fa;
             display: flex;
@@ -145,204 +182,487 @@
             align-items: center;
         }
 
-        @media (min-width: 768px) {
-            .semester {
-                width: auto;             /* let flexbox control width */
-            }
-        }
-
         .semester-title {
-            font-size: 1em;
+            font-size: 1.3em;
             font-weight: bold;
-            margin-bottom: 12px;
-            padding: 8px 6px;
+            margin-bottom: 15px;
+            padding: 10px;
             border-radius: 8px;
             text-align: center;
             color: white;
             width: 100%;
         }
 
-        /* ── SUBJECT CARD ── */
         .subject {
             background: white;
-            margin-bottom: 10px;
-            padding: 12px 10px;
+            margin-bottom: 12px;
+            padding: 15px;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
             border: 3px solid transparent;
             position: relative;
-            width: 8cm;
-            height: 5cm;
+            width: 6.5cm;
+            height: 5.5cm;
             display: flex;
             flex-direction: column;
+            flex-shrink: 0;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
         }
 
-        .subject:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
-        .subject.approved { border-color: #27ae60; }
-
-        .subject.transversal { border-left: 5px solid; }
-        .semester-1 .subject.transversal { border-left-color: #43A047; }
-        .semester-2 .subject.transversal { border-left-color: #FF9800; }
-        .semester-6 .subject.transversal { border-left-color: #F44336; }
-        .semester-9 .subject.transversal { border-left-color: #757575; }
-
-        .transversal-badge {
-            position: absolute;
-            top: 6px;
-            left: 6px;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.55em;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        .subject:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
         }
-        .semester-1 .transversal-badge { background: #43A047; }
-        .semester-2 .transversal-badge { background: #FF9800; }
-        .semester-6 .transversal-badge { background: #F44336; }
-        .semester-9 .transversal-badge { background: #757575; }
 
-        .subject-icon { font-size: 1.8em; margin-bottom: 6px; text-align: center; }
+        .subject.approved {
+            border-color: #27ae60;
+        }
+
+        .subject.blocked {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .subject-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
 
         .subject-name {
-            font-size: 0.72em;
+            font-size: 0.85em;
             font-weight: bold;
             text-transform: uppercase;
-            margin-bottom: 6px;
-            padding-bottom: 6px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
             border-bottom: 1px solid #e0e0e0;
             text-align: center;
             width: 100%;
-            line-height: 1.3;
         }
 
-        .subject-info { font-size: 0.72em; color: #666; margin-top: auto; width: 100%; text-align: center; }
-        .subject-info-row { display: flex; justify-content: center; align-items: center; margin-bottom: 4px; gap: 6px; }
+        .subject-info {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: auto;
+            width: 100%;
+            text-align: center;
+        }
+
+        .subject-info-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5px;
+            gap: 8px;
+        }
 
         .info-btn {
-            background: #3498db; color: white; border: none; border-radius: 50%;
-            width: 18px; height: 18px; font-size: 0.65em; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.7em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
         }
-        .info-btn:hover { background: #2980b9; transform: scale(1.1); }
 
-        .status-icon { position: absolute; top: 8px; right: 8px; font-size: 1.2em; }
+        .info-btn:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+
+        .status-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+        }
 
         .credits-badge {
-            background: #27ae60; color: white; padding: 3px 6px; border-radius: 4px;
-            font-size: 0.68em; font-weight: bold;
-            position: absolute; top: 8px; right: 30px;
+            background: #27ae60;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 40px;
         }
 
-        /* ── MODAL ── */
         .modal {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
-            width: 100%; height: 100%;
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0,0,0,0.5);
-            justify-content: center; align-items: center;
+            justify-content: center;
+            align-items: center;
         }
+
         .modal-content {
-            background: white; padding: 0; border-radius: 10px;
-            max-width: 700px; max-height: 80vh; overflow: hidden;
+            background-color: white;
+            padding: 0;
+            border-radius: 10px;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            display: flex; flex-direction: column;
-            width: 90%;
+            display: flex;
+            flex-direction: column;
         }
+
         .modal-header {
-            font-size: 1.1em; padding: 18px 24px; color: white; background: #37474f;
-            display: flex; justify-content: space-between; align-items: center;
+            font-size: 1.2em;
+            padding: 20px 30px;
+            color: white;
+            background: #37474f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .close { color: white; font-size: 26px; font-weight: bold; cursor: pointer; background: none; border: none; }
-        .close:hover { color: #ccc; }
-        .modal-body { overflow-y: auto; flex: 1; }
 
-        .prerequisites-table { width: 100%; border-collapse: collapse; }
-        .prerequisites-table thead { background: #f5f5f5; position: sticky; top: 0; z-index: 10; }
+        .close {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: #ccc;
+        }
+
+        .modal-body {
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .prerequisites-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .prerequisites-table thead {
+            background: #f5f5f5;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
         .prerequisites-table th {
-            padding: 12px 15px; text-align: left; font-weight: 600; color: #546e7a;
-            text-transform: uppercase; font-size: 0.82em; letter-spacing: 0.5px; border-bottom: 2px solid #e0e0e0;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #546e7a;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e0e0e0;
         }
-        .prerequisites-table td { padding: 10px 15px; border-bottom: 1px solid #f0f0f0; color: #37474f; }
-        .prerequisites-table tbody tr:hover { background: #f9f9f9; }
-        .level-badge { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 0.82em; font-weight: 500; background: #e3f2fd; color: #1976d2; }
 
-        .modal-footer { padding: 12px 24px; border-top: 1px solid #e0e0e0; display: flex; justify-content: flex-end; }
+        .prerequisites-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #37474f;
+        }
+
+        .prerequisites-table tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        .level-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: 500;
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .modal-footer {
+            padding: 15px 30px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
         .btn-close-modal {
-            background: #ff9800; color: white; border: none; padding: 9px 26px;
-            border-radius: 5px; font-size: 0.95em; font-weight: 600; cursor: pointer; transition: background 0.3s;
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
         }
-        .btn-close-modal:hover { background: #f57c00; }
 
-        /* ── CELEBRATION ── */
+        .btn-close-modal:hover {
+            background: #f57c00;
+        }
+
         .celebration {
-            display: none; position: fixed; z-index: 2000; left: 0; top: 0;
-            width: 100%; height: 100%;
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0,0,0,0.7);
-            justify-content: center; align-items: center;
+            justify-content: center;
+            align-items: center;
         }
+
         .celebration-content {
-            background: white; padding: 0; border-radius: 10px; max-width: 420px; width: 90%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4); display: flex; flex-direction: column; overflow: hidden;
+            background: white;
+            padding: 0;
+            border-radius: 10px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
-        .celebration-header { background: linear-gradient(135deg,#667eea,#764ba2); color: white; padding: 22px 28px; text-align: center; font-size: 1.4em; font-weight: bold; }
-        .celebration-body { padding: 36px 28px; text-align: center; }
-        .celebration-icon { font-size: 4.5em; margin-bottom: 16px; animation: celebrate 0.6s ease-in-out; }
-        @keyframes celebrate { 0%,100%{transform:scale(1) rotate(0deg)} 25%{transform:scale(1.2) rotate(-10deg)} 75%{transform:scale(1.2) rotate(10deg)} }
-        .celebration-title { font-size: 1.3em; color: #2c3e50; font-weight: bold; line-height: 1.4; }
-        .celebration-footer { padding: 18px 28px; display: flex; justify-content: center; gap: 14px; background: #fafafa; }
-        .btn-celebration { padding: 11px 28px; border: none; border-radius: 5px; font-size: 0.95em; font-weight: 600; cursor: pointer; transition: all 0.3s; }
-        .btn-accept { background: #4caf50; color: white; }
-        .btn-accept:hover { background: #45a049; }
-        .btn-close-celebration { background: #9e9e9e; color: white; }
-        .btn-close-celebration:hover { background: #757575; }
 
-        /* ── SEMESTER TITLE COLOURS ── */
-        .semester-pre .semester-title  { background: #008BA3; }
-        .semester-1 .semester-title    { background: #1B5E20; }
-        .semester-2 .semester-title    { background: #EF6C00; }
-        .semester-3 .semester-title    { background: #6A1B9A; }
-        .semester-4 .semester-title    { background: #AD1457; }
-        .semester-5 .semester-title    { background: #FBC02D; color: #333; }
-        .semester-6 .semester-title    { background: #C62828; }
-        .semester-7 .semester-title    { background: #1B5E20; }
-        .semester-8 .semester-title    { background: #0D47A1; }
-        .semester-9 .semester-title    { background: #424242; }
-        .semester-ingles .semester-title  { background: #00897B; }
+        .celebration-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .celebration-body {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .celebration-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: celebrate 0.6s ease-in-out;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(-10deg); }
+            75% { transform: scale(1.2) rotate(10deg); }
+        }
+
+        .celebration-title {
+            font-size: 1.4em;
+            color: #2c3e50;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        .credits-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .credits-info {
+            background: #f5f5f5;
+            padding: 25px 40px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .credits-section-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .credits-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .credits-row:last-child {
+            border-bottom: none;
+            margin-top: 10px;
+            padding-top: 12px;
+            border-top: 2px solid #667eea;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .credits-label {
+            color: #546e7a;
+            font-size: 0.9em;
+        }
+
+        .credits-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .celebration-footer {
+            padding: 20px 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            background: #fafafa;
+        }
+
+        .btn-celebration {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-accept {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-accept:hover {
+            background: #45a049;
+        }
+
+        .btn-close-celebration {
+            background: #9e9e9e;
+            color: white;
+        }
+
+        .btn-close-celebration:hover {
+            background: #757575;
+        }
+
+        .semester-pre .semester-title { background: #008BA3; }
+        .semester-1 .semester-title { background: #1B5E20; }
+        .semester-2 .semester-title { background: #EF6C00; }
+        .semester-3 .semester-title { background: #6A1B9A; }
+        .semester-4 .semester-title { background: #AD1457; }
+        .semester-5 .semester-title { background: #FBC02D; color: #333; }
+        .semester-6 .semester-title { background: #C62828; }
+        .semester-7 .semester-title { background: #1B5E20; }
+        .semester-8 .semester-title { background: #0D47A1; }
+        .semester-9 .semester-title { background: #424242; }
+        .semester-ingles .semester-title { background: #00897B; }
         .semester-comp .semester-title { background: #5E35B1; }
-        .semester-practicas .semester-title { background: #4CAF50; }
-        .semester-vinculacion .semester-title { background: #2196F3; }
 
-        /* ── SUBJECT BACKGROUND TINTS ── */
-        .semester-pre .subject:nth-child(2) { background:#E0F7FA } .semester-pre .subject:nth-child(3) { background:#B2EBF2 } .semester-pre .subject:nth-child(4) { background:#80DEEA }
-        .semester-1 .subject:nth-child(2) { background:#E8F5E9 } .semester-1 .subject:nth-child(3) { background:#C8E6C9 } .semester-1 .subject:nth-child(4) { background:#A5D6A7 } .semester-1 .subject:nth-child(5) { background:#81C784 } .semester-1 .subject:nth-child(6) { background:#66BB6A } .semester-1 .subject:nth-child(7) { background:#43A047 }
-        .semester-2 .subject:nth-child(2) { background:#FFF3E0 } .semester-2 .subject:nth-child(3) { background:#FFE0B2 } .semester-2 .subject:nth-child(4) { background:#FFCC80 } .semester-2 .subject:nth-child(5) { background:#FFB74D } .semester-2 .subject:nth-child(6) { background:#FFA726 } .semester-2 .subject:nth-child(7) { background:#FF9800 }
-        .semester-3 .subject:nth-child(2) { background:#F3E5F5 } .semester-3 .subject:nth-child(3) { background:#E1BEE7 } .semester-3 .subject:nth-child(4) { background:#CE93D8 } .semester-3 .subject:nth-child(5) { background:#BA68C8 } .semester-3 .subject:nth-child(6) { background:#AB47BC } .semester-3 .subject:nth-child(7) { background:#9C27B0 }
-        .semester-4 .subject:nth-child(2) { background:#FCE4EC } .semester-4 .subject:nth-child(3) { background:#F8BBD0 } .semester-4 .subject:nth-child(4) { background:#F48FB1 } .semester-4 .subject:nth-child(5) { background:#F06292 } .semester-4 .subject:nth-child(6) { background:#EC407A } .semester-4 .subject:nth-child(7) { background:#E91E63 }
-        .semester-5 .subject:nth-child(2) { background:#FFFDE7 } .semester-5 .subject:nth-child(3) { background:#FFF9C4 } .semester-5 .subject:nth-child(4) { background:#FFF59D } .semester-5 .subject:nth-child(5) { background:#FFF176 } .semester-5 .subject:nth-child(6) { background:#FFEE58 } .semester-5 .subject:nth-child(7) { background:#FFEB3B } .semester-5 .subject:nth-child(8) { background:#FDD835 }
-        .semester-6 .subject:nth-child(2) { background:#FFEBEE } .semester-6 .subject:nth-child(3) { background:#FFCDD2 } .semester-6 .subject:nth-child(4) { background:#EF9A9A } .semester-6 .subject:nth-child(5) { background:#E57373 } .semester-6 .subject:nth-child(6) { background:#EF5350 } .semester-6 .subject:nth-child(7) { background:#F44336 } .semester-6 .subject:nth-child(8) { background:#E53935 }
-        .semester-7 .subject:nth-child(2) { background:#E8F5E9 } .semester-7 .subject:nth-child(3) { background:#C8E6C9 } .semester-7 .subject:nth-child(4) { background:#A5D6A7 } .semester-7 .subject:nth-child(5) { background:#81C784 } .semester-7 .subject:nth-child(6) { background:#66BB6A } .semester-7 .subject:nth-child(7) { background:#388E3C } .semester-7 .subject:nth-child(8) { background:#2E7D32 }
-        .semester-8 .subject:nth-child(2) { background:#E3F2FD } .semester-8 .subject:nth-child(3) { background:#BBDEFB } .semester-8 .subject:nth-child(4) { background:#90CAF9 } .semester-8 .subject:nth-child(5) { background:#64B5F6 } .semester-8 .subject:nth-child(6) { background:#42A5F5 } .semester-8 .subject:nth-child(7) { background:#1976D2 } .semester-8 .subject:nth-child(8) { background:#1565C0 }
-        .semester-9 .subject:nth-child(2) { background:#FAFAFA } .semester-9 .subject:nth-child(3) { background:#F5F5F5 } .semester-9 .subject:nth-child(4) { background:#EEEEEE } .semester-9 .subject:nth-child(5) { background:#E0E0E0 } .semester-9 .subject:nth-child(6) { background:#BDBDBD } .semester-9 .subject:nth-child(7) { background:#757575 } .semester-9 .subject:nth-child(8) { background:#616161 }
-        .semester-ingles .subject:nth-child(2) { background:#E0F2F1 } .semester-ingles .subject:nth-child(3) { background:#B2DFDB } .semester-ingles .subject:nth-child(4) { background:#80CBC4 } .semester-ingles .subject:nth-child(5) { background:#4DB6AC } .semester-ingles .subject:nth-child(6) { background:#26A69A } .semester-ingles .subject:nth-child(7) { background:#009688 } .semester-ingles .subject:nth-child(8) { background:#00897B }
-        .semester-comp .subject:nth-child(2) { background:#EDE7F6 } .semester-comp .subject:nth-child(3) { background:#D1C4E9 }
-        .semester-practicas .subject { background: #E8F5E9; }
-        .semester-vinculacion .subject { background: #E3F2FD; }
+        .semester-pre .subject:nth-child(2) { background: #E0F7FA; }
+        .semester-pre .subject:nth-child(3) { background: #B2EBF2; }
+        .semester-pre .subject:nth-child(4) { background: #80DEEA; }
 
-        /* ── UNIT BORDERS ── */
+        .semester-1 .subject:nth-child(2) { background: #E8F5E9; }
+        .semester-1 .subject:nth-child(3) { background: #C8E6C9; }
+        .semester-1 .subject:nth-child(4) { background: #A5D6A7; }
+        .semester-1 .subject:nth-child(5) { background: #81C784; }
+        .semester-1 .subject:nth-child(6) { background: #66BB6A; }
+        .semester-1 .subject:nth-child(7) { background: #43A047; }
+
+        .semester-2 .subject:nth-child(2) { background: #FFF3E0; }
+        .semester-2 .subject:nth-child(3) { background: #FFE0B2; }
+        .semester-2 .subject:nth-child(4) { background: #FFCC80; }
+        .semester-2 .subject:nth-child(5) { background: #FFB74D; }
+        .semester-2 .subject:nth-child(6) { background: #FFA726; }
+        .semester-2 .subject:nth-child(7) { background: #FF9800; }
+
+        .semester-3 .subject:nth-child(2) { background: #F3E5F5; }
+        .semester-3 .subject:nth-child(3) { background: #E1BEE7; }
+        .semester-3 .subject:nth-child(4) { background: #CE93D8; }
+        .semester-3 .subject:nth-child(5) { background: #BA68C8; }
+        .semester-3 .subject:nth-child(6) { background: #AB47BC; }
+        .semester-3 .subject:nth-child(7) { background: #9C27B0; }
+
+        .semester-4 .subject:nth-child(2) { background: #FCE4EC; }
+        .semester-4 .subject:nth-child(3) { background: #F8BBD0; }
+        .semester-4 .subject:nth-child(4) { background: #F48FB1; }
+        .semester-4 .subject:nth-child(5) { background: #F06292; }
+        .semester-4 .subject:nth-child(6) { background: #EC407A; }
+        .semester-4 .subject:nth-child(7) { background: #E91E63; }
+
+        .semester-5 .subject:nth-child(2) { background: #FFFDE7; }
+        .semester-5 .subject:nth-child(3) { background: #FFF9C4; }
+        .semester-5 .subject:nth-child(4) { background: #FFF59D; }
+        .semester-5 .subject:nth-child(5) { background: #FFF176; }
+        .semester-5 .subject:nth-child(6) { background: #FFEE58; }
+        .semester-5 .subject:nth-child(7) { background: #FFEB3B; }
+        .semester-5 .subject:nth-child(8) { background: #FDD835; }
+
+        .semester-6 .subject:nth-child(2) { background: #FFEBEE; }
+        .semester-6 .subject:nth-child(3) { background: #FFCDD2; }
+        .semester-6 .subject:nth-child(4) { background: #EF9A9A; }
+        .semester-6 .subject:nth-child(5) { background: #E57373; }
+        .semester-6 .subject:nth-child(6) { background: #EF5350; }
+        .semester-6 .subject:nth-child(7) { background: #F44336; }
+        .semester-6 .subject:nth-child(8) { background: #E53935; }
+
+        .semester-7 .subject:nth-child(2) { background: #E8F5E9; }
+        .semester-7 .subject:nth-child(3) { background: #C8E6C9; }
+        .semester-7 .subject:nth-child(4) { background: #A5D6A7; }
+        .semester-7 .subject:nth-child(5) { background: #81C784; }
+        .semester-7 .subject:nth-child(6) { background: #66BB6A; }
+        .semester-7 .subject:nth-child(7) { background: #388E3C; }
+        .semester-7 .subject:nth-child(8) { background: #2E7D32; }
+
+        .semester-8 .subject:nth-child(2) { background: #E3F2FD; }
+        .semester-8 .subject:nth-child(3) { background: #BBDEFB; }
+        .semester-8 .subject:nth-child(4) { background: #90CAF9; }
+        .semester-8 .subject:nth-child(5) { background: #64B5F6; }
+        .semester-8 .subject:nth-child(6) { background: #42A5F5; }
+        .semester-8 .subject:nth-child(7) { background: #1976D2; }
+        .semester-8 .subject:nth-child(8) { background: #1565C0; }
+
+        .semester-9 .subject:nth-child(2) { background: #FAFAFA; }
+        .semester-9 .subject:nth-child(3) { background: #F5F5F5; }
+        .semester-9 .subject:nth-child(4) { background: #EEEEEE; }
+        .semester-9 .subject:nth-child(5) { background: #E0E0E0; }
+        .semester-9 .subject:nth-child(6) { background: #BDBDBD; }
+        .semester-9 .subject:nth-child(7) { background: #757575; }
+        .semester-9 .subject:nth-child(8) { background: #616161; }
+
+        .semester-ingles .subject:nth-child(2) { background: #E0F2F1; }
+        .semester-ingles .subject:nth-child(3) { background: #B2DFDB; }
+        .semester-ingles .subject:nth-child(4) { background: #80CBC4; }
+        .semester-ingles .subject:nth-child(5) { background: #4DB6AC; }
+        .semester-ingles .subject:nth-child(6) { background: #26A69A; }
+        .semester-ingles .subject:nth-child(7) { background: #009688; }
+        .semester-ingles .subject:nth-child(8) { background: #00897B; }
+
+        .semester-comp .subject:nth-child(2) { background: #EDE7F6; }
+        .semester-comp .subject:nth-child(3) { background: #D1C4E9; }
+
         .unit-preuniversitaria { border-left: 5px solid #1AB4E8; }
-        .unit-basica           { border-left: 5px solid #1ACB6C; }
-        .unit-profesional      { border-left: 5px solid #FFD150; }
-        .unit-titulacion       { border-left: 5px solid #FF9292; }
-        .unit-modulos          { border-left: 5px solid #9C27B0; }
-        .unit-practicas        { border-left: 5px solid #4CAF50; }
-        .unit-vinculacion      { border-left: 5px solid #2196F3; }
+        .unit-basica { border-left: 5px solid #1ACB6C; }
+        .unit-profesional { border-left: 5px solid #FFD150; }
+        .unit-titulacion { border-left: 5px solid #FF9292; }
+        .unit-modulos { border-left: 5px solid #9C27B0; }
     </style>
 </head>
 <body>
@@ -352,20 +672,46 @@
     </div>
 
     <div class="stats">
-        <div class="stat-card"><h3>Total de Asignaturas</h3><div class="number">57</div></div>
-        <div class="stat-card"><h3>Total de Módulos</h3><div class="number">9</div></div>
-        <div class="stat-card"><h3>Materias Aprobadas</h3><div class="number" id="materiasAprobadas">0</div></div>
-        <div class="stat-card"><h3>Créditos de la Malla</h3><div class="number" id="creditosMalla">0</div></div>
-        <div class="stat-card"><h3>Módulos Aprobados</h3><div class="number" id="modulosAprobados">0</div></div>
-        <div class="stat-card"><h3>Créditos Módulos</h3><div class="number" id="creditosModulos">0</div></div>
-        <div class="stat-card"><h3>Créditos Totales</h3><div class="number" id="creditosTotales">0</div></div>
-        <div class="stat-card"><h3>Horas Prácticas</h3><div class="number" id="horasPracticas">0/240</div></div>
-        <div class="stat-card"><h3>Horas Vinculación</h3><div class="number" id="horasVinculacion">0/160</div></div>
+        <div class="stat-card">
+            <h3>Total de Asignaturas</h3>
+            <div class="number">57</div>
+        </div>
+        <div class="stat-card">
+            <h3>Total de Módulos</h3>
+            <div class="number">9</div>
+        </div>
+        <div class="stat-card">
+            <h3>Materias Aprobadas</h3>
+            <div class="number" id="materiasAprobadas">0</div>
+        </div>
+        <div class="stat-card">
+            <h3>Créditos de la Malla</h3>
+            <div class="number" id="creditosMalla">0</div>
+        </div>
+        <div class="stat-card">
+            <h3>Módulos Aprobados</h3>
+            <div class="number" id="modulosAprobados">0</div>
+        </div>
+        <div class="stat-card">
+            <h3>Créditos Módulos</h3>
+            <div class="number" id="creditosModulos">0</div>
+        </div>
+        <div class="stat-card">
+            <h3>Créditos Totales</h3>
+            <div class="number" id="creditosTotales">0</div>
+        </div>
+        <div class="stat-card">
+            <h3>Horas Prácticas</h3>
+            <div class="number" id="horasPracticas">0/240</div>
+        </div>
+        <div class="stat-card">
+            <h3>Horas Vinculación</h3>
+            <div class="number" id="horasVinculacion">0/160</div>
+        </div>
     </div>
 
     <div id="curriculum"></div>
 
-    <!-- Modal -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -379,7 +725,6 @@
         </div>
     </div>
 
-    <!-- Celebration -->
     <div id="celebration" class="celebration">
         <div class="celebration-content">
             <div class="celebration-header" id="celebrationHeader"></div>
@@ -403,7 +748,7 @@
                 {id:'ta',name:'Tecnología Aplicada',icon:'🛠️',credits:3.33,req:['pc']},
                 {id:'tt',name:'Teoría del Turismo',icon:'📚',credits:3.33,req:['epi']},
                 {id:'adm',name:'Administración',icon:'📋',credits:3.33,req:['ica']},
-                {id:'mic',name:'Metodología de la Investigación Científica',icon:'🔬',credits:1.67,req:['ica'],transversal:true},
+                {id:'mic',name:'Metodología de la Investigación Científica',icon:'🔬',credits:1.67,req:['ica']},
                 {id:'tot',name:'Técnicas de Operación Turística',icon:'🧳',credits:3.33,req:['epi']}
             ],
             sem2: [
@@ -412,7 +757,7 @@
                 {id:'tg',name:'Técnicas de Guiar',icon:'🗺️',credits:3.33,req:['tot']},
                 {id:'hosp',name:'Hospitalidad',icon:'🤝',credits:3.33,req:['adm']},
                 {id:'eda',name:'Estadística Descriptiva Administrativa',icon:'📊',credits:1.67,req:['mf','ta']},
-                {id:'coe',name:'Comunicación Oral y Escrita',icon:'🗣️',credits:1.67,req:['mic'],transversal:true}
+                {id:'coe',name:'Comunicación Oral y Escrita',icon:'🗣️',credits:1.67,req:['mic']}
             ],
             sem3: [
                 {id:'ct',name:'Comunidad y Turismo',icon:'🏘️',credits:1.67,req:['hosp']},
@@ -436,15 +781,17 @@
                 {id:'it',name:'Iconografía Turística',icon:'🖼️',credits:1.67,req:['crt']},
                 {id:'ot',name:'Operación de Tours',icon:'🚍',credits:3.33,req:['codt','gtt']},
                 {id:'frat',name:'Fomento y Regulaciones a la Actividad Turística',icon:'⚖️',credits:3.33,req:['gthc']},
-                {id:'dts',name:'Desarrollo del Turismo Sostenible',icon:'♻️',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']}
+                {id:'dts',name:'Desarrollo del Turismo Sostenible',icon:'♻️',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']},
+                {id:'pp1',name:'Prácticas Pre Profesionales I',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']}
             ],
             sem6: [
                 {id:'pt',name:'Planificación Turística',icon:'🗓️',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts']},
-                {id:'gie',name:'Gestión de la Innovación y Emprendimiento',icon:'🚀',credits:3.33,req:['frat'],transversal:true},
+                {id:'gie',name:'Gestión de la Innovación y Emprendimiento',icon:'🚀',credits:3.33,req:['frat']},
                 {id:'at',name:'Animación Turística',icon:'🎬',credits:3.33,req:['it']},
                 {id:'rice',name:'Rice - Organización de Eventos',icon:'📅',credits:1.67,req:['dts']},
                 {id:'srt',name:'Sistemas de Registros Turísticos / Sabre y Amadeus',icon:'🧾',credits:1.67,req:['ot']},
-                {id:'macro',name:'Macroeconomía',icon:'🌐',credits:3.33,req:['micro']}
+                {id:'macro',name:'Macroeconomía',icon:'🌐',credits:3.33,req:['micro']},
+                {id:'pp2',name:'Prácticas Pre Profesionales II',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pp1']}
             ],
             sem7: [
                 {id:'pat',name:'Patrimonio',icon:'🏛️',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro']},
@@ -452,7 +799,8 @@
                 {id:'oab',name:'Operación de Alimentos y Bebidas',icon:'🍽️',credits:1.67,req:['at']},
                 {id:'oh',name:'Operación Hotelera',icon:'🏨',credits:3.33,req:['srt']},
                 {id:'st',name:'Sociología del Turismo',icon:'👨‍👩‍👧‍👦',credits:3.33,req:['at']},
-                {id:'tent',name:'Tendencias Turísticas',icon:'📈',credits:1.67,req:['macro']}
+                {id:'tent',name:'Tendencias Turísticas',icon:'📈',credits:1.67,req:['macro']},
+                {id:'pp3',name:'Prácticas Pre Profesionales III',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pp2']}
             ],
             sem8: [
                 {id:'fep',name:'Formulación y Evaluación de Proyectos',icon:'📐',credits:3.33,req:['gcp']},
@@ -460,15 +808,17 @@
                 {id:'ect',name:'Estrategias Comerciales Turísticas',icon:'🎯',credits:3.33,req:['tent']},
                 {id:'rtt',name:'Redacción del Trabajo de Titulación',icon:'📖',credits:1.67,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent']},
                 {id:'aac',name:'Apreciación del Arte y la Cultura',icon:'🖌️',credits:1.67,req:['pat']},
-                {id:'tyg',name:'Turismo y Gobernanza',icon:'🏛️',credits:3.33,req:['oab','st']}
+                {id:'tyg',name:'Turismo y Gobernanza',icon:'🏛️',credits:3.33,req:['oab','st']},
+                {id:'pv1',name:'Proyecto de Vinculación I',icon:'🔗',credits:0,hours:80,req:['pat','gcp','oab','oh','st','tent']}
             ],
             sem9: [
                 {id:'gidt',name:'Gestión Integral de Destinos Turísticos',icon:'🌟',credits:5,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent','fep','irt','ect','rtt','aac','tyg']},
                 {id:'tnct',name:'Técnicas de Negociación y Comunicación para el Turismo',icon:'🤝🗣️',credits:3.33,req:['ect']},
-                {id:'rng',name:'Realidad Nacional y Geopolítica',icon:'🌏',credits:1.67,req:['tyg'],transversal:true},
+                {id:'rng',name:'Realidad Nacional y Geopolítica',icon:'🌏',credits:1.67,req:['tyg']},
                 {id:'trab',name:'Trabajo de Titulación',icon:'🎓',credits:3.33,req:['rtt']},
                 {id:'cp',name:'Contratación Pública',icon:'📝',credits:3.33,req:['fep']},
-                {id:'lid',name:'Liderazgo',icon:'👑',credits:1.67,req:['aac']}
+                {id:'lid',name:'Liderazgo',icon:'👑',credits:1.67,req:['aac']},
+                {id:'pv2',name:'Proyecto de Vinculación II',icon:'🔗',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent','fep','irt','ect','rtt','aac','tyg','pv1']}
             ],
             modIngles: [
                 {id:'inga1m',name:'Inglés A1-',icon:'🔴',credits:2.08,req:[]},
@@ -482,209 +832,408 @@
             modComp: [
                 {id:'comp1',name:'Windows - Word - Internet',icon:'🪟',credits:8,req:[]},
                 {id:'comp2',name:'Excel - PowerPoint',icon:'📊',credits:8,req:['comp1']}
-            ],
-            practicas: [
-                {id:'pp1',name:'Prácticas Pre Profesionales I',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']},
-                {id:'pp2',name:'Prácticas Pre Profesionales II',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pp1']},
-                {id:'pp3',name:'Prácticas Pre Profesionales III',icon:'💼',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pp2']}
-            ],
-            vinculacion: [
-                {id:'pv1',name:'Proyecto de Vinculación I',icon:'🔗',credits:0,hours:80,req:['pat','gcp','oab','oh','st','tent']},
-                {id:'pv2',name:'Proyecto de Vinculación II',icon:'🔗',credits:0,hours:80,req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent','fep','irt','ect','rtt','aac','tyg','pv1']}
             ]
         };
 
         let approvedSubjects = {};
         let completedMilestones = {};
+        
         try {
             const stored = localStorage.getItem('approvedSubjects');
             if (stored) {
                 const parsed = JSON.parse(stored);
-                Object.keys(parsed).forEach(k => { if (parsed[k] === true) approvedSubjects[k] = true; });
+                // Limpiar cualquier valor que no sea true
+                Object.keys(parsed).forEach(key => {
+                    if (parsed[key] === true) {
+                        approvedSubjects[key] = true;
+                    }
+                });
             }
-            const sm = localStorage.getItem('completedMilestones');
-            if (sm) completedMilestones = JSON.parse(sm);
-        } catch(e) { approvedSubjects = {}; completedMilestones = {}; }
+            const storedMilestones = localStorage.getItem('completedMilestones');
+            if (storedMilestones) {
+                completedMilestones = JSON.parse(storedMilestones);
+            }
+        } catch (e) {
+            approvedSubjects = {};
+            completedMilestones = {};
+        }
+        
+        // Asegurar que el localStorage esté limpio al inicio
         localStorage.setItem('approvedSubjects', JSON.stringify(approvedSubjects));
 
         function isBlocked(reqs) {
             if (!reqs || reqs.length === 0) return false;
-            return reqs.some(r => !approvedSubjects[r]);
+            return reqs.some(req => !approvedSubjects[req]);
         }
 
         function toggleSubject(id) {
-            const all = getAllSubjects();
-            const s = all.find(x => x.id === id);
-            if (!s) return;
-            if (isBlocked(s.req)) { showModal(id); return; }
+            const allSubjects = [...subjectsData.pre, ...subjectsData.sem1, ...subjectsData.sem2, ...subjectsData.sem3, ...subjectsData.sem4, ...subjectsData.sem5, ...subjectsData.sem6, ...subjectsData.sem7, ...subjectsData.sem8, ...subjectsData.sem9, ...subjectsData.modIngles, ...subjectsData.modComp];
+            const subject = allSubjects.find(s => s.id === id);
+            
+            if (!subject) return;
+            
+            if (isBlocked(subject.req)) {
+                showModal(id);
+                return;
+            }
+            
             approvedSubjects[id] = !approvedSubjects[id];
             localStorage.setItem('approvedSubjects', JSON.stringify(approvedSubjects));
             render();
             checkMilestones();
         }
 
-        function getAllSubjects() {
-            return [...subjectsData.pre,...subjectsData.sem1,...subjectsData.sem2,...subjectsData.sem3,...subjectsData.sem4,...subjectsData.sem5,...subjectsData.sem6,...subjectsData.sem7,...subjectsData.sem8,...subjectsData.sem9,...subjectsData.modIngles,...subjectsData.modComp,...subjectsData.practicas,...subjectsData.vinculacion];
-        }
-
         function showModal(id) {
-            const allSubjects = getAllSubjects();
+            const allSubjects = [...subjectsData.pre, ...subjectsData.sem1, ...subjectsData.sem2, ...subjectsData.sem3, ...subjectsData.sem4, ...subjectsData.sem5, ...subjectsData.sem6, ...subjectsData.sem7, ...subjectsData.sem8, ...subjectsData.sem9, ...subjectsData.modIngles, ...subjectsData.modComp];
             const subject = allSubjects.find(s => s.id === id);
-            const semesterMap = { pre:'PRE NIVEL',sem1:'1ER NIVEL',sem2:'2DO NIVEL',sem3:'3ER NIVEL',sem4:'4TO NIVEL',sem5:'5TO NIVEL',sem6:'6TO NIVEL',sem7:'7MO NIVEL',sem8:'8VO NIVEL',sem9:'9NO NIVEL',modIngles:'MÓDULO INGLÉS',modComp:'MÓDULO COMPUTACIÓN',practicas:'PRÁCTICAS',vinculacion:'VINCULACIÓN' };
-            function getSemLevel(sid) { for (let k in subjectsData) { if (subjectsData[k].find(s=>s.id===sid)) return semesterMap[k]; } return ''; }
-
-            document.getElementById('modalTitle').textContent = 'Precedencias de ' + subject.name.toUpperCase();
-            if (!subject.req.length) {
-                document.getElementById('modalBody').innerHTML = '<div style="padding:30px;text-align:center;color:#666">Esta asignatura no tiene prerrequisitos</div>';
-            } else {
-                let t = '<table class="prerequisites-table"><thead><tr><th>ASIGNATURA</th><th>NIVEL</th></tr></thead><tbody>';
-                subject.req.forEach(rid => {
-                    const rs = allSubjects.find(s=>s.id===rid);
-                    if (rs) t += '<tr><td>'+rs.name.toUpperCase()+'</td><td><span class="level-badge">'+getSemLevel(rid)+'</span></td></tr>';
-                });
-                t += '</tbody></table>';
-                document.getElementById('modalBody').innerHTML = t;
+            
+            const semesterMap = {
+                pre: 'PRE NIVEL',
+                sem1: '1ER NIVEL',
+                sem2: '2DO NIVEL',
+                sem3: '3ER NIVEL',
+                sem4: '4TO NIVEL',
+                sem5: '5TO NIVEL',
+                sem6: '6TO NIVEL',
+                sem7: '7MO NIVEL',
+                sem8: '8VO NIVEL',
+                sem9: '9NO NIVEL',
+                modIngles: 'MÓDULO INGLÉS',
+                modComp: 'MÓDULO COMPUTACIÓN'
+            };
+            
+            function getSemesterLevel(subjectId) {
+                for (let key in subjectsData) {
+                    const found = subjectsData[key].find(s => s.id === subjectId);
+                    if (found) return semesterMap[key];
+                }
+                return '';
             }
+            
+            document.getElementById('modalTitle').textContent = 'Precedencias de la asignatura ' + subject.name.toUpperCase();
+            
+            if (subject.req.length === 0) {
+                document.getElementById('modalBody').innerHTML = '<div style="padding: 30px; text-align: center; color: #666;"><p>Esta asignatura no tiene prerrequisitos</p></div>';
+            } else {
+                let tableHTML = '<table class="prerequisites-table">';
+                tableHTML += '<thead><tr><th>ASIGNATURAS</th><th>NIVEL</th></tr></thead>';
+                tableHTML += '<tbody>';
+                
+                subject.req.forEach(reqId => {
+                    const reqSubject = allSubjects.find(s => s.id === reqId);
+                    if (reqSubject) {
+                        const level = getSemesterLevel(reqId);
+                        tableHTML += '<tr>';
+                        tableHTML += '<td>' + reqSubject.name.toUpperCase() + '</td>';
+                        tableHTML += '<td><span class="level-badge">' + level + '</span></td>';
+                        tableHTML += '</tr>';
+                    }
+                });
+                
+                tableHTML += '</tbody></table>';
+                document.getElementById('modalBody').innerHTML = tableHTML;
+            }
+            
             document.getElementById('modal').style.display = 'flex';
         }
 
         function calculateStats() {
-            let creditsMalla=0, creditsModulos=0, horasPracticas=0, horasVinculacion=0, materiasAprobadas=0, modulosAprobados=0;
-            const malla = [...subjectsData.pre,...subjectsData.sem1,...subjectsData.sem2,...subjectsData.sem3,...subjectsData.sem4,...subjectsData.sem5,...subjectsData.sem6,...subjectsData.sem7,...subjectsData.sem8,...subjectsData.sem9,...subjectsData.practicas,...subjectsData.vinculacion];
-            malla.forEach(s => {
-                if (approvedSubjects[s.id]===true) {
+            let creditsMalla = 0;
+            let creditsModulos = 0;
+            let horasPracticas = 0;
+            let horasVinculacion = 0;
+            let materiasAprobadas = 0;
+            let modulosAprobados = 0;
+
+            const mallaSubjects = [...subjectsData.pre, ...subjectsData.sem1, ...subjectsData.sem2, ...subjectsData.sem3, ...subjectsData.sem4, ...subjectsData.sem5, ...subjectsData.sem6, ...subjectsData.sem7, ...subjectsData.sem8, ...subjectsData.sem9];
+            mallaSubjects.forEach(s => {
+                if (approvedSubjects[s.id] === true) {
                     materiasAprobadas++;
-                    if (s.hours) { if(s.id.startsWith('pp')) horasPracticas+=s.hours; else horasVinculacion+=s.hours; }
-                    else if (s.credits>0) creditsMalla+=s.credits;
+                    if (s.hours) {
+                        if (s.id.startsWith('pp')) horasPracticas += s.hours;
+                        else if (s.id.startsWith('pv')) horasVinculacion += s.hours;
+                    } else if (s.credits > 0) {
+                        creditsMalla += s.credits;
+                    }
                 }
             });
-            [...subjectsData.modIngles,...subjectsData.modComp].forEach(s => {
-                if (approvedSubjects[s.id]===true) { modulosAprobados++; if(s.credits>0) creditsModulos+=s.credits; }
+
+            const moduloSubjects = [...subjectsData.modIngles, ...subjectsData.modComp];
+            moduloSubjects.forEach(s => {
+                if (approvedSubjects[s.id] === true) {
+                    modulosAprobados++;
+                    if (s.credits > 0) {
+                        creditsModulos += s.credits;
+                    }
+                }
             });
+
             document.getElementById('materiasAprobadas').textContent = materiasAprobadas;
             document.getElementById('modulosAprobados').textContent = modulosAprobados;
             document.getElementById('creditosMalla').textContent = creditsMalla.toFixed(2);
             document.getElementById('creditosModulos').textContent = creditsModulos.toFixed(2);
-            document.getElementById('creditosTotales').textContent = (creditsMalla+creditsModulos).toFixed(2);
-            document.getElementById('horasPracticas').textContent = horasPracticas+'/240';
-            document.getElementById('horasVinculacion').textContent = horasVinculacion+'/160';
+            document.getElementById('creditosTotales').textContent = (creditsMalla + creditsModulos).toFixed(2);
+            document.getElementById('horasPracticas').textContent = horasPracticas + '/240';
+            document.getElementById('horasVinculacion').textContent = horasVinculacion + '/160';
         }
 
-        function renderSubject(s) {
-            const blocked = isBlocked(s.req);
-            const isApproved = approvedSubjects[s.id]===true && !blocked;
-            let h = '<div class="subject'+(isApproved?' approved':'')+(blocked?' blocked':'')+(s.transversal?' transversal':'')+'" onclick="toggleSubject(\''+s.id+'\')">';
-            if (s.transversal) h += '<div class="transversal-badge">Transversal</div>';
-            h += '<div class="subject-icon">'+s.icon+'</div>';
-            if (isApproved && s.credits>0) h += '<div class="credits-badge">'+s.credits+'</div>';
-            h += '<div class="status-icon">'+(isApproved?'✓':blocked?'🔒':'')+'</div>';
-            h += '<div class="subject-name">'+s.name+'</div>';
-            h += '<div class="subject-info">';
-            if (s.credits>0) h += '<div class="subject-info-row"><span style="color:#000">Créditos:</span><strong style="color:#000">'+s.credits+'</strong></div>';
-            if (s.hours)  h += '<div class="subject-info-row"><span style="color:#000">Horas:</span><strong style="color:#000">'+s.hours+'</strong></div>';
-            h += '<div class="subject-info-row"><span style="color:#000">Precedencias:</span><button class="info-btn" onclick="event.stopPropagation();showModal(\''+s.id+'\')">i</button></div>';
-            h += '</div></div>';
-            return h;
+        function renderSubject(subject) {
+            const blocked = isBlocked(subject.req);
+            const isApproved = approvedSubjects[subject.id] === true && !blocked;
+            
+            // Identificar materias transversales
+            const transversalIds = ['mic', 'coe', 'gie', 'rng'];
+            const isTransversal = transversalIds.includes(subject.id);
+            
+            let html = '<div class="subject ' + (isApproved ? 'approved' : '') + ' ' + (blocked ? 'blocked' : '') + ' ' + (isTransversal ? 'transversal' : '') + '" ';
+            html += 'onclick="toggleSubject(\'' + subject.id + '\')">';
+            
+            if (isTransversal) {
+                html += '<div class="transversal-badge">Transversal</div>';
+            }
+            
+            html += '<div class="subject-icon">' + subject.icon + '</div>';
+            if (isApproved && subject.credits > 0) {
+                html += '<div class="credits-badge">' + subject.credits + '</div>';
+            }
+            html += '<div class="status-icon">' + (isApproved ? '✓' : blocked ? '🔒' : '') + '</div>';
+            html += '<div class="subject-name">' + subject.name + '</div>';
+            html += '<div class="subject-info">';
+            if (subject.credits > 0) {
+                html += '<div class="subject-info-row"><span style="color:#000!important">Créditos:</span><strong style="color:#000!important">' + subject.credits + '</strong></div>';
+            }
+            if (subject.hours) {
+                html += '<div class="subject-info-row"><span style="color:#000!important">Horas:</span><strong style="color:#000!important">' + subject.hours + '</strong></div>';
+            }
+            html += '<div class="subject-info-row"><span style="color:#000!important">Precedencias:</span>';
+            html += '<button class="info-btn" onclick="event.stopPropagation(); showModal(\'' + subject.id + '\')">i</button></div>';
+            html += '</div></div>';
+            return html;
         }
 
-        function renderSemester(title, subjects, cls) {
-            let h = '<div class="semester '+cls+'"><div class="semester-title">'+title+'</div>';
-            subjects.forEach(s => h += renderSubject(s));
-            return h + '</div>';
+        function renderSemester(title, subjects, semesterClass) {
+            let html = '<div class="semester ' + semesterClass + '">';
+            html += '<div class="semester-title">' + title + '</div>';
+            subjects.forEach(s => {
+                html += renderSubject(s);
+            });
+            html += '</div>';
+            return html;
         }
 
         function render() {
-            let h = '';
-            h += '<div class="unit unit-preuniversitaria"><div class="unit-title">Unidad Preuniversitaria</div><div class="semesters-container">';
-            h += renderSemester('PRE', subjectsData.pre, 'semester-pre');
-            h += '</div></div>';
+            let html = '';
+            
+            html += '<div class="unit unit-preuniversitaria">';
+            html += '<div class="unit-title">Unidad Preuniversitaria</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('PRE', subjectsData.pre, 'semester-pre');
+            html += '</div></div>';
 
-            h += '<div class="unit unit-basica"><div class="unit-title">Unidad Básica</div><div class="semesters-container">';
-            h += renderSemester('1er Semestre', subjectsData.sem1, 'semester-1');
-            h += renderSemester('2do Semestre', subjectsData.sem2, 'semester-2');
-            h += renderSemester('3er Semestre', subjectsData.sem3, 'semester-3');
-            h += '</div></div>';
+            html += '<div class="unit unit-basica">';
+            html += '<div class="unit-title">Unidad Básica</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('1er Semestre', subjectsData.sem1, 'semester-1');
+            html += renderSemester('2do Semestre', subjectsData.sem2, 'semester-2');
+            html += renderSemester('3er Semestre', subjectsData.sem3, 'semester-3');
+            html += '</div></div>';
 
-            h += '<div class="unit unit-profesional"><div class="unit-title">Unidad Profesional</div><div class="semesters-container">';
-            h += renderSemester('4to Semestre', subjectsData.sem4, 'semester-4');
-            h += renderSemester('5to Semestre', subjectsData.sem5, 'semester-5');
-            h += renderSemester('6to Semestre', subjectsData.sem6, 'semester-6');
-            h += renderSemester('7mo Semestre', subjectsData.sem7, 'semester-7');
-            h += '</div></div>';
+            html += '<div class="unit unit-profesional">';
+            html += '<div class="unit-title">Unidad Profesional</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('4to Semestre', subjectsData.sem4, 'semester-4');
+            html += renderSemester('5to Semestre', subjectsData.sem5, 'semester-5');
+            html += renderSemester('6to Semestre', subjectsData.sem6, 'semester-6');
+            html += renderSemester('7mo Semestre', subjectsData.sem7, 'semester-7');
+            html += '</div></div>';
 
-            h += '<div class="unit unit-titulacion"><div class="unit-title">Unidad de Titulación</div><div class="semesters-container">';
-            h += renderSemester('8vo Semestre', subjectsData.sem8, 'semester-8');
-            h += renderSemester('9no Semestre', subjectsData.sem9, 'semester-9');
-            h += '</div></div>';
+            html += '<div class="unit unit-titulacion">';
+            html += '<div class="unit-title">Unidad de Titulación</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('8vo Semestre', subjectsData.sem8, 'semester-8');
+            html += renderSemester('9no Semestre', subjectsData.sem9, 'semester-9');
+            html += '</div></div>';
 
-            h += '<div class="unit unit-practicas"><div class="unit-title">💼 Prácticas Pre Profesionales</div><div class="semesters-container">';
-            h += renderSemester('Prácticas', subjectsData.practicas, 'semester-practicas');
-            h += '</div></div>';
-
-            h += '<div class="unit unit-vinculacion"><div class="unit-title">🔗 Proyectos de Vinculación</div><div class="semesters-container">';
-            h += renderSemester('Vinculación', subjectsData.vinculacion, 'semester-vinculacion');
-            h += '</div></div>';
-
-            h += '<div class="unit unit-modulos"><div class="unit-title">📘 Módulos Complementarios</div><div class="semesters-container">';
-            h += renderSemester('🌐 Inglés', subjectsData.modIngles, 'semester-ingles');
-            h += renderSemester('💻 Computación', subjectsData.modComp, 'semester-comp');
-            h += '</div></div>';
-
-            document.getElementById('curriculum').innerHTML = h;
+            html += '<div class="unit unit-modulos">';
+            html += '<div class="unit-title">📘 Módulos Complementarios</div>';
+            html += '<div class="semesters-container">';
+            html += renderSemester('🌐 Inglés', subjectsData.modIngles, 'semester-ingles');
+            html += renderSemester('💻 Computación', subjectsData.modComp, 'semester-comp');
+            html += '</div></div>';
+            
+            document.getElementById('curriculum').innerHTML = html;
             calculateStats();
         }
 
-        function showCelebration(msg, icon) {
+        function showCelebration(message, icon) {
             document.getElementById('celebrationHeader').textContent = '🎉 ¡FELICITACIONES! 🎉';
-            document.getElementById('celebrationBody').innerHTML = '<div class="celebration-icon">'+(icon||'✅')+'</div><div class="celebration-title">'+msg+'</div>';
+            
+            let bodyHTML = '<div class="celebration-icon">' + (icon || '✅') + '</div>';
+            bodyHTML += '<div class="celebration-title">' + message + '</div>';
+            
+            document.getElementById('celebrationBody').innerHTML = bodyHTML;
             document.getElementById('celebration').style.display = 'flex';
         }
-        function closeCelebration() { document.getElementById('celebration').style.display = 'none'; }
+
+        function closeCelebration() {
+            document.getElementById('celebration').style.display = 'none';
+        }
+
+        function calculateModuleCredits(moduleSubjects) {
+            let total = 0;
+            moduleSubjects.forEach(s => {
+                if (s.credits > 0) {
+                    total += s.credits;
+                }
+            });
+            return total;
+        }
+
+        function calculateAllModuleCredits() {
+            let total = 0;
+            [...subjectsData.modIngles, ...subjectsData.modComp].forEach(s => {
+                if (approvedSubjects[s.id] && s.credits > 0) {
+                    total += s.credits;
+                }
+            });
+            return total;
+        }
+
+        function calculateSemesterCredits(sem) {
+            let total = 0;
+            sem.forEach(s => {
+                if (s.credits > 0 && !s.hours) {
+                    total += s.credits;
+                }
+            });
+            return total;
+        }
+
+        function calculatePreviousCredits(upToSemester) {
+            const semesterOrder = ['pre', 'sem1', 'sem2', 'sem3', 'sem4', 'sem5', 'sem6', 'sem7', 'sem8', 'sem9'];
+            const currentIndex = semesterOrder.indexOf(upToSemester);
+            let total = 0;
+            
+            for (let i = 0; i < currentIndex; i++) {
+                const semKey = semesterOrder[i];
+                subjectsData[semKey].forEach(s => {
+                    if (approvedSubjects[s.id] && s.credits > 0 && !s.hours) {
+                        total += s.credits;
+                    }
+                });
+            }
+            
+            return total;
+        }
 
         function checkMilestones() {
-            function chk(sem, name, key) {
-                const all = sem.filter(s=>s.credits>0||s.hours);
-                const done = all.every(s=>approvedSubjects[s.id]);
-                if (done && !completedMilestones[key]) { completedMilestones[key]=true; localStorage.setItem('completedMilestones',JSON.stringify(completedMilestones)); setTimeout(()=>showCelebration('Has aprobado '+name,'🎊'),300); }
-                else if (!done && completedMilestones[key]) { completedMilestones[key]=false; localStorage.setItem('completedMilestones',JSON.stringify(completedMilestones)); }
+            function checkSemester(sem, name, key) {
+                const all = sem.filter(s => s.credits > 0 || s.hours);
+                const approvedInSem = all.filter(s => approvedSubjects[s.id]);
+                const isComplete = all.length === approvedInSem.length && all.length > 0;
+                
+                if (isComplete && !completedMilestones[key]) {
+                    completedMilestones[key] = true;
+                    localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                    
+                    setTimeout(function() { 
+                        showCelebration('Has aprobado ' + name, '🎊'); 
+                    }, 300);
+                } else if (!isComplete && completedMilestones[key]) {
+                    completedMilestones[key] = false;
+                    localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                }
+                return isComplete;
             }
-            chk(subjectsData.pre,'el PRE','pre');
-            chk(subjectsData.sem1,'el 1er Semestre','sem1');
-            chk(subjectsData.sem2,'el 2do Semestre','sem2');
-            chk(subjectsData.sem3,'el 3er Semestre','sem3');
-            chk(subjectsData.sem4,'el 4to Semestre','sem4');
-            chk(subjectsData.sem5,'el 5to Semestre','sem5');
-            chk(subjectsData.sem6,'el 6to Semestre','sem6');
-            chk(subjectsData.sem7,'el 7mo Semestre','sem7');
-            chk(subjectsData.sem8,'el 8vo Semestre','sem8');
-            chk(subjectsData.sem9,'el 9no Semestre','sem9');
-            chk(subjectsData.practicas,'todas las Prácticas','practicas');
-            chk(subjectsData.vinculacion,'todos los Proyectos de Vinculación','vinculacion');
 
-            const ingDone = subjectsData.modIngles.every(s=>approvedSubjects[s.id]);
-            if (ingDone && !completedMilestones['ingles']) { completedMilestones['ingles']=true; localStorage.setItem('completedMilestones',JSON.stringify(completedMilestones)); setTimeout(()=>showCelebration('Has aprobado todos los módulos de Inglés','🌐'),300); }
-            else if (!ingDone && completedMilestones['ingles']) { completedMilestones['ingles']=false; localStorage.setItem('completedMilestones',JSON.stringify(completedMilestones)); }
+            checkSemester(subjectsData.pre, 'el PRE', 'pre');
+            checkSemester(subjectsData.sem1, 'el 1er Semestre', 'sem1');
+            checkSemester(subjectsData.sem2, 'el 2do Semestre', 'sem2');
+            checkSemester(subjectsData.sem3, 'el 3er Semestre', 'sem3');
+            checkSemester(subjectsData.sem4, 'el 4to Semestre', 'sem4');
+            checkSemester(subjectsData.sem5, 'el 5to Semestre', 'sem5');
+            checkSemester(subjectsData.sem6, 'el 6to Semestre', 'sem6');
+            checkSemester(subjectsData.sem7, 'el 7mo Semestre', 'sem7');
+            checkSemester(subjectsData.sem8, 'el 8vo Semestre', 'sem8');
+            checkSemester(subjectsData.sem9, 'el 9no Semestre', 'sem9');
 
-            const compDone = subjectsData.modComp.every(s=>approvedSubjects[s.id]);
-            if (compDone && !completedMilestones['comp']) { completedMilestones['comp']=true; localStorage.setItem('completedMilestones',JSON.stringify(completedMilestones)); setTimeout(()=>showCelebration('Has aprobado todos los módulos de Computación','💻'),300); }
-            else if (!compDone && completedMilestones['comp']) { completedMilestones['comp']=false; localStorage.setItem('completedMilestones',JSON.stringify(completedMilestones)); }
+            const inglesComplete = subjectsData.modIngles.every(s => approvedSubjects[s.id]);
+            if (inglesComplete && !completedMilestones['ingles']) {
+                completedMilestones['ingles'] = true;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                setTimeout(function() { showCelebration('Has aprobado todos los módulos de Inglés', '🌐'); }, 300);
+            } else if (!inglesComplete && completedMilestones['ingles']) {
+                completedMilestones['ingles'] = false;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+            }
 
-            const allDone = getAllSubjects().every(s=>approvedSubjects[s.id]);
-            if (allDone && !completedMilestones['carrera']) { completedMilestones['carrera']=true; localStorage.setItem('completedMilestones',JSON.stringify(completedMilestones)); setTimeout(()=>showCelebration('¡HAS COMPLETADO TU CARRERA!','🎓'),300); }
-            else if (!allDone && completedMilestones['carrera']) { completedMilestones['carrera']=false; localStorage.setItem('completedMilestones',JSON.stringify(completedMilestones)); }
+            const compComplete = subjectsData.modComp.every(s => approvedSubjects[s.id]);
+            if (compComplete && !completedMilestones['comp']) {
+                completedMilestones['comp'] = true;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                setTimeout(function() { showCelebration('Has aprobado todos los módulos de Computación', '💻'); }, 300);
+            } else if (!compComplete && completedMilestones['comp']) {
+                completedMilestones['comp'] = false;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+            }
+
+            const ppSubjects = [subjectsData.sem5, subjectsData.sem6, subjectsData.sem7].flatMap(s => s).filter(s => s.id.startsWith('pp'));
+            const ppComplete = ppSubjects.every(s => approvedSubjects[s.id]);
+            if (ppComplete && !completedMilestones['practicas']) {
+                completedMilestones['practicas'] = true;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                setTimeout(function() { showCelebration('Has completado todas tus horas de Prácticas Pre Profesionales', '💼'); }, 300);
+            } else if (!ppComplete && completedMilestones['practicas']) {
+                completedMilestones['practicas'] = false;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+            }
+
+            const pvSubjects = [subjectsData.sem8, subjectsData.sem9].flatMap(s => s).filter(s => s.id.startsWith('pv'));
+            const pvComplete = pvSubjects.every(s => approvedSubjects[s.id]);
+            if (pvComplete && !completedMilestones['vinculacion']) {
+                completedMilestones['vinculacion'] = true;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                setTimeout(function() { showCelebration('Has completado todas tus horas de tu Proyecto de Vinculación', '🔗'); }, 300);
+            } else if (!pvComplete && completedMilestones['vinculacion']) {
+                completedMilestones['vinculacion'] = false;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+            }
+
+            const allSubjects = [...subjectsData.pre, ...subjectsData.sem1, ...subjectsData.sem2, ...subjectsData.sem3, ...subjectsData.sem4, ...subjectsData.sem5, ...subjectsData.sem6, ...subjectsData.sem7, ...subjectsData.sem8, ...subjectsData.sem9, ...subjectsData.modIngles, ...subjectsData.modComp];
+            const carreraComplete = allSubjects.every(s => approvedSubjects[s.id]);
+            if (carreraComplete && !completedMilestones['carrera']) {
+                completedMilestones['carrera'] = true;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                setTimeout(function() { showCelebration('¡HAS COMPLETADO TU CARRERA!', '🎓'); }, 300);
+            } else if (!carreraComplete && completedMilestones['carrera']) {
+                completedMilestones['carrera'] = false;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+            }
         }
 
-        document.querySelector('.close').onclick = () => document.getElementById('modal').style.display='none';
-        window.onclick = e => { if (e.target==document.getElementById('modal')) document.getElementById('modal').style.display='none'; };
+        document.querySelector('.close').onclick = function() {
+            document.getElementById('modal').style.display = 'none';
+        };
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('modal')) {
+                document.getElementById('modal').style.display = 'none';
+            }
+        };
 
         function createSparkle() {
-            const s = document.createElement('div');
-            s.className = 'sparkle';
-            const size = Math.random()*4+2;
-            s.style.cssText = 'width:'+size+'px;height:'+size+'px;left:'+Math.random()*100+'%;animation-duration:'+(Math.random()*3+2)+'s;animation-delay:'+Math.random()*2+'s';
-            document.body.appendChild(s);
-            setTimeout(()=>s.remove(), 5000);
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(function() {
+                sparkle.remove();
+            }, 5000);
         }
+
         setInterval(createSparkle, 200);
 
         render();
