@@ -48,6 +48,7 @@
             min-height: 100vh;
             padding: 32px 24px;
             overflow-x: hidden;
+            position: relative;
         }
 
         /* Ambient background glow */
@@ -244,7 +245,7 @@
 
         .curriculum-grid {
             display: grid;
-            grid-template-columns: 130px repeat(12, 227px);
+            grid-template-columns: 130px repeat(12, 208px);
             gap: 12px;
             min-width: fit-content;
         }
@@ -311,14 +312,14 @@
         /* ─── SUBJECT CARDS ─── */
         .subject-card {
             position: relative;
-            width: 227px;
-            height: 227px;
-            min-width: 227px;
-            min-height: 227px;
-            max-width: 227px;
-            max-height: 227px;
-            border-radius: 12px;
-            padding: 16px 14px 14px;
+            width: 208px;
+            height: 208px;
+            min-width: 208px;
+            min-height: 208px;
+            max-width: 208px;
+            max-height: 208px;
+            border-radius: 10px;
+            padding: 14px 13px 12px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -701,8 +702,8 @@
 
         /* ─── RESET BUTTON ─── */
         .reset-btn {
-            position: fixed;
-            top: 20px;
+            position: absolute;
+            top: 24px;
             right: 24px;
             z-index: 500;
             background: rgba(248,113,113,0.1);
@@ -848,6 +849,9 @@
 <body>
 
     <div class="header">
+        <button class="reset-btn" onclick="document.getElementById('resetModal').style.display='flex'">
+            ↺ Resetear
+        </button>
         <div class="header-eyebrow">UNEMI</div>
         <h1>Licenciatura en Turismo</h1>
         <p class="header-sub">Malla Curricular Interactiva</p>
@@ -883,11 +887,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Botón Resetear -->
-    <button class="reset-btn" onclick="document.getElementById('resetModal').style.display='flex'">
-        ↺ Resetear
-    </button>
 
     <!-- Modal de confirmación de reset -->
     <div id="resetModal" class="reset-modal">
@@ -1351,10 +1350,6 @@
 
         render();
     </script>
-    <!-- Botón Resetear -->
-    <button class="reset-btn" onclick="document.getElementById('resetModal').style.display='flex'">
-        🔄 Resetear
-    </button>
 
     <!-- Barra de scroll horizontal fija -->
     <div class="fixed-scrollbar-wrapper" id="fixedScrollbar">
