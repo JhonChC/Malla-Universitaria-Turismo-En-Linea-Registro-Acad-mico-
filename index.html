@@ -601,6 +601,35 @@
             background: var(--surface2);
         }
 
+        .prerequisites-table tr.req-approved td {
+            border-left: 3px solid #00F0A8;
+        }
+
+        .prerequisites-table tr.req-approved .req-name {
+            color: #00F0A8;
+        }
+
+        .prerequisites-table tr.req-pending td {
+            border-left: 3px solid #FFAD00;
+        }
+
+        .prerequisites-table tr.req-pending .req-name {
+            color: #FFAD00;
+        }
+
+        .req-status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+
+        .req-approved .req-status-dot { background: #00F0A8; box-shadow: 0 0 6px #00F0A8; }
+        .req-pending  .req-status-dot { background: #FFAD00; box-shadow: 0 0 6px #FFAD00; }
+
         .level-badge {
             display: inline-block;
             padding: 3px 10px;
@@ -1033,13 +1062,15 @@
             ],
             sem8: [
                 {id:'fep', name:'Formulación y Evaluación de Proyectos',       icon:'📐', credits:3.33, req:['gcp']},
-                {id:'irt', name:'Integración Regional Turística',              icon:'🤝', credits:5,    req:['pat','gcp','oab','oh','st','tent']},
+                {id:'irt', name:'Integración Regional Turística',              icon:'🤝', credits:5,
+                    req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pp1','pt','gie','at','rice','srt','macro','pp2','pat','gcp','oab','oh','st','tent','pp3']},
                 {id:'ect', name:'Estrategias Comerciales Turísticas',          icon:'🎯', credits:3.33, req:['tent']},
                 {id:'rtt', name:'Redacción del Trabajo de Titulación',         icon:'📖', credits:1.67,
                     req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent']},
                 {id:'aac', name:'Apreciación del Arte y la Cultura',           icon:'🖌️', credits:1.67, req:['pat']},
                 {id:'tyg', name:'Turismo y Gobernanza',                        icon:'🏛️', credits:3.33, req:['oab','st']},
-                {id:'pv1', name:'Proyecto de Vinculación I',                   icon:'🔗', credits:0, hours:80, req:['pat','gcp','oab','oh','st','tent']}
+                {id:'pv1', name:'Proyecto de Vinculación I',                   icon:'🔗', credits:0, hours:80,
+                    req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pp1','pt','gie','at','rice','srt','macro','pp2','pat','gcp','oab','oh','st','tent','pp3']}
             ],
             sem9: [
                 {id:'gidt',name:'Gestión Integral de Destinos Turísticos',     icon:'🌟', credits:5,
@@ -1050,7 +1081,7 @@
                 {id:'cp',  name:'Contratación Pública',                        icon:'📝', credits:3.33, req:['fep']},
                 {id:'lid', name:'Liderazgo',                                   icon:'👑', credits:1.67, req:['aac']},
                 {id:'pv2', name:'Proyecto de Vinculación II',                  icon:'🔗', credits:0, hours:80,
-                    req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pt','gie','at','rice','srt','macro','pat','gcp','oab','oh','st','tent','fep','irt','ect','rtt','aac','tyg','pv1']}
+                    req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pp1','pt','gie','at','rice','srt','macro','pp2','pat','gcp','oab','oh','st','tent','pp3','fep','irt','ect','rtt','aac','tyg','pv1']}
             ],
             modIngles: [
                 {id:'inga1m',name:'Inglés A1-', icon:'🔴', credits:2.08, req:[]},
@@ -1071,7 +1102,7 @@
         let completedMilestones = {};
 
         // Versión de datos — cambiar este valor fuerza reset del localStorage
-        const DATA_VERSION = 'v5';
+        const DATA_VERSION = 'v8';
 
         try {
             const storedVersion = localStorage.getItem('mallaVersion');
@@ -1147,10 +1178,21 @@
             if (subject.req.length === 0) {
                 document.getElementById('modalBody').innerHTML = '<div class="no-prereqs">Esta asignatura no tiene prerrequisitos</div>';
             } else {
-                let t = '<table class="prerequisites-table"><thead><tr><th>Asignatura</th><th>Nivel</th></tr></thead><tbody>';
+                let t = '<table class="prerequisites-table"><thead><tr><th>Asignatura</th><th>Nivel</th><th>Estado</th></tr></thead><tbody>';
                 subject.req.forEach(reqId => {
                     const rs = allSubjectsList().find(s => s.id === reqId);
-                    if (rs) t += `<tr><td>${rs.name.toUpperCase()}</td><td><span class="level-badge">${getSemesterLevel(reqId)}</span></td></tr>`;
+                    if (rs) {
+                        const isApproved = approvedSubjects[reqId] === true;
+                        const rowClass = isApproved ? 'req-approved' : 'req-pending';
+                        const dotColor = isApproved ? '#00F0A8' : '#FFAD00';
+                        const statusText = isApproved ? 'Aprobada' : 'Pendiente';
+                        const statusStyle = `color:${dotColor};font-size:0.78em;font-family:'DM Mono',monospace;font-weight:600;`;
+                        t += `<tr class="${rowClass}">`;
+                        t += `<td><span class="req-status-dot" style="background:${dotColor};box-shadow:0 0 6px ${dotColor}"></span><span class="req-name">${rs.name.toUpperCase()}</span></td>`;
+                        t += `<td><span class="level-badge">${getSemesterLevel(reqId)}</span></td>`;
+                        t += `<td><span style="${statusStyle}">${statusText}</span></td>`;
+                        t += `</tr>`;
+                    }
                 });
                 t += '</tbody></table>';
                 document.getElementById('modalBody').innerHTML = t;
