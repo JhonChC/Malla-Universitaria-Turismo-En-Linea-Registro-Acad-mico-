@@ -244,9 +244,9 @@
 
         .curriculum-grid {
             display: grid;
-            grid-template-columns: 130px repeat(12, minmax(140px, 1fr));
+            grid-template-columns: 130px repeat(12, 227px);
             gap: 12px;
-            min-width: 1900px;
+            min-width: fit-content;
         }
 
         /* ─── TOP HEADER ROW ─── */
@@ -311,11 +311,14 @@
         /* ─── SUBJECT CARDS ─── */
         .subject-card {
             position: relative;
-            height: 160px;
-            min-height: 160px;
-            max-height: 160px;
-            border-radius: 10px;
-            padding: 14px 13px 12px;
+            width: 227px;
+            height: 227px;
+            min-width: 227px;
+            min-height: 227px;
+            max-width: 227px;
+            max-height: 227px;
+            border-radius: 12px;
+            padding: 16px 14px 14px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -418,25 +421,25 @@
         }
 
         .subject-icon {
-            font-size: 1.8em;
-            margin-bottom: 4px;
+            font-size: 2.2em;
+            margin-bottom: 6px;
             text-align: center;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
         .subject-name {
-            font-size: 0.78em;
+            font-size: 0.85em;
             font-weight: 600;
             text-align: center;
-            line-height: 1.25;
-            margin-bottom: 8px;
+            line-height: 1.3;
+            margin-bottom: 10px;
             color: rgba(255,255,255,0.93);
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
 
         .subject-details {
-            font-size: 0.72em;
+            font-size: 0.78em;
             color: rgba(255,255,255,0.6);
         }
 
@@ -695,6 +698,151 @@
             color: var(--text-muted);
             font-size: 0.9em;
         }
+
+        /* ─── RESET BUTTON ─── */
+        .reset-btn {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            z-index: 500;
+            background: rgba(248,113,113,0.1);
+            color: var(--red);
+            border: 1px solid rgba(248,113,113,0.3);
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.72em;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .reset-btn:hover {
+            background: rgba(248,113,113,0.2);
+            border-color: rgba(248,113,113,0.6);
+            transform: translateY(-1px);
+        }
+
+        /* ─── RESET CONFIRM MODAL ─── */
+        .reset-modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(6px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reset-modal-content {
+            background: var(--bg2);
+            border: 1px solid rgba(248,113,113,0.3);
+            border-radius: 14px;
+            max-width: 420px;
+            width: 90%;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 60px rgba(248,113,113,0.08);
+        }
+
+        .reset-modal-header {
+            padding: 22px 28px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .reset-modal-header .warn-icon {
+            font-size: 1.6em;
+            line-height: 1;
+        }
+
+        .reset-modal-header h2 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.05em;
+            font-weight: 700;
+            color: var(--red);
+            margin: 0;
+        }
+
+        .reset-modal-body {
+            padding: 22px 28px;
+        }
+
+        .reset-modal-body p {
+            color: var(--text);
+            font-size: 0.92em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .reset-modal-body .warning-note {
+            color: var(--text-muted);
+            font-size: 0.82em;
+            font-style: italic;
+        }
+
+        .reset-modal-footer {
+            padding: 16px 28px 22px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn-cancel-reset {
+            background: var(--surface2);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-cancel-reset:hover {
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        .btn-confirm-reset {
+            background: var(--red);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+
+        .btn-confirm-reset:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+
+        /* ─── RESET CONFIRM MODAL ─── */
+        .reset-modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+        }
+
     </style>
 </head>
 <body>
@@ -732,6 +880,30 @@
             <div class="modal-body" id="modalBody"></div>
             <div class="modal-footer">
                 <button class="btn-close-modal" onclick="document.getElementById('modal').style.display='none'">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón Resetear -->
+    <button class="reset-btn" onclick="document.getElementById('resetModal').style.display='flex'">
+        ↺ Resetear
+    </button>
+
+    <!-- Modal de confirmación de reset -->
+    <div id="resetModal" class="reset-modal">
+        <div class="reset-modal-content">
+            <div class="reset-modal-header">
+                <span class="warn-icon">⚠️</span>
+                <h2>Resetear progreso</h2>
+            </div>
+            <div class="reset-modal-body">
+                <p>¿Estás seguro de que deseas borrar todo tu progreso?<br>
+                Se eliminarán todas las materias aprobadas y los hitos completados.</p>
+                <p class="warning-note">Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="reset-modal-footer">
+                <button class="btn-cancel-reset" onclick="document.getElementById('resetModal').style.display='none'">Cancelar</button>
+                <button class="btn-confirm-reset" onclick="resetProgress()">Sí, resetear</button>
             </div>
         </div>
     </div>
@@ -1179,13 +1351,28 @@
 
         render();
     </script>
+    <!-- Botón Resetear -->
+    <button class="reset-btn" onclick="document.getElementById('resetModal').style.display='flex'">
+        🔄 Resetear
+    </button>
+
     <!-- Barra de scroll horizontal fija -->
     <div class="fixed-scrollbar-wrapper" id="fixedScrollbar">
         <div class="fixed-scrollbar-inner" id="fixedScrollbarInner"></div>
     </div>
 
     <script>
-        // Sincronizar barra fija con el curriculum-container
+        function resetProgress() {
+            localStorage.removeItem('approvedSubjects');
+            localStorage.removeItem('completedMilestones');
+            localStorage.removeItem('mallaVersion');
+            approvedSubjects = {};
+            completedMilestones = {};
+            document.getElementById('resetModal').style.display = 'none';
+            render();
+        }
+
+
         const container = document.querySelector('.curriculum-container');
         const fixedBar  = document.getElementById('fixedScrollbar');
         const fixedInner = document.getElementById('fixedScrollbarInner');
