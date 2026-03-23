@@ -73,12 +73,13 @@
         }
 
         .header-eyebrow {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.72em;
-            letter-spacing: 4px;
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            font-weight: 900;
+            letter-spacing: 6px;
             color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .header h1 {
@@ -243,9 +244,9 @@
 
         .curriculum-grid {
             display: grid;
-            grid-template-columns: 130px repeat(12, 1fr);
+            grid-template-columns: 130px repeat(12, minmax(140px, 1fr));
             gap: 12px;
-            min-width: 1600px;
+            min-width: 1900px;
         }
 
         /* ─── TOP HEADER ROW ─── */
@@ -310,9 +311,11 @@
         /* ─── SUBJECT CARDS ─── */
         .subject-card {
             position: relative;
-            min-height: 118px;
+            height: 160px;
+            min-height: 160px;
+            max-height: 160px;
             border-radius: 10px;
-            padding: 13px 12px 11px;
+            padding: 14px 13px 12px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -415,25 +418,25 @@
         }
 
         .subject-icon {
-            font-size: 1.6em;
-            margin-bottom: 5px;
+            font-size: 1.8em;
+            margin-bottom: 4px;
             text-align: center;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
         .subject-name {
-            font-size: 0.72em;
+            font-size: 0.78em;
             font-weight: 600;
             text-align: center;
             line-height: 1.25;
-            margin-bottom: 9px;
+            margin-bottom: 8px;
             color: rgba(255,255,255,0.93);
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
 
         .subject-details {
-            font-size: 0.66em;
+            font-size: 0.72em;
             color: rgba(255,255,255,0.6);
         }
 
@@ -697,7 +700,7 @@
 <body>
 
     <div class="header">
-        <div class="header-eyebrow">Universidad • Ecuador</div>
+        <div class="header-eyebrow">UNEMI</div>
         <h1>Licenciatura en Turismo</h1>
         <p class="header-sub">Malla Curricular Interactiva</p>
         <div class="header-line"></div>
@@ -791,6 +794,8 @@
                 {id:'ot',  name:'Operación de Tours',                           icon:'🚍', credits:3.33, req:['codt','gtt']},
                 {id:'frat',name:'Fomento y Regulaciones a la Actividad Turística',icon:'⚖️',credits:3.33,req:['gthc']},
                 {id:'dts', name:'Desarrollo del Turismo Sostenible',            icon:'♻️', credits:5,
+                    req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']},
+                {id:'pp1', name:'Prácticas Pre Profesionales I',                icon:'💼', credits:0, hours:80,
                     req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']}
             ],
             sem6: [
@@ -801,8 +806,6 @@
                 {id:'rice',name:'Rice - Organización de Eventos',               icon:'📅', credits:1.67, req:['dts']},
                 {id:'srt', name:'Sistemas de Registros Turísticos / Sabre y Amadeus',icon:'🧾',credits:1.67,req:['ot']},
                 {id:'macro',name:'Macroeconomía',                               icon:'🌐', credits:3.33, req:['micro']},
-                {id:'pp1', name:'Prácticas Pre Profesionales I',                icon:'💼', credits:0, hours:80,
-                    req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt']},
                 {id:'pp2', name:'Prácticas Pre Profesionales II',               icon:'💼', credits:0, hours:80,
                     req:['mf','ta','tt','adm','mic','tot','ch','bt','tg','hosp','eda','coe','ct','gap','goap','mpt','pie','cg','fcp','gtt','gthc','folk','codt','crt','arq','micro','it','ot','frat','dts','pp1']}
             ],
@@ -857,7 +860,7 @@
         let completedMilestones = {};
 
         // Versión de datos — cambiar este valor fuerza reset del localStorage
-        const DATA_VERSION = 'v4';
+        const DATA_VERSION = 'v5';
 
         try {
             const storedVersion = localStorage.getItem('mallaVersion');
@@ -1031,8 +1034,6 @@
             });
 
             // ── UNIDAD PROFESIONAL (rows 11–18) ──
-            // sem4–sem7 ocupan cols 6–9, rows 11–18
-            // tyg (de sem8) ocupa col 10, rows 11–18 — es la única materia del 8vo nivel en Profesional
             html += '<div class="unit-label" style="grid-column:1;grid-row:11/span 8">UNIDAD PROFESIONAL</div>';
             ['sem4','sem5','sem6','sem7'].forEach((key, i) => {
                 const cls = ['sem-4','sem-5','sem-6','sem-7'];
@@ -1040,9 +1041,9 @@
                 subjectsData[key].forEach(s => html += renderSubject(s, cls[i]));
                 html += '</div>';
             });
-            // Turismo y Gobernanza sola en col 10, dentro de Unidad Profesional
+            // Turismo y Gobernanza: en Unidad Profesional pero alineada al fondo (junto a las de Titulación)
             const tyg = subjectsData.sem8.find(s => s.id === 'tyg');
-            html += '<div class="semester-column" style="grid-column:10;grid-row:11/span 8">';
+            html += '<div class="semester-column" style="grid-column:10;grid-row:11/span 8;justify-content:flex-end">';
             if (tyg) html += renderSubject(tyg, 'sem-8');
             html += '</div>';
 
@@ -1073,7 +1074,8 @@
 
         function showCelebration(message, icon) {
             document.getElementById('celebrationHeader').textContent = '🎉 ¡FELICITACIONES! 🎉';
-            document.getElementById('celebrationBody').innerHTML = `<div class="celebration-icon">${icon||'✅'}</div><div class="celebration-title">${message}</div>`;
+            const formattedMsg = message.replace(/\n/g, '<br>');
+            document.getElementById('celebrationBody').innerHTML = `<div class="celebration-icon">${icon||'✅'}</div><div class="celebration-title">${formattedMsg}</div>`;
             document.getElementById('celebration').style.display = 'flex';
         }
 
@@ -1096,7 +1098,19 @@
                 }
             }
 
-            checkSem(subjectsData.pre,'el PRE','pre');
+            // PRE — verificación especial (las materias del PRE tienen credits:0 sin hours)
+            const preOk = subjectsData.pre.every(s => approvedSubjects[s.id]);
+            if (preOk && !completedMilestones.pre) {
+                completedMilestones.pre = true;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+                setTimeout(() => showCelebration(
+                    '¡Completaste la Unidad Preuniversitaria!\nEl primer paso siempre es el más importante. Ya demostraste que tienes todo para llegar lejos. ¡Adelante, el camino apenas comienza! 🚀',
+                    '🌟'
+                ), 300);
+            } else if (!preOk && completedMilestones.pre) {
+                completedMilestones.pre = false;
+                localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
+            }
             checkSem(subjectsData.sem1,'el 1er Semestre','sem1');
             checkSem(subjectsData.sem2,'el 2do Semestre','sem2');
             checkSem(subjectsData.sem3,'el 3er Semestre','sem3');
@@ -1127,7 +1141,7 @@
                 localStorage.setItem('completedMilestones', JSON.stringify(completedMilestones));
             }
 
-            const ppSubjects = [...subjectsData.sem6,...subjectsData.sem7].filter(s => s.id.startsWith('pp'));
+            const ppSubjects = [...subjectsData.sem5,...subjectsData.sem6,...subjectsData.sem7].filter(s => s.id.startsWith('pp'));
             const ppOk = ppSubjects.every(s => approvedSubjects[s.id]);
             if (ppOk && !completedMilestones.practicas) {
                 completedMilestones.practicas = true;
